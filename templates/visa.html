@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/visa.css' %}"/>
+    <style>
+        .hero-slider {
+            position: relative;
+            min-height: 90vh;
+        }
+        .carousel-item img {
+            height: 90vh;
+            object-fit: cover;
+        }
+        .search-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            z-index: 10;
+        }
+        #globalSearch {
+            border-radius: 50px;
+            padding: 20px 30px;
+            font-size: 1.4rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border: none;
+            text-align: center;
+        }
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            margin-top: 10px;
+            z-index: 1000;
+            display: none;
+        }
+        .result-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .result-item:hover {
+            background: #f8f9fa;
+        }
+        .result-item img {
+            width: 50px;
+            border-radius: 8px;
+        }
+        .result-item .badge {
+            font-size: 0.8rem;
+        }
+        .visa-card:hover {
+            transform: translateY(-10px);
+            transition: 0.3s;
+        }
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: large;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}
+/* Site-specific styles for main content, testimonials, etc. */
+        /* .main-content { padding: 50px 0; }
+        .testimonial { background: #aeb6be; padding: 30px; border-radius: 10px; margin: 40px 0; font-style: italic; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .how-it-works { margin: 60px 0; }
+        .step { text-align: center; margin: 20px; }
+        .step i { font-size: 2rem; color: #007bff; }
+        .faq { margin: 60px 0; }
+        .faq details { margin: 10px 0; background: #f8f9fa; padding: 15px; border-radius: 10px; }
+        .faq summary { font-weight: bold; cursor: pointer; } */
+:root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #06d6a0;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        h1, h2, h3, h4, h5 { font-weight: 700; color: var(--dark); }
+        .text-primary { color: var(--primary) !important; }
+
+        /* How It Works */
+        .step {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+        .step:hover { transform: translateY(-10px); }
+        .step i {
+            font-size: 3.5rem;
+            background: var(--primary);
+            /* -webkit-background-clip: text; */
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+       
+        .swiper-pagination-bullet-active { background: var(--primary) !important; }
+        .testimonial-container {
+  padding: 20px 0;
+}
+
+.testimonial-slider {
+  position: relative;
+  height: 420px;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+  pointer-events: none;
+}
+
+.testimonial-card.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.testimonial-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--primary);
+  margin-bottom: 20px;
+}
+
+/* Dots */
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+.dot.active, .dot:hover {
+  background-color: var(--primary);
+}
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+      <div class="container">
+         <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tours</a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                          <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                          <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                          <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                          <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                  <li class="nav-item">
+                      <a href="{% url 'getvisaform' %}" class="btn btn-success rounded-pill px-5">APPLY NOW</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <!-- Hero with Global Search -->
+  <header class="hero-slider">
+    <div id="visaSlider" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://images.pexels.com/photos/33597243/pexels-photo-33597243.jpeg" class="d-block w-100" alt="Travel">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h1 class="display-3 fw-bold">Travel the World Easily</h1>
+            <p class="fs-3">Check visa for any country instantly</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.pexels.com/photos/30110942/pexels-photo-30110942.jpeg" class="d-block w-100" alt="Passport">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h1 class="display-3 fw-bold">195 Countries Covered</h1>
+            <p class="fs-3">Visa-Free, eVisa, VOA & More</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.pexels.com/photos/346696/pexels-photo-346696.jpeg" class="d-block w-100" alt="World">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h1 class="display-3 fw-bold">Your Journey Starts Here</h1>
+            <p class="fs-3">Search any destination</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#visaSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#visaSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+      <!-- GLOBAL SEARCH BAR -->
+      <div class="search-overlay">
+        <input type="text" id="globalSearch" class="form-control form-control-lg text-center" 
+               placeholder="Search any country (e.g. France, Japan, USA...)" autocomplete="off">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+    </div>
+  </header>
+ <!-- Main Content (Added with Stats, Visa Cards, How It Works, Testimonial, FAQ) -->
+  <section class="main-content py-5 bg-light">
+    <div class="container">
+<!-- WE PROVIDE SECTION - 2x2 Grid -->
+    <h2 class="text-center mb-5 fw-bold text-danger" data-aos="fade-up">
+      Why Choose DREAM Visa Services?
+    </h2>
+
+    <div class="row g-4 mb-5">
+      <!-- Card 1 -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card visa-card h-100 shadow-lg border-0 text-center text-success hover-lift">
+          <div class="card-body p-4">
+            <i class="fa-regular fa-face-smile fa-3x mb-3 text-success"></i>
+            <h4 class="fw-bold">500+ US Visa Profiles Guided</h4>
+            <p class="lead mb-0">Students, working professionals & visitors with real-time guidance</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card visa-card h-100 shadow-lg border-0 text-center text-success hover-lift">
+          <div class="card-body p-4">
+            <i class="fa-solid fa-shield-heart fa-3x mb-3 text-success"></i>
+            <h4 class="fw-bold">End-to-End Visa Assistance</h4>
+            <p class="lead mb-0">DS-160, documentation, slot booking & interview prep – full support</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="card visa-card h-100 shadow-lg border-0 text-center text-success hover-lift">
+          <div class="card-body p-4">
+            <i class="fa-solid fa-location-dot fa-3x mb-3 text-success"></i>
+            <h4 class="fw-bold">All Major US Visa Categories</h4>
+            <p class="lead mb-0">F1, B1/B2, H1B, H4 & dependents – profile-based expert suggestions</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="card visa-card h-100 shadow-lg border-0 text-center text-success hover-lift">
+          <div class="card-body p-4">
+            <i class="fa-solid fa-headset fa-3x mb-3 text-success"></i>
+            <h4 class="fw-bold">24×7 Doubt-Clearing Support</h4>
+            <p class="lead mb-0">Instant help via WhatsApp, call or email – we're always here!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- How It Works -->
+      <h2 class="text-center text-danger mt-5 mb-4">How It Works</h2>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="step text-center">
+            <div class="step-number">1</div>
+            <h4>Submit Enquiry</h4>
+            <p>Fill the online form or WhatsApp us with your basic details and visa type.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step text-center">
+            <div class="step-number">2</div>
+            <h4>Expert Call</h4>
+            <p>Our team understands your profile, timelines and any previous visa history.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step text-center">
+            <div class="step-number">3</div>
+            <h4>Documentation & DS-160</h4>
+            <p>We guide you in documents, DS-160, fee payment and visa slot booking.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step text-center">
+            <div class="step-number">4</div>
+            <h4>Interview Preparation</h4>
+            <p>Mock interview, common questions, and final document check before your slot.</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="text-center text-danger mt-5 mb-4">We Provide These Visa</h2>
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <a href="{% url 'evisa' %}" class="text-decoration-none">
+            <div class="card visa-card h-100 shadow-lg border-0">
+              <div class="card-body text-primary">
+                <i class="fas fa-laptop fa-4x mb-3"></i>
+                <h3>e-Visa</h3>
+                <p class="lead">Apply online</p>
+                <span class="badge bg-primary fs-5">80+ Countries</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'visafree'%}" class="text-decoration-none">
+            <div class="card visa-card h-100 shadow-lg border-0">
+              <div class="card-body text-success">
+                <i class="fas fa-passport fa-4x mb-3"></i>
+                <h3>Visa-Free</h3>
+                <p class="lead">Just pack & go!</p>
+                <span class="badge bg-success fs-5">62 Countries</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'voa' %}" class="text-decoration-none">
+            <div class="card visa-card h-100 shadow-lg border-0">
+              <div class="card-body text-warning">
+                <i class="fas fa-plane-arrival fa-4x mb-3"></i>
+                <h3>Visa on Arrival</h3>
+                <p class="lead">Get visa at airport</p>
+                <span class="badge bg-warning text-dark fs-5">33 Countries</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+   <!-- <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Happy Travelers</h2>
+      <div class="swiper testimonialSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client">
+              <p class="mt-4">"Got my USA B1/B2 visa in first attempt! Their mock interviews were amazing."</p>
+              <h5 class="mt-3 text-primary">— Priya Sharma</h5>
+              <small>Business Visa, 2025</small>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+              <p class="mt-4">"Best consultancy for F1 visa. From I-20 to interview prep – everything perfect!"</p>
+              <h5 class="mt-3 text-primary">— Arjun Patel</h5>
+              <small>F1 Student, Fall 2025</small>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client">
+              <p class="mt-4">"Helped my parents get visitor visa after 2 refusals. Thank you DREAM!"</p>
+              <h5 class="mt-3 text-primary">— Neha Kapoor</h5>
+              <small>B2 Tourist Visa</small>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination mt-4"></div>
+      </div> -->
+
+      <!-- FAQ -->
+      <h2 class="text-center text-danger mt-5 mb-4">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+              Does this service cover only USA visa categories?
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1">
+            <div class="accordion-body">
+              Yes, this page is focused only on USA visa categories like F1, B1/B2, H1B, H4 and dependents.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+              How do we communicate?
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2">
+            <div class="accordion-body">
+              We usually connect through WhatsApp call, normal call or Google Meet as per your convenience.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+              How quickly do you respond?
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3">
+            <div class="accordion-body">
+              Our aim is to respond within 24 working hours. In peak seasons it may take slightly longer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials - Vertical One-by-One Slide Up -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center text-danger mb-5 fw-bold" data-aos="fade-up">Happy Travelers</h2>
+
+    <div class="testimonial-container position-relative" style="max-width: 800px; margin: 0 auto; overflow: hidden;">
+      <div class="testimonial-slider">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card active">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma">
+          <p class="mt-4">"Got my USA B1/B2 visa in first attempt! Their mock interviews were amazing."</p>
+          <h5 class="mt-3 text-primary">— Priya Sharma</h5>
+          <small>Business Visa, 2025</small>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Arjun Patel">
+          <p class="mt-4">"Best consultancy for F1 visa. From I-20 to interview prep – everything perfect!"</p>
+          <h5 class="mt-3 text-primary">— Arjun Patel</h5>
+          <small>F1 Student, Fall 2025</small>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Neha Kapoor">
+          <p class="mt-4">"Helped my parents get visitor visa after 2 refusals. Thank you DREAM!"</p>
+          <h5 class="mt-3 text-primary">— Neha Kapoor</h5>
+          <small>B2 Tourist Visa</small>
+        </div>
+
+        <!-- Add more testimonials here if needed -->
+      </div>
+
+      <!-- Dots Indicator -->
+      <div class="text-center mt-4">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Visa Options -->
+  <!-- <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <a href="{% url 'evisa' %}" class="text-decoration-none">
+            <div class="card visa-card h-100 shadow-lg border-0">
+              <div class="card-body text-primary">
+                <i class="fas fa-laptop fa-4x mb-3"></i>
+                <h3>e-Visa</h3>
+                <p class="lead">Apply online</p>
+                <span class="badge bg-primary fs-5">80+ Countries</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'visafree'%}" class="text-decoration-none">
+            <div class="card visa-card h-100 shadow-lg border-0">
+              <div class="card-body text-success">
+                <i class="fas fa-passport fa-4x mb-3"></i>
+                <h3>Visa-Free</h3>
+                <p class="lead">Just pack & go!</p>
+                <span class="badge bg-success fs-5">62 Countries</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'voa' %}" class="text-decoration-none">
+            <div class="card visa-card h-100 shadow-lg border-0">
+              <div class="card-body text-warning">
+                <i class="fas fa-plane-arrival fa-4x mb-3"></i>
+                <h3>Visa on Arrival</h3>
+                <p class="lead">Get visa at airport</p>
+                <span class="badge bg-warning text-dark fs-5">33 Countries</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- FAQ -->
+      <!-- <h2 class="text-center mt-5 mb-4">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+              Does this service cover only USA visa categories?
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1">
+            <div class="accordion-body">
+              Yes, this page is focused only on USA visa categories like F1, B1/B2, H1B, H4 and dependents.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+              How do we communicate?
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2">
+            <div class="accordion-body">
+              We usually connect through WhatsApp call, normal call or Google Meet as per your convenience.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+              How quickly do you respond?
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3">
+            <div class="accordion-body">
+              Our aim is to respond within 24 working hours. In peak seasons it may take slightly longer.
+            </div>
+          </div>
+        </div>
+      </div> -->
+  <!-- DREAM IMMIGRATIONS AI CHATBOT - Add this at the end of every page -->
+<div id="dreamChatBot" style="position:fixed; bottom:20px; right:20px; z-index:9999;">
+  <button id="chatToggle" style="background:#25d366; color:white; border:none; width:65px; height:65px; border-radius:50%; font-size:30px; box-shadow:0 8px 25px rgba(0,0,0,0.3); cursor:pointer;">
+    <i class="fab fa-whatsapp"></i>
+  </button>
+
+  <div id="chatBox" style="display:none; background:white; width:380px; height:520px; border-radius:18px; box-shadow:0 15px 40px rgba(0,0,0,0.3); margin-bottom:15px; overflow:hidden;">
+    <div style="background:linear-gradient(45deg,#667eea,#764ba2); color:white; padding:18px; text-align:center; font-weight:bold; font-size:1.3rem;">
+      DREAM IMMIGRATIONS AI Assistant
+      <span style="float:right; cursor:pointer; font-size:1.5rem;" onclick="document.getElementById('chatBox').style.display='none'">×</span>
+    </div>
+    
+    <div id="chatMessages" style="height:380px; overflow-y:auto; padding:15px; background:#f8f9fa;">
+      <div style="background:#e3f2fd; align-self:flex-start; padding:12px 18px; border-radius:18px; max-width:80%; margin:10px 0; color:#1565c0;">
+        Hello! I'm your visa expert.<br>Which country are you planning to visit?
+      </div>
+    </div>
+
+    <div style="padding:10px; background:white; border-top:1px solid #eee; display:flex;">
+      <input type="text" id="userInput" placeholder="Type your question..." style="flex:1; border:none; padding:12px; font-size:16px; outline:none;" onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()" style="background:#667eea; color:white; border:none; padding:0 18px; font-size:20px;">Send</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer -->
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+    {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{% static 'js/visa.js' %}"></script>
+
+    <!-- Ensure hero height matches viewport minus navbar (adjusts on resize) -->
+    <script>
+     // Vertical Testimonial Auto Slider (One by One - Slide Up)
+let testimonialIndex = 0;
+const testimonials = document.querySelectorAll('.testimonial-card');
+const dots = document.querySelectorAll('.dot');
+
+function showTestimonial(n) {
+  // Hide all
+  testimonials.forEach((t, i) => {
+    t.classList.remove('active');
+    dots[i].classList.remove('active');
+  });
+
+  // Show current
+  testimonialIndex = (n + testimonials.length) % testimonials.length;
+  testimonials[testimonialIndex].classList.add('active');
+  dots[testimonialIndex].classList.add('active');
+}
+
+// Auto slide every 4 seconds
+setInterval(() => {
+  showTestimonial(testimonialIndex + 1);
+}, 4000);
+
+// Manual control
+function currentSlide(n) {
+  showTestimonial(n);
+}
+
+// Start with first one
+showTestimonial(0);
+
+    (function () {
+      function setHeroHeight() {
+        var nav = document.querySelector('.navbar');
+        var navH = nav ? nav.offsetHeight : parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
+        var target = Math.max(window.innerHeight - navH, 360);
+        document.querySelectorAll('.hero-carousel .carousel-inner, .hero-carousel .carousel-item, .hero-carousel .hero-slide')
+          .forEach(function (el) { el.style.height = target + 'px'; });
+        // update CSS var for CSS-only fallback
+        document.documentElement.style.setProperty('--navbar-height', navH + 'px');
+      }
+      window.addEventListener('resize', setHeroHeight);
+      document.addEventListener('DOMContentLoaded', setHeroHeight);
+      // also call after a short delay to handle fonts/images load
+      setTimeout(setHeroHeight, 250);
+    })();
+   
+    AOS.init();
+
+    // ALL 195 COUNTRIES DATABASE (Name + Flag + Visa Type)
+ const allCountries = [
+  // VISA-FREE (62)
+  { name: "Albania", flag: "https://flagcdn.com/al.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Angola", flag: "https://flagcdn.com/ao.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Antigua and Barbuda", flag: "https://flagcdn.com/ag.svg", type: "visa-free", fee: "Free", stay: "180 days" },
+  { name: "Armenia", flag: "https://flagcdn.com/am.svg", type: "visa-free", fee: "Free", stay: "180 days" },
+  { name: "Barbados", flag: "https://flagcdn.com/bb.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Belarus", flag: "https://flagcdn.com/by.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Bhutan", flag: "https://flagcdn.com/bt.svg", type: "visa-free", fee: "Free", stay: "14 days" },
+  { name: "Bolivia", flag: "https://flagcdn.com/bo.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Bosnia and Herzegovina", flag: "https://flagcdn.com/ba.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Botswana", flag: "https://flagcdn.com/bw.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Brazil", flag: "https://flagcdn.com/br.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Cambodia", flag: "https://flagcdn.com/kh.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Cape Verde", flag: "https://flagcdn.com/cv.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Cook Islands", flag: "https://flagcdn.com/ck.svg", type: "visa-free", fee: "Free", stay: "31 days" },
+  { name: "Dominica", flag: "https://flagcdn.com/dm.svg", type: "visa-free", fee: "Free", stay: "180 days" },
+  { name: "Ecuador", flag: "https://flagcdn.com/ec.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "El Salvador", flag: "https://flagcdn.com/sv.svg", type: "visa-free", fee: "Free", stay: "180 days" },
+  { name: "Fiji", flag: "https://flagcdn.com/fj.svg", type: "visa-free", fee: "Free", stay: "120 days" },
+  { name: "Gambia", flag: "https://flagcdn.com/gm.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Georgia", flag: "https://flagcdn.com/ge.svg", type: "visa-free", fee: "Free", stay: "365 days" },
+  { name: "Grenada", flag: "https://flagcdn.com/gd.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Haiti", flag: "https://flagcdn.com/ht.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Honduras", flag: "https://flagcdn.com/hn.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Indonesia", flag: "https://flagcdn.com/id.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Iran", flag: "https://flagcdn.com/ir.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Jamaica", flag: "https://flagcdn.com/jm.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Kazakhstan", bruit: "https://flagcdn.com/kz.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Kyrgyzstan", flag: "https://flagcdn.com/kg.svg", type: "visa-free", fee: "Free", stay: "60 days" },
+  { name: "Macao", flag: "https://flagcdn.com/mo.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Malaysia", flag: "https://flagcdn.com/my.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Mauritius", flag: "https://flagcdn.com/mu.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Micronesia", flag: "https://flagcdn.com/fm.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Moldova", flag: "https://flagcdn.com/md.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Montenegro", flag: "https://flagcdn.com/me.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Nepal", flag: "https://flagcdn.com/np.svg", type: "visa-free", fee: "Free", stay: "Unlimited" },
+  { name: "Nicaragua", flag: "https://flagcdn.com/ni.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Niue", flag: "https://flagcdn.com/nu.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Palau", flag: "https://flagcdn.com/pw.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Panama", flag: "https://flagcdn.com/pa.svg", type: "visa-free", fee: "Free", stay: "180 days" },
+  { name: "Paraguay", flag: "https://flagcdn.com/py.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Peru", flag: "https://flagcdn.com/pe.svg", type: "visa-free", fee: "Free", stay: "183 days" },
+  { name: "Philippines", flag: "https://flagcdn.com/ph.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Qatar", flag: "https://flagcdn.com/qa.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Saint Kitts and Nevis", flag: "https://flagcdn.com/kn.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Saint Lucia", flag: "https://flagcdn.com/lc.svg", type: "visa-free", fee: "Free", stay: "42 days" },
+  { name: "Saint Vincent and the Grenadines", flag: "https://flagcdn.com/vc.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Samoa", flag: "https://flagcdn.com/ws.svg", type: "visa-free", fee: "Free", stay: "60 days" },
+  { name: "Senegal", flag: "https://flagcdn.com/sn.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Serbia", flag: "https://flagcdn.com/rs.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Singapore", flag: "https://flagcdn.com/sg.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "South Africa", flag: "https://flagcdn.com/za.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Sri Lanka", flag: "https://flagcdn.com/lk.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Suriname", flag: "https://flagcdn.com/sr.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Thailand", flag: "https://flagcdn.com/th.svg", type: "visa-free", fee: "Free", stay: "60 days" },
+  { name: "Timor-Leste", flag: "https://flagcdn.com/tl.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Trinidad and Tobago", flag: "https://flagcdn.com/tt.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Tunisia", flag: "https://flagcdn.com/tn.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Turkey", flag: "https://flagcdn.com/tr.svg", type: "visa-free", fee: "Free", stay: "90 days" },
+  { name: "Tuvalu", flag: "https://flagcdn.com/tv.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Vanuatu", flag: "https://flagcdn.com/vu.svg", type: "visa-free", fee: "Free", stay: "30 days" },
+  { name: "Vietnam", flag: "https://flagcdn.com/vn.svg", type: "visa-free", fee: "Free", stay: "45 days" },
+
+  // VISA ON ARRIVAL (33)
+  { name: "Bahrain", flag: "https://flagcdn.com/bh.svg", type: "voa", fee: "BD 25", stay: "14 days" },
+  { name: "Bangladesh", flag: "https://flagcdn.com/bd.svg", type: "voa", fee: "$51", stay: "30 days" },
+  { name: "Burundi", flag: "https://flagcdn.com/bi.svg", type: "voa", fee: "$90", stay: "30 days" },
+  { name: "Comoros", flag: "https://flagcdn.com/km.svg", type: "voa", fee: "$50", stay: "45 days" },
+  { name: "Egypt", flag: "https://flagcdn.com/eg.svg", type: "voa", fee: "$25", stay: "30 days" },
+  { name: "Guinea-Bissau", flag: "https://flagcdn.com/gw.svg", type: "voa", fee: "€85", stay: "90 days" },
+  { name: "Jordan", flag: "https://flagcdn.com/jo.svg", type: "voa", fee: "40 JOD", stay: "30 days" },
+  { name: "Kenya", flag: "https://flagcdn.com/ke.svg", type: "voa", fee: "$51", stay: "90 days" },
+  { name: "Laos", flag: "https://flagcdn.com/la.svg", type: "voa", fee: "$40", stay: "30 days" },
+  { name: "Madagascar", flag: "https://flagcdn.com/mg.svg", type: "voa", fee: "$35", stay: "90 days" },
+  { name: "Maldives", flag: "https://flagcdn.com/mv.svg", type: "voa", fee: "Free", stay: "30 days" },
+  { name: "Mauritania", flag: "https://flagcdn.com/mr.svg", type: "voa", fee: "€120", stay: "30 days" },
+  { name: "Mozambique", flag: "https://flagcdn.com/mz.svg", type: "voa", fee: "$50", stay: "30 days" },
+  { name: "Myanmar", flag: "https://flagcdn.com/mm.svg", type: "voa", fee: "$50", stay: "28 days" },
+  { name: "Rwanda", flag: "https://flagcdn.com/rw.svg", type: "voa", fee: "$50", stay: "30 days" },
+  { name: "Seychelles", flag: "https://flagcdn.com/sc.svg", type: "voa", fee: "Free", stay: "90 days" },
+  { name: "Tanzania", flag: "https://flagcdn.com/tz.svg", type: "voa", fee: "$50", stay: "90 days" },
+  { name: "Zambia", flag: "https://flagcdn.com/zm.svg", type: "voa", fee: "$50", stay: "90 days" },
+  { name: "Zimbabwe", flag: "https://flagcdn.com/zw.svg", type: "voa", fee: "$30", stay: "90 days" },
+
+  // e-VISA / ONLINE (80+)
+  { name: "Australia", flag: "https://flagcdn.com/au.svg", type: "evisa", fee: "AUD 20", stay: "90 days" },
+  { name: "Azerbaijan", flag: "https://flagcdn.com/az.svg", type: "evisa", fee: "$25", stay: "30 days" },
+  { name: "Bahrain", flag: "https://flagcdn.com/bh.svg", type: "evisa", fee: "BD 29", stay: "14 days" },
+  { name: "Cambodia", flag: "https://flagcdn.com/kh.svg", type: "evisa", fee: "$36", stay: "30 days" },
+  { name: "Djibouti", flag: "https://flagcdn.com/dj.svg", type: "evisa", fee: "$23", stay: "31 days" },
+  { name: "Ethiopia", flag: "https://flagcdn.com/et.svg", type: "evisa", fee: "$52", stay: "30-90 days" },
+  { name: "India", flag: "https://flagcdn.com/in.svg", type: "evisa", fee: "$25-100", stay: "30-365 days" },
+  { name: "Japan", flag: "https://flagcdn.com/jp.svg", type: "evisa", fee: "Free", stay: "90 days" },
+  { name: "Kenya", flag: "https://flagcdn.com/ke.svg", type: "evisa", fee: "$51", stay: "90 days" },
+  { name: "Kuwait", flag: "https://flagcdn.com/kw.svg", type: "evisa", fee: "KD 3", stay: "90 days" },
+  { name: "New Zealand", flag: "https://flagcdn.com/nz.svg", type: "evisa", fee: "NZD 23", stay: "90 days" },
+  { name: "Oman", flag: "https://flagcdn.com/om.svg", type: "evisa", fee: "OMR 5-20", stay: "10-30 days" },
+  { name: "Russia", flag: "https://flagcdn.com/ru.svg", type: "evisa", fee: "$52", stay: "16 days" },
+  { name: "Saudi Arabia", flag: "https://flagcdn.com/sa.svg", type: "evisa", fee: "$135", stay: "90 days" },
+  { name: "South Korea", flag: "https://flagcdn.com/kr.svg", type: "evisa", fee: "Free", stay: "90 days" },
+  { name: "Turkey", flag: "https://flagcdn.com/tr.svg", type: "evisa", fee: "$51", stay: "30 days" },
+  { name: "UAE", flag: "https://flagcdn.com/ae.svg", type: "evisa", fee: "AED 100+", stay: "30-90 days" },
+  { name: "UK", flag: "https://flagcdn.com/gb.svg", type: "evisa", fee: "Free", stay: "6 months" },
+  { name: "USA", flag: "https://flagcdn.com/us.svg", type: "evisa", fee: "$21", stay: "2 years" },
+  { name: "Uzbekistan", flag: "https://flagcdn.com/uz.svg", type: "evisa", fee: "$20", stay: "30 days" },
+
+  // REST OF THE WORLD (Pre-arranged visa required)
+  { name: "Canada", flag: "https://flagcdn.com/ca.svg", type: "previsa", fee: "CAD 100", stay: "6 months" },
+  { name: "China", flag: "https://flagcdn.com/cn.svg", type: "previsa", fee: "₹3,500+", stay: "30 days" },
+  { name: "France", flag: "https://flagcdn.com/fr.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Germany", flag: "https://flagcdn.com/de.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Italy", flag: "https://flagcdn.com/it.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Spain", flag: "https://flagcdn.com/es.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Switzerland", flag: "https://flagcdn.com/ch.svg", type: "previsa", fee: "CHF 80", stay: "90 days" },
+  { name: "Netherlands", flag: "https://flagcdn.com/nl.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Sweden", flag: "https://flagcdn.com/se.svg", type: "previsa", fee: "SEK 890", stay: "90 days" },
+  { name: "Norway", flag: "https://flagcdn.com/no.svg", type: "previsa", fee: "NOK 890", stay: "90 days" },
+  { name: "Denmark", flag: "https://flagcdn.com/dk.svg", type: "previsa", fee: "DKK 670", stay: "90 days" },
+  { name: "Belgium", flag: "https://flagcdn.com/be.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Austria", flag: "https://flagcdn.com/at.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Greece", flag: "https://flagcdn.com/gr.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Portugal", flag: "https://flagcdn.com/pt.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Finland", flag: "https://flagcdn.com/fi.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Poland", flag: "https://flagcdn.com/pl.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Hungary", flag: "https://flagcdn.com/hu.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Czech Republic", flag: "https://flagcdn.com/cz.svg", type: "previsa", fee: "€80", stay: "90 days" },
+  { name: "Ireland", flag: "https://flagcdn.com/ie.svg", type: "previsa", fee: "€60", stay: "90 days" },
+  { name: "Mexico", flag: "https://flagcdn.com/mx.svg", type: "previsa", fee: "Free", stay: "180 days" },
+  { name: "Argentina", flag: "https://flagcdn.com/ar.svg", type: "previsa", fee: "Free", stay: "90 days" },
+  { name: "Chile", flag: "https://flagcdn.com/cl.svg", type: "previsa", fee: "Free", stay: "90 days" },
+  { name: "Colombia", flag: "https://flagcdn.com/co.svg", type: "previsa", fee: "Free", stay: "90 days" },
+  { name: "Costa Rica", flag: "https://flagcdn.com/cr.svg", type: "previsa", fee: "Free", stay: "90 days" },
+  { name: "Cuba", flag: "https://flagcdn.com/cu.svg", type: "previsa", fee: "$25", stay: "30 days" },
+  { name: "Israel", flag: "https://flagcdn.com/il.svg", type: "previsa", fee: "Free", stay: "90 days" },
+  { name: "Morocco", flag: "https://flagcdn.com/ma.svg", type: "previsa", fee: "Free", stay: "90 days" },
+  { name: "Pakistan", flag: "https://flagcdn.com/pk.svg", type: "previsa", fee: "$35", stay: "30 days" },
+  { name: "Afghanistan", flag: "https://flagcdn.com/af.svg", type: "previsa", fee: "Varies", stay: "30 days" },
+  { name: "North Korea", flag: "https://flagcdn.com/kp.svg", type: "previsa", fee: "Varies", stay: "Tour only" },
+  { name: "Syria", flag: "https://flagcdn.com/sy.svg", type: "previsa", fee: "Varies", stay: "Restricted" }
+];
+
+    // GLOBAL SEARCH FUNCTIONALITY
+    const searchInput = document.getElementById("globalSearch");
+    const searchResults = document.getElementById("searchResults");
+
+    // Reuse the same openCountryPage function from your other pages
+    window.openCountryPage = function(country, source = 'home') {
+      localStorage.setItem("selectedCountry", JSON.stringify(country));
+      localStorage.setItem("sourcePage", source);
+      window.open("{% url 'countrydetail' %}", "_blank");
+    };
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (query.length === 0) {
+        searchResults.style.display = "none";
+        return;
+      }
+
+      const filtered = allCountries.filter(c => 
+        c.name.toLowerCase().includes(query)
+      );
+
+      if (filtered.length === 0) {
+        searchResults.innerHTML = `<div class="p-4 text-center text-muted">No country found</div>`;
+        searchResults.style.display = "block";
+        return;
+      }
+
+      searchResults.innerHTML = filtered.map(c => `
+        <div class="result-item" onclick="openCountryPage({
+          name: '${c.name}',
+          flag: '${c.flag}',
+          fee: '${c.fee || 'Check'}',
+          stay: '${c.stay || 'Varies'}',
+          requirements: 'Standard requirements apply',
+          notes: 'Popular destination for Indians',
+          attractions: 'Beautiful places',
+          bestTime: 'Year-round'
+        }, 'home')">
+          <img src="${c.flag}" alt="${c.name}" 
+         style="width:48px; height:36px; object-fit:cover; border-radius:6px; flex-shrink:0;">
+          <div class="flex-grow-1 ms-3">
+            <strong>${c.name}</strong>
+            <div>
+              <span class="badge bg-${c.type === 'visa-free' ? 'success' : c.type === 'evisa' ? 'primary' : c.type === 'voa' ? 'warning' : 'secondary'}">
+                ${c.type === 'visa-free' ? 'Visa-Free' : c.type === 'evisa' ? 'e-Visa' : c.type === 'voa' ? 'VOA' : 'Pre-Visa'}
+              </span>
+              <small class="text-muted ms-2">${c.fee} • ${c.stay}</small>
+            </div>
+          </div>
+          <i class="fas fa-arrow-right text-muted"></i>
+        </div>
+      `).join('');
+
+      searchResults.style.display = "block";
+    });
+
+    // Hide results when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = "none";
+      }
+    });
+    document.getElementById("chatToggle").onclick = () => {
+  const box = document.getElementById("chatBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+};
+
+// Visa Database (same as your website)
+const visaDB = {
+"Thailand": { type: "visa-free", stay: "60 days", fee: "Free", best: "Nov–Feb", 
+    note: "Most popular Indian destination!", 
+    process: "No visa needed! Just book flight. Show return ticket + hotel at immigration. Extended till May 2025." },
+
+  "Malaysia": { type: "visa-free", stay: "30 days", fee: "Free", best: "Dec–Mar", 
+    note: "KL Tower, Langkawi beaches", 
+    process: "Direct entry. Show return ticket + ₹30,000+ funds proof. Get stamp on arrival." },
+
+  "Singapore": { type: "visa-free", stay: "30 days", fee: "Free", best: "Year-round", 
+    note: "Cleanest city in Asia", 
+    process: "No application. Just valid passport + return ticket. Immigration very strict on funds." },
+
+  "Maldives": { type: "visa-free & VOA", stay: "30 days", fee: "Free", best: "Nov–Apr", 
+    note: "Overwater villas – Honeymoon favorite", 
+    process: "Free Visa on Arrival at Male airport. Fill form on flight. Show hotel booking + $100/day funds." },
+
+  "Indonesia": { type: "visa-free", stay: "30 days", fee: "Free", best: "Apr–Oct", 
+    note: "Bali, Gili, Ubud", 
+    process: "Free entry at Bali/Jakarta. Show return ticket. Cannot extend." },
+
+  "Turkey": { type: "e-visa", stay: "30 days", fee: "$51 (₹4,300)", best: "Apr–Jun", 
+    note: "Istanbul & Cappadocia", 
+    process: "Apply at evisa.gov.tr → Upload passport scan → Pay by card → Get PDF in 3 minutes → Print & carry." },
+
+  "Vietnam": { type: "e-visa", stay: "30–90 days", fee: "$25 (₹2,100)", best: "Feb–Apr", 
+    note: "Ha Long Bay, Hanoi", 
+    process: "Apply at evisa.xuatnhapcanh.gov.vn → Fill form → Pay → Approval in 3 working days → Print e-visa." },
+
+  "UAE": { type: "e-visa", stay: "30–90 days", fee: "AED 100–350 (₹2,300–8,000)", best: "Nov–Mar", 
+    note: "Dubai, Abu Dhabi, Burj Khalifa", 
+    process: "Apply via airline (Emirates/FlyDubai) or sponsor (hotel/agent) → Get visa in 3–5 days → Print & carry." },
+
+  "Australia": { type: "e-visa (ETA)", stay: "90 days", fee: "AUD 20 (₹1,100)", best: "Sep–Nov", 
+    note: "Sydney, Great Barrier Reef", 
+    process: "Apply via Australian ETA app or immi.gov.au → Instant approval in 90% cases → Linked to passport." },
+
+  "Saudi Arabia": { type: "e-visa", stay: "90 days", fee: "$135 (₹11,300)", best: "Nov–Mar", 
+    note: "Mecca, Riyadh, Jeddah", 
+    process: "Apply at visitsaudi.com → Fill form + photo → Pay → Instant approval → Print e-visa." },
+
+  "Egypt": { type: "e-visa & VOA", stay: "30 days", fee: "$25 (₹2,100)", best: "Oct–Apr", 
+    note: "Pyramids, Nile Cruise", 
+    process: "Option 1: Apply evisa.gov.eg (3 days) OR Option 2: Buy VOA at Cairo airport (cash only)." },
+
+  "Kenya": { type: "e-visa", stay: "90 days", fee: "$51 (₹4,300)", best: "Jun–Oct", 
+    note: "Safari & Masai Mara", 
+    process: "Apply at evisa.go.ke → Upload passport + photo + itinerary → Pay → Approval in 2–7 days." },
+
+  "Jordan": { type: "VOA", stay: "30 days", fee: "40 JOD (₹4,700)", best: "Mar–May", 
+    note: "Petra, Dead Sea", 
+    process: "Get VOA at Amman airport. Buy Jordan Pass online (includes Petra + visa fee waiver)." },
+
+  "Seychelles": { type: "VOA", stay: "90 days", fee: "Free", best: "Apr–May", 
+    note: "World's most beautiful beaches", 
+    process: "Free Visitor’s Permit on arrival. Show return ticket + hotel booking." },
+
+  "United Kingdom": { type: "pre-visa", stay: "6 months", fee: "₹12,000+", best: "Jun–Aug", 
+    note: "London, Edinburgh", 
+    process: "Apply at vfsglobal.co.uk → Fill form → Book appointment → Biometrics → Interview → 3–6 weeks." },
+
+  "United States": { type: "pre-visa", stay: "6 months", fee: "$185 (₹15,500)", best: "May–Sep", 
+    note: "New York, California", 
+    process: "Fill DS-160 → Pay fee → Book interview at VFS → Attend embassy → 2–8 weeks processing." },
+
+  "Japan": { type: "pre-visa", stay: "90 days", fee: "Free (for Indians)", best: "Mar–May", 
+    note: "Tokyo, Kyoto, Mt. Fuji", 
+    process: "Apply via VFS Japan → Submit docs (bank statement, ITR, leave letter) → 7–15 days processing." },
+  "Russia": { type: "e-visa", stay: "16 days", fee: "₹4,300", best: "May–Sep",
+   note: "Moscow, St. Petersburg", process: "Apply evisa.kdmid.ru → Pay → Approval in 4 days." },
+  "United Kingdom": { type: "pre-visa", stay: "6 months", fee: "₹12,000+", best: "Jun–Aug", note: "London, Scotland", process: "Apply vfsglobal.co.uk → Book appointment → Biometrics → 3–6 weeks." },
+  "United States": { type: "pre-visa", stay: "6 months", fee: "₹15,500", best: "May–Sep", note: "New York, California", process: "Fill DS-160 → Pay → Book interview → Attend embassy → 2–8 weeks." },
+  "Canada": { type: "pre-visa", stay: "6 months", fee: "₹8,500", best: "Jun–Sep", note: "Toronto, Banff", process: "Apply online → Biometrics at VFS → 4–8 weeks." },
+  "Schengen": { type: "pre-visa", stay: "90 days", fee: "₹7,500", best: "Apr–Jun", note: "France, Italy, Spain", process: "Apply via VFS of main country → Book appointment → 15–45 days." },
+  "Japan": { type: "pre-visa", stay: "90 days", fee: "Free", best: "Mar–May", note: "Tokyo, Kyoto", process: "Apply via VFS Japan → Submit bank statements + ITR → 7–15 days." },
+  "South Korea": { type: "pre-visa", stay: "90 days", fee: "Free", best: "Mar–May", note: "Seoul, Jeju", process: "Apply via KVAC → Submit documents → 10–15 days." },
+  "China": { type: "pre-visa", stay: "30 days", fee: "₹4,000+", best: "Apr–Oct", note: "Great Wall", process: "Apply via Chinese Visa Center → Biometrics → 7–15 days." },
+  "Switzerland": { type: "pre-visa", stay: "90 days", fee: "₹7,500", best: "Jun–Sep", note: "Alps, Zurich", process: "Apply via VFS Switzerland → Appointment → 15–30 days." },
+  "Germany": { type: "pre-visa", stay: "90 days", fee: "₹7,500", best: "May–Sep", note: "Berlin, Munich", process: "Apply via VFS Germany → Strong documents needed → 15–45 days." },
+  "Jordan": { type: "VOA", stay: "30 days", fee: "₹4,700", best: "Mar–May", note: "Petra, Dead Sea", process: "Buy at Amman airport OR get Jordan Pass online (free visa + Petra entry)." },
+  "Tanzania": { type: "VOA", stay: "90 days", fee: "₹4,200", best: "Jun–Oct", note: "Zanzibar, Serengeti", process: "Fill form at airport → Pay cash → Get stamp." },
+  "Zambia": { type: "VOA", stay: "90 days", fee: "₹4,200", best: "May–Oct", note: "Victoria Falls", process: "Pay at airport. UniVisa with Zimbabwe available." },
+  "Zimbabwe": { type: "VOA", stay: "90 days", fee: "₹2,500", best: "May–Oct", note: "Victoria Falls", process: "Pay at airport. UniVisa with Zambia." },
+  "Seychelles": { type: "VOA", stay: "90 days", fee: "Free", best: "Apr–May", note: "Most beautiful beaches", process: "Free permit on arrival. Show return ticket + hotel." },
+  "Laos": { type: "VOA", stay: "30 days", fee: "₹3,300", best: "Nov–Feb", note: "Luang Prabang", process: "Pay at airport (cash USD). Need 2 photos." },
+  "Bolivia": { type: "VOA", stay: "30 days", fee: "Free–₹13,000", best: "May–Oct", note: "Salar de Uyuni", process: "Free at airport OR pay if no hotel booking." },  
+  // Add more countries as needed
+};
+
+// ============ UPDATED sendMessage() WITH PROCESS ============
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  addMessage(msg, "user");
+  input.value = "";
+
+  setTimeout(() => {
+    let reply = "Sorry, I didn't understand. Try asking: 'Thailand process', 'Dubai visa', 'How to apply for Turkey?'";
+
+    const query = msg.toLowerCase();
+
+    // Search country
+    for (let country in visaDB) {
+      if (query.includes(country.toLowerCase())) {
+        const v = visaDB[country];
+        reply = `
+          <strong style="font-size:1.2em; color:#d32f2f;">${country.toUpperCase()}</strong><br><br>
+          Visa Type: <strong style="color:#1976d2;">${v.type.toUpperCase()}</strong><br>
+          Fee: <strong style="color:#388e3c;">${v.fee}</strong> | Stay: <strong>${v.stay}</strong><br>
+          ${v.best ? "Best time: " + v.best + "<br>" : ""}
+          ${v.note ? "" + v.note + "<br><br>" : "<br>"}
+          <strong>How to Apply (Step by Step):</strong><br>
+          <div style="background:#f0f8ff; padding:12px; border-radius:10px; font-size:0.95em;">
+            ${v.process.replace(/\n/g, "<br>")}
+          </div>
+        `;
+        break;
+      }
+    }
+
+    // General queries
+    if (query.includes("visa free") || query.includes("no visa")) {
+      reply = "Visa-Free Countries (No application needed):<br>Thailand (60 days), Malaysia, Singapore, Maldives, Mauritius, Nepal, Bhutan, Indonesia, Qatar, Hong Kong, Fiji, Georgia (1 year!)";
+    }
+    if (query.includes("evisa") || query.includes("online visa")) {
+      reply = "e-Visa (Apply Online):<br>Turkey (3 min), Vietnam, UAE, Australia (ETA), Saudi Arabia, Egypt, Kenya, Sri Lanka, Oman, New Zealand";
+    }
+    if (query.includes("voa") || query.includes("on arrival")) {
+      reply = "Visa on Arrival (Get at airport):<br>Maldives (Free), Indonesia, Egypt, Jordan, Seychelles, Tanzania, Laos, Cambodia";
+    }
+    if (query.includes("process") || query.includes("how to apply") || query.includes("steps")) {
+      reply = "Tell me the country name and I’ll give you full step-by-step application process! Example: 'Thailand process' or 'Dubai visa steps'";
+    }
+     if (query.includes("email id") || query.includes("contact") || query.includes("registration")) {
+      reply = "mail id :tajvisaslots@gmail.com  contact no: 8247544593 for visa registration and booking.";
+    }
+
+    addMessage(reply, "bot");
+  }, 800);
+}
+
+function addMessage(text, sender) {
+  const div = document.createElement("div");
+  div.innerHTML = text;
+  div.style.cssText = sender === "user" 
+    ? "background:#667eea; color:white; align-self:flex-end; padding:12px 18px; border-radius:18px 18px 5px 18px; max-width:80%; margin:10px 0; margin-left: auto;"
+    : "background:#e3f2fd; color:#1565c0; align-self:flex-start; padding:12px 18px; border-radius:18px 18px 18px 5px; max-width:80%; margin:10px 0;";
+  document.getElementById("chatMessages").appendChild(div);
+  div.scrollIntoView({ behavior: "smooth" });
+}
+
+// Welcome message
+setTimeout(() => addMessage("Hi! How can I help you with your visa today?", "bot"), 1000);
+  </script>
+   {% endblock %}
+</body>
+</html>

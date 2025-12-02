@@ -1,0 +1,1027 @@
+{# base.html #}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Adventure Packages - Travizia Tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --accent-adventure: #e74c3c;
+            --accent-2: #c0392b;
+            --muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5f5;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .navbar { background: #fff; }
+
+        /* Hero Section */
+        .hero-slide {
+            height: 68vh;
+            min-height: 420px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .pkg-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .emoji-animate {
+            display: inline-block;
+            font-size: 1.45rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Cards */
+        .pkg-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform .35s, box-shadow .35s;
+        }
+
+        .pkg-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+        }
+
+        .card-img-top {
+            height: 210px;
+            object-fit: cover;
+        }
+
+        /* Itinerary & Includes */
+        .list-compact li {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .muted-small {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* Gallery large */
+        .tour-picture-slide {
+            background-size: cover;
+            background-position: center;
+            height: 480px;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Testimonial */
+        .testimonial-card {
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            padding: 28px;
+        }
+
+        /* Adventure Features */
+        .adventure-feature {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(231,76,60,0.06), rgba(192,57,43,0.06));
+            border: 1px solid rgba(231,76,60,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .adventure-feature:hover {
+            background: linear-gradient(135deg, rgba(231,76,60,0.12), rgba(192,57,43,0.12));
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(231,76,60,0.15);
+        }
+
+        .adventure-feature i {
+            font-size: 2.5rem;
+            color: var(--accent-adventure);
+            margin-bottom: 15px;
+        }
+
+        .adventure-feature h5 {
+            color: #222;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Difficulty Badge */
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.35rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-moderate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Activity Card */
+        .activity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            border-top: 4px solid var(--accent-adventure);
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(231,76,60,0.15);
+        }
+
+        .activity-card h6 {
+            color: var(--accent-adventure);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Contact button (nav) */
+        .contact-btn {
+            position: relative;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.1rem !important;
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(231,76,60,0.28);
+            border: 2px solid transparent;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            transition: left 0.5s cubic-bezier(.34,1.56,.64,1);
+            z-index: -1;
+        }
+
+        .contact-btn:hover::before { left: 0; }
+
+        .contact-btn .btn-icon { opacity: 0; margin-left: -8px; transition: all .3s; }
+
+        .contact-btn:hover .btn-icon { opacity: 1; margin-left: 0; }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 4px 12px rgba(231,76,60,0.22); }
+            50% { box-shadow: 0 4px 28px rgba(231,76,60,0.5); }
+            100% { box-shadow: 0 4px 12px rgba(231,76,60,0.22); }
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-slide { height: 56vh; }
+            .card-img-top { height: 180px; }
+            .tour-picture-slide { height: 320px; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-btn { padding: 0.5rem .9rem !important; font-size: 0.85rem; }
+            .contact-btn .btn-icon { display: none; }
+            .adventure-feature { padding: 20px; }
+            .adventure-feature i { font-size: 2rem; }
+        }
+          /* Contact button (nav) */
+        .contact-btn {
+            position: relative;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.1rem !important;
+            background: linear-gradient(135deg, #1a9b5e 0%, #26c281 100%);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(38,194,129,0.28);
+            border: 2px solid transparent;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #26c281 0%, #1a9b5e 100%);
+            transition: left 0.5s cubic-bezier(.34,1.56,.64,1);
+            z-index: -1;
+        }
+
+        .contact-btn:hover::before { left: 0; }
+
+        .contact-btn .btn-icon { opacity: 0; margin-left: -8px; transition: all .3s; }
+
+        .contact-btn:hover .btn-icon { opacity: 1; margin-left: 0; }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 4px 12px rgba(38,194,129,0.22); }
+            50% { box-shadow: 0 4px 28px rgba(38,194,129,0.5); }
+            100% { box-shadow: 0 4px 12px rgba(38,194,129,0.22); }
+        }
+
+        /* Spa & Wellness Section */
+        .spa-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-relax);
+            transition: all 0.3s ease;
+        }
+
+        .spa-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(38,194,129,0.15);
+        }
+
+        .spa-card h6 {
+            color: var(--accent-relax);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-slide { height: 56vh; }
+            .card-img-top { height: 180px; }
+            .tour-picture-slide { height: 320px; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-btn { padding: 0.5rem .9rem !important; font-size: 0.85rem; }
+            .contact-btn .btn-icon { display: none; }
+            .wellness-feature { padding: 20px; }
+            .wellness-feature i { font-size: 2rem; }
+        }
+             /* Contact button styles (added) */
+        .contact-btn {
+            position: relative;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            border: 2px solid transparent;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+
+        .contact-btn:hover::before {
+            left: 0;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn .btn-text {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+
+        .contact-btn .btn-icon {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            margin-left: -10px;
+        }
+
+        .contact-btn:hover .btn-icon {
+            opacity: 1;
+            margin-left: 0;
+        }
+
+        .contact-btn:hover .btn-text {
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+
+        .contact-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .contact-btn:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        .contact-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* responsive order: form-first on mobile handled on contact page; here just ensure layout */
+        @media (max-width:991px){
+            .hero-slide{height:56vh}
+            .card-img-top{height:180px}
+            .tour-picture-slide{height:320px}
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .contact-btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.85rem;
+            }
+
+            .contact-btn .btn-icon {
+                display: none;
+            }
+        }
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}
+        @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                         <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn cta-animated">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-plane-departure"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-carousel mb-4">
+        <div id="adventureHero" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/815880/pexels-photo-815880.jpeg')">
+                        <div class="hero-overlay"></div>
+                        <div class="container hero-content" data-aos="fade-up">
+                            <div class="pkg-badge mb-3"><span class="emoji-animate">⛰️</span><strong>Thrill Seekers</strong></div>
+                            <h1 class="display-5 fw-bold">Epic Adventure Awaits 🚀</h1>
+                            <p class="muted-small lead">Mountain hiking • Rock climbing • Extreme sports — push your limits.</p>
+                            <div class="mt-4">
+                                <a class="btn btn-lg btn-danger me-2" href="{% url 'loginform' %}">Book Adventure • 🧗</a>
+                                <a class="btn btn-outline-light btn-lg" href="#packages">View Packages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/34223/mont-saint-michel-france-normandy-europe.jpg')">
+                        <div class="hero-overlay"></div>
+                        <div class="container hero-content" data-aos="fade-up">
+                            <div class="pkg-badge mb-3"><span class="emoji-animate">🪂</span><strong>Extreme Sports</strong></div>
+                            <h1 class="display-5 fw-bold">Adrenaline Rush Experiences</h1>
+                            <p class="muted-small lead">Skydiving, paragliding, white-water rafting and more.</p>
+                            <div class="mt-4">
+                                <a class="btn btn-lg btn-danger me-2" href="{% url 'loginform' %}">Get Started • 🎯</a>
+                                <a class="btn btn-outline-light btn-lg" href="#gallery">View Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/34783052/pexels-photo-34783052.jpeg')">
+                        <div class="hero-overlay"></div>
+                        <div class="container hero-content" data-aos="fade-up">
+                            <div class="pkg-badge mb-3"><span class="emoji-animate">🏔️</span><strong>Mountain Explorer</strong></div>
+                            <h1 class="display-5 fw-bold">Conquer Peaks & Trails</h1>
+                            <p class="muted-small lead">Trekking, camping and wilderness immersion.</p>
+                            <div class="mt-4">
+                                <a class="btn btn-lg btn-danger me-2" href="{% url 'loginform' %}">Enquire Now • 🥾</a>
+                                <a class="btn btn-outline-light btn-lg" href="#itinerary">See Itinerary</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#adventureHero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#adventureHero" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ADVENTURE FEATURES -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Why Choose Our Adventures 🎯</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="80">
+                    <div class="adventure-feature">
+                        <i class="fas fa-users"></i>
+                        <h5>Expert Guides</h5>
+                        <p class="muted-small">Certified professionals with years of experience.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="140">
+                    <div class="adventure-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h5>Safety First</h5>
+                        <p class="muted-small">Top-tier safety equipment and protocols.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="adventure-feature">
+                        <i class="fas fa-map"></i>
+                        <h5>Unique Routes</h5>
+                        <p class="muted-small">Off-the-beaten-path destinations and trails.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="260">
+                    <div class="adventure-feature">
+                        <i class="fas fa-heartbeat"></i>
+                        <h5>Adrenaline Rush</h5>
+                        <p class="muted-small">Unforgettable thrilling experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section id="packages" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-2" data-aos="fade-up">Popular Adventure Packages 🚀</h2>
+            <p class="text-center muted-small mb-4" data-aos="fade-up" data-aos-delay="60">Heart-pounding experiences and breathtaking journeys.</p>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://images.pexels.com/photos/23909908/pexels-photo-23909908.jpeg" alt="Everest">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">STATUE OF UNITY TENT CITY</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-hard">Hard</span> • 1-3 days</p>
+                            <p class="card-text muted-small">INDIA.</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS 🥾</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="140">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://images.pexels.com/photos/442579/pexels-photo-442579.jpeg" alt="Skydiving">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Dubai package</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-moderate">Moderate</span> • 6 days</p>
+                            <p class="card-text muted-small">INDIA</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS 🎯</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://images.pexels.com/photos/325193/pexels-photo-325193.jpeg" alt="Rock Climbing">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">ITINERARY FOR DUBAI</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-hard">Hard</span> • 6 days</p>
+                            <p class="card-text muted-small">UAE.</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS 🪨</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="260">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://media.istockphoto.com/id/2162681602/photo/lake-in-the-village-of-sissu-in-himachal-pradesh.jpg?b=1&s=612x612&w=0&k=20&c=yI_61hZTDocB7fIkUEmtnA2cK7ByTl4dPBI8WWm9-qg=" alt="White Water">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">iternary for ladakh</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-moderate">Moderate</span> • 3 days</p>
+                            <p class="card-text muted-small">INDIA.</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS 🚣</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="320">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://images.pexels.com/photos/71241/pexels-photo-71241.jpeg" alt="Paragliding">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">7 Nights Egypt Premium Escape</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-easy">Easy</span> • 7 days</p>
+                            <p class="card-text muted-small">EGYPT</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS ☁️</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://images.pexels.com/photos/11963508/pexels-photo-11963508.jpeg" alt="Jungle Trek">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">FULL MOON PARTY AT KOH PHANGAN</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-moderate">Moderate</span> • 5 days</p>
+                            <p class="card-text muted-small">THAILAND.</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS 🦁</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+                    <div class="pkg-card card">
+                        <img class="card-img-top" src="https://images.pexels.com/photos/34792711/pexels-photo-34792711.jpeg" alt="Jungle Trek">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Uttarakhand Tour</h5>
+                            <p class="muted-small mb-2"><span class="difficulty-badge difficulty-moderate">Moderate</span> • 7 days</p>
+                            <p class="card-text muted-small">ASIA</p>
+                            <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-danger">MORE DETALIS</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ITINERARY & INCLUSIONS -->
+    <section id="itinerary" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Sample 7-Day Adventure Itinerary 🗓️</h2>
+            <div class="row g-4">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="card p-3">
+                        <h5 class="fw-bold">Sample 7‑Day Trek & Adventure</h5>
+                        <ul class="list-unstyled mt-3 list-compact">
+                            <li>Day 1 — Arrival & safety briefing with equipment check</li>
+                            <li>Day 2 — Acclimatization hike & base camp setup</li>
+                            <li>Day 3 — Technical climbing or advanced water sports</li>
+                            <li>Day 4 — Summit attempt or peak adventure activity</li>
+                            <li>Day 5 — Rest day with optional activities</li>
+                            <li>Day 6 — Return trek with final challenges</li>
+                            <li>Day 7 — Farewell & departure</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="card p-3">
+                        <h5 class="fw-bold">Inclusions ✅</h5>
+                        <ul class="mt-3">
+                            <li>• Expert certified guides & support team</li>
+                            <li>• All safety equipment & gear</li>
+                            <li>• Accommodation & meals</li>
+                            <li>• Training sessions & rescue support</li>
+                        </ul>
+
+                        <h5 class="fw-bold mt-3">Exclusions ❌</h5>
+                        <ul class="mt-2">
+                            <li>• International flights unless specified</li>
+                            <li>• Personal gear & travel insurance</li>
+                        </ul>
+
+                        <div class="mt-4">
+                            <a class="btn btn-outline-danger w-100" href="loginform.html">Request Full Itinerary • 📩</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- GALLERY -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Adventure Moments 📸</h2>
+            <div id="adventureGallery" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Adventure+1');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Adventure+2');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Adventure+3');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Adventure+4');"></div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#adventureGallery" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#adventureGallery" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Adventurer Testimonials 🏆</h2>
+            <div id="adventureTestimonials" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial-card mx-auto" style="max-width:900px">
+                            <p class="lead">"Best adventure of my life — guides were professional and safety was paramount." — <strong>R.J.</strong></p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card mx-auto" style="max-width:900px">
+                            <p class="lead">"Thrilling, well-organized and unforgettable experiences. Highly recommend!" — <strong>A.S.</strong></p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card mx-auto" style="max-width:900px">
+                            <p class="lead">"The adrenaline rush was incredible — perfect balance of challenge and safety." — <strong>M.T.</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#adventureTestimonials" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#adventureTestimonials" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <!-- <section class="py-5 bg-danger text-white">
+        <div class="container text-center" data-aos="zoom-in">
+            <h3 class="fw-bold">Ready for your ultimate adventure? ⛰️</h3>
+            <p class="muted-small">Choose your challenge and get ready for an adrenaline-packed journey.</p>
+            <a class="btn btn-light btn-lg" href="loginform.html">Start Your Adventure • 🚀</a>
+        </div>
+    </section> -->
+
+    <!-- FOOTER -->
+   <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+      {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            if (typeof AOS !== 'undefined') AOS.init({duration:900,once:true});
+        });
+    </script>
+    <script src="{% static 'js/adventure.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

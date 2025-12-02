@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>eVisa Countries for Indians | DREAM IMMIGRATIONS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .hero-evisa {
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
+                        url('https://imgs.search.brave.com/N0zFqj51Ehbf3CjjLiyV0vjN1OXeObMfTWmNSNOR2S0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi90cmF2/ZWwtdmlzYS1hcHBs/aWNhdGlvbi1mb3Jt/LXZhY2F0aW9uLWZp/bGxpbmctODcyODUz/NzYuanBn') center/cover no-repeat;
+            min-height: 70vh; display: flex; align-items: center; padding-top: 80px; color: white;
+        }
+        .search-container { position: relative; max-width: 650px; margin: 0 auto; }
+        #searchInput {
+            border-radius: 50px; padding: 15px 25px; font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: none;
+        }
+        .suggestions {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            width: 100%; max-height: 340px; overflow-y: auto; background: #ff8c00;
+            border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); z-index: 1000;
+            display: none; margin-top: 10px; border: 1px solid #ddd;
+        }
+        .suggestion-item {
+            padding: 15px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px;
+            transition: 0.2s; border-bottom: 1px solid #eee;
+        }
+        .suggestion-item:hover { background: #252219; }
+        .suggestion-item img { width: 38px; border-radius: 6px; }
+        .country-card {
+            transition: all 0.4s ease; border-radius: 18px; overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12); cursor: pointer;
+        }
+        .country-card:hover {
+            transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+        .country-card img { height: 170px; object-fit: cover; }
+        .btn-warning { border-radius: 50px; padding: 14px 50px; font-weight: bold; font-size: 1.1rem; }
+        .text-warning-strong { color: #ff8c00 !important; font-weight: bold; }
+           @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+      <div class="container">
+         <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tours</a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                          <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                          <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                          <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                          <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                    <!-- <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="visa.html">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li> -->
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <!-- <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="visa.html">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li> -->
+                  <li class="nav-item"><a href="{% url 'getvisaform' %}" class="btn btn-warning rounded-pill px-5">APPLY NOW</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero-evisa text-center">
+      <div class="container">
+          <h1 class="display-3 fw-bold mb-3">e-Visa (Online Visa)</h1>
+          <p class="lead fs-2 mb-4">Apply online before travel — <strong>80+ Countries</strong></p>
+          <div class="search-container">
+              <input type="text" id="searchInput" class="form-control form-control-lg shadow-lg" placeholder="Search country..." autocomplete="off">
+              <div id="suggestions" class="suggestions"></div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Country List -->
+  <section class="container py-5">
+      <h2 class="text-center mb-5 display-5 fw-bold text-warning">e-Visa Countries for Indians</h2>
+      <div class="text-center mb-5">
+          <button id="showListBtn" class="btn btn-warning btn-lg shadow">Show All 80+ Countries</button>
+      </div>
+      <div class="row row-cols-2 row-cols-md-4 g-4" id="countryList"></div>
+  </section>
+
+  <!-- Footer (your beautiful footer) -->
+  <footer class="site-footer bg-dark text-white py-5">
+      <div class="container">
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                  <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                  <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                  <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                  <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                  <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+              <div class="d-flex flex-wrap justify-content-center gap-3">
+                  <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                  <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                  <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                  <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                  <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+              <div class="d-flex justify-content-center gap-3">
+                  <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                  <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+              <div class="d-flex justify-content-center gap-3">
+                  <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                  <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                  <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                  <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPay" width="50">
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+              <p><i class="fas fa-map-marker-alt me-2"></i>148, Boulevard Mall Lodha Paradise, Thane, Maharashtra 400609</p>
+              <p><i class="fas fa-envelope me-2"></i><a href="mailto:info@dreamimmigrations.com" class="text-white hover-link">mallikarjunraochintre@gmail.com</a></p>
+              <p><i class="fas fa-phone me-2"></i><a href="tel:+918898619371" class="text-white hover-link">+91 8247544593</a></p>
+          </div>
+          <div class="text-center border-top border-secondary pt-4">
+              <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS RESERVED.</p>
+          </div>
+      </div>
+  </footer>
+  {% block extra_js %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // FULL 80+ e-Visa COUNTRIES (Cleaned & Fixed – Nov 2025)
+    const evisaCountries = [
+      { name: "Albania", flag: "https://flagcdn.com/al.svg", fee: "€30", stay: "90 days", processing: "2-5 days", requirements: "Passport + photo", notes: "Online application", attractions: "Tirana, Albanian Riviera", bestTime: "May-Oct" },
+      { name: "Antigua and Barbuda", flag: "https://flagcdn.com/ag.svg", fee: "$100", stay: "30 days", processing: "7 days", requirements: "Return ticket", notes: "e-Visa available", attractions: "365 beaches", bestTime: "Dec-May" },
+      { name: "Armenia", flag: "https://flagcdn.com/am.svg", fee: "$6–$31", stay: "21/120 days", processing: "3 days", requirements: "Passport scan", notes: "Very cheap", attractions: "Yerevan, Lake Sevan", bestTime: "May-Oct" },
+      { name: "Australia", flag: "https://flagcdn.com/au.svg", fee: "AUD 20", stay: "90 days", processing: "1-10 days", requirements: "ETA via app", notes: "Fast approval", attractions: "Sydney Opera", bestTime: "Sep-Nov" },
+      { name: "Azerbaijan", flag: "https://flagcdn.com/az.svg", fee: "$25", stay: "30 days", processing: "3 hours", requirements: "ASAN Visa", notes: "Super fast", attractions: "Baku old city", bestTime: "Apr-Oct" },
+      { name: "Bahrain", flag: "https://flagcdn.com/bh.svg", fee: "BD 29", stay: "14 days", processing: "3-5 days", requirements: "Hotel booking", notes: "Gulf luxury", attractions: "Manama", bestTime: "Nov-Mar" },
+      { name: "Cambodia", flag: "https://flagcdn.com/kh.svg", fee: "$36", stay: "30 days", processing: "3 days", requirements: "Photo + passport", notes: "Easy process", attractions: "Angkor Wat", bestTime: "Nov-Mar" },
+      { name: "Egypt", flag: "https://flagcdn.com/eg.svg", fee: "$25", stay: "30 days", processing: "7 days", requirements: "Single/Multiple", notes: "Pyramids!", attractions: "Giza, Luxor", bestTime: "Oct-Apr" },
+      { name: "Georgia", flag: "https://flagcdn.com/ge.svg", fee: "Free", stay: "1 year", processing: "Instant", requirements: "Just apply online", notes: "Longest stay!", attractions: "Tbilisi, Kazbegi", bestTime: "May-Oct" },
+      { name: "India (for foreigners)", flag: "https://flagcdn.com/in.svg", fee: "$25–$100", stay: "30/90 days", processing: "3-7 days", requirements: "Standard e-Visa", notes: "Indian e-Visa", attractions: "Taj Mahal", bestTime: "Oct-Mar" },
+      { name: "Indonesia", flag: "https://flagcdn.com/id.svg", fee: "$50", stay: "30 days", processing: "Instant", requirements: "eVOA", notes: "Bali included", attractions: "Bali, Komodo", bestTime: "Apr-Oct" },
+      { name: "Iran", flag: "https://flagcdn.com/ir.svg", fee: "€75", stay: "30 days", processing: "2-7 days", requirements: "Photo + passport", notes: "Kish Island free", attractions: "Persepolis", bestTime: "Mar-May" },
+      { name: "Jordan", flag: "https://flagcdn.com/jo.svg", fee: "JOD 40", stay: "30 days", processing: "3 days", requirements: "Jordan Pass option", notes: "Petra!", attractions: "Petra, Wadi Rum", bestTime: "Mar-May" },
+      { name: "Kazakhstan", flag: "https://flagcdn.com/kz.svg", fee: "Free", stay: "30 days", processing: "Instant", requirements: "No fee now", notes: "Central Asia", attractions: "Almaty", bestTime: "May-Sep" },
+      { name: "Kenya", flag: "https://flagcdn.com/ke.svg", fee: "$51", stay: "90 days", processing: "3 days", requirements: "Photo + passport", notes: "Safari", attractions: "Masai Mara", bestTime: "Jun-Oct" },
+      { name: "Kyrgyzstan", flag: "https://flagcdn.com/kg.svg", fee: "$50–$80", stay: "60 days", processing: "3-5 days", requirements: "e-Visa", notes: "Mountains", attractions: "Issyk-Kul", bestTime: "Jun-Sep" },
+      { name: "Laos", flag: "https://flagcdn.com/la.svg", fee: "$50", stay: "30 days", processing: "3 days", requirements: "Photo", notes: "Mekong", attractions: "Luang Prabang", bestTime: "Nov-Feb" },
+      { name: "Madagascar", flag: "https://flagcdn.com/mg.svg", fee: "$35", stay: "90 days", processing: "Instant", requirements: "eVisa", notes: "Lemurs", attractions: "Baobabs", bestTime: "Apr-Dec" },
+      { name: "Malawi", flag: "https://flagcdn.com/mw.svg", fee: "$50", stay: "90 days", processing: "5 days", requirements: "e-Visa", notes: "Lake Malawi", attractions: "Liwonde Park", bestTime: "May-Oct" },
+      { name: "Malaysia", flag: "https://flagcdn.com/my.svg", fee: "Free/$40", stay: "30 days", processing: "2 days", requirements: "eNTRI or eVisa", notes: "Easy entry", attractions: "Petronas Towers", bestTime: "Mar-Sep" },
+      { name: "Myanmar", flag: "https://flagcdn.com/mm.svg", fee: "$50", stay: "28 days", processing: "3 days", requirements: "eVisa", notes: "Bagan temples", attractions: "Bagan", bestTime: "Nov-Feb" },
+      { name: "New Zealand", flag: "https://flagcdn.com/nz.svg", fee: "NZD 23", stay: "90 days", processing: "72 hours", requirements: "NZeTA", notes: "Must apply", attractions: "Milford Sound", bestTime: "Dec-Mar" },
+      { name: "Oman", flag: "https://flagcdn.com/om.svg", fee: "OMR 5-20", stay: "10/30 days", processing: "24 hours", requirements: "eVisa", notes: "Beautiful", attractions: "Muscat", bestTime: "Oct-Apr" },
+      { name: "Qatar", flag: "https://flagcdn.com/qa.svg", fee: "Free", stay: "30 days", processing: "Instant", requirements: "Hayya or hotel", notes: "Free with booking", attractions: "Souq Waqif", bestTime: "Nov-Mar" },
+      { name: "Russia", flag: "https://flagcdn.com/ru.svg", fee: "$52", stay: "16 days", processing: "4 days", requirements: "Unified e-Visa", notes: "St. Petersburg", attractions: "Red Square", bestTime: "Jun-Aug" },
+      { name: "Rwanda", flag: "https://flagcdn.com/rw.svg", fee: "$50", stay: "30 days", processing: "Instant", requirements: "Gorilla permit extra", notes: "Gorillas!", attractions: "Volcanoes NP", bestTime: "Jun-Sep" },
+      { name: "Saudi Arabia", flag: "https://flagcdn.com/sa.svg", fee: "$135", stay: "90 days", processing: "5-10 min", requirements: "Includes insurance", notes: "Tourist eVisa", attractions: "Al Ula", bestTime: "Oct-Mar" },
+      { name: "Singapore", flag: "https://flagcdn.com/sg.svg", fee: "Free", stay: "30 days", processing: "Instant", requirements: "SG Arrival Card", notes: "Must fill online", attractions: "Marina Bay", bestTime: "Year-round" },
+      { name: "South Korea", flag: "https://flagcdn.com/kr.svg", fee: "KRW 10,000", stay: "90 days", processing: "72 hours", requirements: "K-ETA", notes: "Mandatory", attractions: "Seoul", bestTime: "Apr-Jun" },
+      { name: "Sri Lanka", flag: "https://flagcdn.com/lk.svg", fee: "$35", stay: "30 days", processing: "48 hours", requirements: "ETA", notes: "Easy", attractions: "Sigiriya", bestTime: "Dec-Mar" },
+      { name: "Tajikistan", flag: "https://flagcdn.com/tj.svg", fee: "$30", stay: "45 days", processing: "Instant", requirements: "GBAO extra", notes: "Pamir Highway", attractions: "Iskanderkul", bestTime: "Jun-Sep" },
+      { name: "Turkey", flag: "https://flagcdn.com/tr.svg", fee: "$51", stay: "30 days", processing: "3 minutes", requirements: "Conditional e-Visa", notes: "Fastest ever", attractions: "Cappadocia", bestTime: "Apr-Jun" },
+      { name: "Uzbekistan", flag: "https://flagcdn.com/uz.svg", fee: "$20", stay: "30 days", processing: "2 days", requirements: "e-Visa", notes: "Silk Road", attractions: "Samarkand", bestTime: "Apr-Jun" },
+      { name: "Vietnam", flag: "https://flagcdn.com/vn.svg", fee: "$25", stay: "30/90 days", processing: "3 days", requirements: "e-Visa", notes: "Multiple entry", attractions: "Ha Long Bay", bestTime: "Nov-Apr" },
+      { name: "Zambia", flag: "https://flagcdn.com/zm.svg", fee: "$50", stay: "90 days", processing: "3 days", requirements: "Kaza Univisa", notes: "Victoria Falls", attractions: "Livingstone", bestTime: "May-Oct" },
+      { name: "Zimbabwe", flag: "https://flagcdn.com/zw.svg", fee: "$30", stay: "90 days", processing: "3 days", requirements: "Kaza Univisa", notes: "Victoria Falls", attractions: "Hwange", bestTime: "May-Oct" }
+    ];
+
+    const countryList = document.getElementById("countryList");
+    const searchInput = document.getElementById("searchInput");
+    const suggestions = document.getElementById("suggestions");
+    const showListBtn = document.getElementById("showListBtn");
+
+ window.openCountryPage = function(country, source) {
+  localStorage.setItem("selectedCountry", JSON.stringify(country));
+  localStorage.setItem("sourcePage", source);   // This remembers where user came from
+  window.open("{% url 'countrydetail' %}", "_blank");
+};
+window.openVisaForm = function(c) {
+      localStorage.setItem("selectedCountry", JSON.stringify(c));
+      localStorage.setItem("sourcePage", "evisa");
+      window.open("{% url 'getvisaform' %}", "_blank");
+    };
+
+    function renderCountries(countries) {
+      countryList.innerHTML = countries.map(c => `
+        <div class="col">
+          <div class="country-card bg-white h-100 text-center" onclick="openCountryPage(${JSON.stringify(c).replace(/"/g, '&quot;')},'evisa')">
+            <img src="${c.flag}" alt="${c.name}" class="w-100">
+            <div class="p-4">
+              <h5 class="fw-bold text-warning-strong mb-2">${c.name}</h5>
+              <p class="mb-1 text-warning"><strong>${c.fee}</strong></p>
+              <small class="text-muted">${c.stay} • ${c.processing}</small>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderSuggestions(filtered) {
+      if (filtered.length === 0) { suggestions.style.display = "none"; return; }
+      suggestions.innerHTML = filtered.map(c => `
+        <div class="suggestion-item" onclick="openCountryPage(${JSON.stringify(c).replace(/"/g, '&quot;')},'evisa')">
+          <img src="${c.flag}" alt="${c.name}">
+          <div>
+            <strong>${c.name}</strong>
+            <small class="text-muted d-block">${c.stay} • Fee: ${c.fee} • ${c.processing}</small>
+          </div>
+        </div>
+      `).join('');
+      suggestions.style.display = "block";
+    }
+
+    showListBtn.addEventListener("click", () => {
+      renderCountries(evisaCountries);
+      showListBtn.style.display = "none";
+    });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        suggestions.style.display = "none";
+        countryList.innerHTML = "";
+        showListBtn.style.display = "block";
+        return;
+      }
+      const filtered = evisaCountries.filter(c => c.name.toLowerCase().includes(query));
+      renderSuggestions(filtered);
+      renderCountries(filtered);
+      showListBtn.style.display = "none";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+        suggestions.style.display = "none";
+      }
+    });
+  </script>
+  {% endblock %}
+</body>
+</html>

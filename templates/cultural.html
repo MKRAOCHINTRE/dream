@@ -1,0 +1,872 @@
+{# base.html #}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cultural Packages - Travizia Tours</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --accent-1:#8e44ad;
+      --muted:#6c757d;
+    }
+    body{font-family:Arial,Helvetica,sans-serif;background:#faf9fb;color:#222}
+    .navbar {background:#fff}
+
+    /* Hero */
+    .hero-slide{
+      height:68vh; min-height:420px; background-size:cover; background-position:center;
+      position:relative; display:flex; align-items:center; color:#fff;
+    }
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)); z-index:1}
+    .hero-content{position:relative;z-index:2;text-align:center}
+    .pkg-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .75rem;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08)}
+    .emoji-animate{display:inline-block;font-size:1.45rem;animation:float 3s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* Cards */
+    .pkg-card{border-radius:12px;overflow:hidden;transition:transform .35s,box-shadow .35s}
+    .pkg-card:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(0,0,0,0.12)}
+    .card-img-top{height:210px;object-fit:cover}
+
+    /* itinerary & includes */
+    .list-compact li{padding:.6rem 0;border-bottom:1px dashed #eee}
+    .muted-small{color:var(--muted);font-size:.95rem}
+
+    /* gallery large */
+    .tour-picture-slide{background-size:cover;background-position:center;height:480px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.12)}
+
+    /* testimonial */
+    .testimonial-card{border-radius:10px;box-shadow:0 8px 25px rgba(0,0,0,0.06);padding:28px}
+
+    /* CTA animated */
+    .cta-btn{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(90deg,var(--accent-1),#6a1b9a);color:#fff;border:none}
+    .cta-btn::before{content:'🏛️';position:absolute;right:-40px;top:-24px;font-size:2.2rem;opacity:.12;transform:rotate(20deg);transition:all .4s}
+    .cta-btn:hover::before{right:6px;top:-6px;opacity:.36;transform:rotate(0deg) scale(1.05)}
+    .cta-btn:focus{outline:none;box-shadow:0 8px 30px rgba(142,68,173,0.18)}
+
+    /* Contact button (nav) */
+    .contact-btn {
+        position: relative;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.1rem !important;
+        background: linear-gradient(135deg,#5b2c6f 0%, #8e44ad 100%);
+        color: white !important;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 4px 15px rgba(142,68,173,0.28);
+        border: 2px solid transparent;
+        animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .contact-btn::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(135deg,#8e44ad 0%, #5b2c6f 100%); transition:left .5s cubic-bezier(.34,1.56,.64,1); z-index:-1; }
+    .contact-btn:hover::before { left:0; }
+    .contact-btn .btn-icon { opacity:0; margin-left:-8px; transition:all .3s; }
+    .contact-btn:hover .btn-icon { opacity:1; margin-left:0; }
+    @keyframes pulse-glow { 0%{box-shadow:0 4px 12px rgba(142,68,173,0.22);}50%{box-shadow:0 4px 28px rgba(142,68,173,0.5);}100%{box-shadow:0 4px 12px rgba(142,68,173,0.22);} }
+
+    @media (max-width:991px){
+      .hero-slide{height:56vh}
+      .card-img-top{height:180px}
+      .tour-picture-slide{height:320px}
+    }
+           /* Contact button styles (added) */
+        .contact-btn {
+            position: relative;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            border: 2px solid transparent;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+
+        .contact-btn:hover::before {
+            left: 0;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn .btn-text {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+
+        .contact-btn .btn-icon {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            margin-left: -10px;
+        }
+
+        .contact-btn:hover .btn-icon {
+            opacity: 1;
+            margin-left: 0;
+        }
+
+        .contact-btn:hover .btn-text {
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+
+        .contact-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .contact-btn:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        .contact-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* responsive order: form-first on mobile handled on contact page; here just ensure layout */
+        @media (max-width:991px){
+            .hero-slide{height:56vh}
+            .card-img-top{height:180px}
+            .tour-picture-slide{height:320px}
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .contact-btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.85rem;
+            }
+
+            .contact-btn .btn-icon {
+                display: none;
+            }
+        }
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+
+}
+     @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+  </style>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+             <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                      <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn cta-animated">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-plane-departure"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <!-- HERO -->
+  <header class="hero-carousel mb-4">
+    <div id="culturalHero" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/2104882/pexels-photo-2104882.jpeg')">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content" data-aos="fade-up">
+              <div class="pkg-badge mb-3"><span class="emoji-animate">🏛️</span><strong>Cultural Journeys</strong></div>
+              <h1 class="display-5 fw-bold">Heritage, Art & Immersive Culture 🎭</h1>
+              <p class="muted-small lead">Private museum access • Local artisans • Curated rituals — authentic experiences.</p>
+              <div class="mt-4">
+                <a class="btn btn-lg btn-primary me-2" href="{% url 'loginform' %}">Request Quote • 📜</a>
+                <!-- <a class="btn btn-outline-light btn-lg" href="#packages">See Packages • 🧭</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/29905263/pexels-photo-29905263.jpeg')">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content" data-aos="fade-up">
+              <div class="pkg-badge mb-3"><span class="emoji-animate">🎨</span><strong>Art & Traditions</strong></div>
+              <h1 class="display-5 fw-bold">Meet Masters, Learn Traditions</h1>
+              <p class="muted-small lead">Workshops, private demonstrations & behind‑the‑scenes cultural access.</p>
+              <div class="mt-4">
+                <a class="btn btn-lg btn-primary me-2" href="{% url 'loginform' %}">Enquire • ✉️</a>
+                <!-- <a class="btn btn-outline-light btn-lg" href="#gallery">View Photos • 📸</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#culturalHero" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#culturalHero" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- PACKAGES -->
+  <section id="packages" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-2" data-aos="fade-up">Featured Cultural Packages 🎭</h2>
+      <p class="text-center muted-small mb-4" data-aos="fade-up" data-aos-delay="60">Curated journeys focusing on heritage, rituals and living traditions.</p>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/1004122/pexels-photo-1004122.jpeg" alt="India Heritage">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">vietnam</h5>
+               <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">6 days • Palaces & Rituals</p>
+              <p class="card-text muted-small">VIETNAM</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS🛕</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="140">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/3258242/pexels-photo-3258242.jpeg" alt="Europe Cultural">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">explore jordan</h5>
+               <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">5 nights and 6 days • Museums & Masters</p>
+              <p class="card-text muted-small">JORDHAN</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🖼️</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/257472/pexels-photo-257472.jpeg" alt="Japan Traditions">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">NEPAL</h5>
+              <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">5 days • Ceremonies & Crafts</p>
+              <p class="card-text muted-small">ASIA.</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🍵</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- more sample cards -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="260">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/18887232/pexels-photo-18887232.jpeg" alt="Morocco">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">best of rishikesh</h5>
+               <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">5 days • Souks & Riads</p>
+              <p class="card-text muted-small">INDIA.</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🐪</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="320">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/2445545/pexels-photo-2445545.jpeg" alt="Peru">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">itinerary for tarkarli</h5>
+                <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">1-3 days • Ruins & Rituals</p>
+              <p class="card-text muted-small">India.</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🏺</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://imgs.search.brave.com/7HV1uIivvbvRthzge30K7lpTySiDGuUCeSFyUrIOB3g/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9k/L2RmL0F5b2RoeWFf/UmFtX01hbmRpcl9J/bmF1Z3VyYXRpb25f/RGF5X1BpY3R1cmUu/anBn" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">ayodhya package</h5>
+               <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">5 nights and 6 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/27379157/pexels-photo-27379157.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">ITINERARY FOR VAISHNO DEVI</h5>
+               <h2 class="muted-small mb-2">STARTS FROM :</h2>
+              <p class="muted-small mb-2">4 days</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/11752865/pexels-photo-11752865.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">ITINERARY FOR SIKKIM</h5>
+              <p class="muted-small mb-2"> 6 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/13063864/pexels-photo-13063864.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">ITINERARY FOR MAHABALESHWAR</h5>
+              <p class="muted-small mb-2">1-3 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/574311/pexels-photo-574311.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">GANPATIPHULE PACKAGE</h5>
+              <p class="muted-small mb-2">1-3 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/5670955/pexels-photo-5670955.png" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">ITINERARY FOR BANGALORE</h5>
+              <p class="muted-small mb-2">5 nights and 6 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/809060/pexels-photo-809060.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">ITINERARY FOR DUBAI</h5>
+              <p class="muted-small mb-2"> 5 days </p>
+              <p class="card-text muted-small">UAE</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/34741303/pexels-photo-34741303.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">CHARDHAM YATRA PACKAGE</h5>
+              <p class="muted-small mb-2">12 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/26110235/pexels-photo-26110235.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">KASHMIR PACKAGE</h5>
+              <p class="muted-small mb-2">6 days</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/20843793/pexels-photo-20843793.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">BEST OF GOLDEN TRIANGLE</h5>
+              <p class="muted-small mb-2">6 days </p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/34724035/pexels-photo-34724035.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">SOUTH INDIA PACKAGE – Calicut Wayanad</h5>
+              <p class="muted-small mb-2">5 days </p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/9432498/pexels-photo-9432498.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">SOUTH INDIA PACKAGE: CHENNAI, MAHABALIPURAM</h5>
+              <p class="muted-small mb-2">4 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/33895627/pexels-photo-33895627.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">SOUTH INDIA PACKAGE – MADURAI – RAMESWARAM</h5>
+              <p class="muted-small mb-2">1-3 days </p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/10574299/pexels-photo-10574299.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">SOUTH INDIA PACKAGE – CHENNAI, PONDICHERRY</h5>
+              <p class="muted-small mb-2">4 days • Temples & Performances</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary"> MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/4134644/pexels-photo-4134644.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">SOUTH INDIA PACKAGE- MYSORE – OOTY</h5>
+              <p class="muted-small mb-2">4 days s</p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="380">
+          <div class="pkg-card card">
+            <img class="card-img-top" src="https://images.pexels.com/photos/31029893/pexels-photo-31029893.jpeg" alt="Indonesia">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">SOUTH INDIA PACKAGE – MYSORE – COORG</h5>
+              <p class="muted-small mb-2">5 days </p>
+              <p class="card-text muted-small">INDIA</p>
+              <div class="d-grid"><a href="{% url 'loginform' %}" class="btn btn-primary">MORE DETAILS 🎭</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+
+  <!-- ITINERARY + INCLUSIONS -->
+  <section id="itinerary" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4" data-aos="fade-up">Sample Itinerary & Inclusions 🧾</h2>
+      <div class="row g-4">
+        <div class="col-lg-7" data-aos="fade-right">
+          <div class="card p-3">
+            <h5 class="fw-bold">Sample 8‑Day Cultural Journey</h5>
+            <ul class="list-unstyled mt-3 list-compact">
+              <li>Day 1 — Arrival & welcome with local ritual</li>
+              <li>Day 2 — Private museum + curator talk</li>
+              <li>Day 3 — Artisan village visit & hands‑on workshop</li>
+              <li>Day 4 — Regional performance & learning session</li>
+              <li>Day 5 — Sacred site visit with local guide</li>
+              <li>Day 6 — Food & market exploration with chef</li>
+              <li>Day 7 — Leisure & optional photo walk</li>
+              <li>Day 8 — Departure with private transfer</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-5" data-aos="fade-left">
+          <div class="card p-3">
+            <h5 class="fw-bold">Inclusions ✅</h5>
+            <ul class="mt-3">
+              <li>• Handpicked accommodation (3‑5★ depending on package)</li>
+              <li>• Private transfers & expert local guides</li>
+              <li>• Workshops, entrance fees & curated experiences</li>
+              <li>• Concierge support & local taxes</li>
+            </ul>
+
+            <h5 class="fw-bold mt-3">Exclusions ❌</h5>
+            <ul class="mt-2">
+              <li>• International flights unless specified</li>
+              <li>• Personal expenses & travel insurance</li>
+            </ul>
+
+            <div class="mt-4">
+              <a class="btn btn-outline-primary w-100" href="loginform.html">Request Full Itinerary • 📩</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4" data-aos="fade-up">Gallery — Cultural Moments 📸</h2>
+      <div id="culturalGallery" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Cultural+1');"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Cultural+2');"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Cultural+3');"></div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#culturalGallery" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#culturalGallery" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="text-center mb-4" data-aos="fade-up">Traveller Feedback 🥂</h2>
+      <div id="culturalTestimonials" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="testimonial-card mx-auto" style="max-width:900px">
+              <p class="lead">"Authentic, immersive and beautifully organised." — <strong>L.T.</strong></p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card mx-auto" style="max-width:900px">
+              <p class="lead">"We learned more about the culture than we expected — incredible guides." — <strong>M.K.</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#culturalTestimonials" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#culturalTestimonials" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- FOOTER -->
+  <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+  {% block extra_js %}
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="{% static 'js/cultural.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (typeof AOS !== 'undefined') AOS.init({duration:900,once:true});
+    });
+  </script>
+  
+  {% endblock %}
+</body>
+</html>

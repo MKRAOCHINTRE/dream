@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Andaman Heaven 6 Days - Travizia World</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --primary: #006064;
+            --success: #2e7d32;
+            --warning: #ff8f00;
+            --info: #0288d1;
+            --light: #e0f7fa;
+            --dark: #004d40;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #e3f2fd;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .itinerary-day {
+            background: #ffffff;
+            padding: 22px;
+            border-left: 6px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .itinerary-day:hover {
+            transform: translateY(-5px);
+        }
+
+        .itinerary-day h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        .city-badge {
+            background: var(--info);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-image {
+            max-height: 520px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .price-table th, .price-table td {
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 600;
+        }
+
+        .hotel-table th, .hotel-table td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .hero-header {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('https://images.unsplash.com/photo-1512343879784-0f7b9c977f4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero-header h1 {
+            text-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #006064, #00838f);
+            color: white;
+        }
+
+        .honeymoon-badge {
+            background: #f8bbd0;
+            color: #880e4f;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-header { min-height: 300px; padding: 3rem 1rem; }
+            .hero-header h1 { font-size: 2rem; }
+            .display-4 { font-size: 2.5rem; }
+            .itinerary-day { padding: 18px; }
+            .city-badge { font-size: 0.8rem; }
+            .price-table, .hotel-table { font-size: 0.8rem; }
+        }
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: large;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}
+/* Contact Button Advanced Animations */
+.contact-btn {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    border: 2px solid transparent;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.contact-btn:hover::before {
+    left: 0;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn .btn-text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.contact-btn .btn-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    margin-left: -10px;
+}
+
+.contact-btn:hover .btn-icon {
+    opacity: 1;
+    margin-left: 0;
+}
+
+.contact-btn:hover .btn-text {
+    letter-spacing: 0.5px;
+}
+
+/* Pulse effect on button */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+}
+
+/* Ripple effect on click */
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.contact-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.contact-btn:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Active state animation */
+.contact-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-btn {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.85rem;
+    }
+
+    .contact-btn .btn-icon {
+        display: none;
+    }
+}
+        @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                          <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold" data-aos="fade-down">ANDAMAN HEAVEN</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">6 Days | Port Blair – Havelock – Neil</p>
+            <p class="h5" data-aos="fade-up" data-aos-delay="300">Emerald Isles • Pristine Beaches • Coral Reefs</p>
+        </div>
+    </header>
+
+    <!-- Hotel Table -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Accommodation (3★ & 4★ Combo)</h2>
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table table-bordered hotel-table">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Hotels</th>
+                            <th>Port Blair<br>2 Nights</th>
+                            <th>Havelock<br>2 Nights</th>
+                            <th>Neil<br>1 Night</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>3 & 4 Star<br>(Combo)</strong></td>
+                            <td>Amy Grace Premium Room with Balcony</td>
+                            <td>TSG Blue Flora Double</td>
+                            <td>Symphony Summer Sand Beach Resort Casa Aqua (Attached Pool)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-center mt-3 fw-bold text-primary">MEAL PLAN: BREAKFAST INCLUDED</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Table -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Tour Cost Per Person</h2>
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table table-bordered price-table">
+                    <tbody>
+                        <tr class="table-primary">
+                            <td><strong>2 Person Basis (Per Person cost)</strong></td>
+                            <td><strong>INR 30,000 + 5% GST</strong></td>
+                        </tr>
+                        <tr class="table-info">
+                            <td><strong>4 Person Basis (Per Person cost)</strong></td>
+                            <td><strong>INR 29,000 + 5% GST</strong></td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td><strong>Extra Bed Rates (Per Person cost)</strong></td>
+                            <td><strong>INR 15,000 + 5% GST</strong></td>
+                        </tr>
+                        <tr class="table-light">
+                            <td><strong>Child Without Bed (Per Child cost)</strong></td>
+                            <td><strong>INR 13,000 + 5% GST</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Detailed Itinerary</h2>
+
+            <!-- Day 1 -->
+            <div class="itinerary-day" data-aos="fade-up">
+                <h4><span class="city-badge">PORT BLAIR</span> Day 1: Arrival + Corbyn’s Cove + Cellular Jail</h4>
+                <ul class="list-unstyled">
+                    <li>Arrival at <strong>Veer Savarkar Airport (IXZ)</strong></li>
+                    <li>Transfer to hotel & freshen up</li>
+                    <li>Visit <strong>Corbyn’s Cove Beach</strong></li>
+                    <li><strong>Cellular Jail National Memorial</strong></li>
+                    <li>Evening: <strong>Light & Sound Show</strong></li>
+                    <li><strong>Overnight: Port Blair</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="100">
+                <h4><span class="city-badge">HAVELOCK</span> Day 2: Port Blair → Havelock + Radhanagar Beach</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Private Ferry to <strong>Havelock Island</strong></li>
+                    <li>Transfer to hotel</li>
+                    <li>Afternoon: <strong>Radhanagar Beach (Asia’s Best Beach)</strong></li>
+                    <li>Sunset views</li>
+                    <li><strong>Overnight: Havelock</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="200">
+                <h4>Day 3: Elephant Beach (Snorkeling)</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast</li>
+                    <li>Speed boat to <strong>Elephant Beach</strong></li>
+                    <li><strong>Complimentary Snorkeling</strong> (by Boat Association)</li>
+                    <li>Coral viewing & water activities</li>
+                    <li><strong>Overnight: Havelock</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="300">
+                <h4><span class="city-badge">NEIL</span> Day 4: Havelock → Neil Island</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Ferry to <strong>Neil Island</strong></li>
+                    <li>Visit <strong>Bharatpur Beach</strong>, <strong>Laxmanpur Beach</strong></li>
+                    <li><strong>Natural Coral Bridge</strong></li>
+                    <li><strong>Overnight: Neil</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="400">
+                <h4>Day 5: Neil → Port Blair</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Ferry back to <strong>Port Blair</strong></li>
+                    <li>Visit <strong>Sagarika Emporium</strong> for souvenirs</li>
+                    <li>Free time for shopping</li>
+                    <li><strong>Overnight: Port Blair</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 6 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="500">
+                <h4>Day 6: Departure</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Drop to <strong>Port Blair Airport</strong></li>
+                    <li class="text-success fw-bold">*** TOUR ENDS WITH MEMORIES OF PARADISE ***</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inclusions -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">INCLUSIONS</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="highlight-box">
+                        <h5 class="text-success">TRANSPORT & LOGISTICS</h5>
+                        <ul>
+                            <li>Private AC Vehicle (Dzire/Ertiga/Xylo)</li>
+                            <li>Private Ferry (Nautika/Makruzz/GreenOcean)</li>
+                            <li>All Entry Tickets, Permits, Boat/Ferry Tickets</li>
+                            <li>Airport Assistance on Arrival & Departure</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="highlight-box">
+                        <h5 class="text-primary">SERVICES & ACTIVITIES</h5>
+                        <ul>
+                            <li>Expert Tour Coordinator in Andaman</li>
+                            <li>Complimentary Snorkeling at Elephant Beach</li>
+                            <li>24x7 On-Call Support</li>
+                            <li>All Taxes Included</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">EXCLUSIONS</h2>
+            <ul class="list-group" data-aos="fade-up">
+                <li class="list-group-item">Personal expenses (laundry, phone, internet)</li>
+                <li class="list-group-item">Camera tickets at monuments</li>
+                <li class="list-group-item">Flight/Ferry cancellation charges</li>
+                <li class="list-group-item">Gala Dinner or Peak Season surcharges (mandatory if applied)</li>
+                <li class="list-group-item">Any item not mentioned in Inclusions</li>
+            </ul>
+
+          
+        </div>
+    </section>
+
+    <!-- Honeymoon Add-ons -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">HONEYMOON SPECIAL ADD-ONS</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="card border-pink shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="honeymoon-badge d-block mb-3">Romantic</span>
+                            <h5 class="card-title text-danger">Candle Light Dinner</h5>
+                            <p class="card-text display-6 fw-bold text-danger">₹4,800</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-pink shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="honeymoon-badge d-block mb-3">Sweet</span>
+                            <h5 class="card-title text-danger">Bed Decoration</h5>
+                            <p class="card-text display-6 fw-bold text-danger">₹2,800</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+    {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+    </script>
+     {% endblock %}
+</body>
+</html>

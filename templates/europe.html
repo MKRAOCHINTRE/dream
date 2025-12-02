@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>European Highlights - Travizia World</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Georgia&display=swap" rel="stylesheet"/>
+
+    <style>
+        /* Custom Styles */
+        :root {
+            --primary: #007bff;
+            --success: #28a745;
+            --warning: #ffc107;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Hero Header with Background */
+        .hero-header {
+            position: relative;
+            min-height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 123, 255, 0.4)), 
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3);
+            animation: heroSlideIn 0.8s ease-in-out;
+        }
+
+        @keyframes heroSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(0, 0, 0, 0.5));
+            z-index: 1;
+        }
+
+        .hero-header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-header h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-header .lead {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .itinerary-day {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 5px solid var(--primary);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .itinerary-day h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .accordion-button {
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .tour-image {
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-header {
+                min-height: 350px;
+            }
+            .hero-header h1 {
+                font-size: 2rem;
+            }
+            .hero-header .lead {
+                font-size: 1.1rem;
+            }
+            .display-4 { font-size: 2.5rem; }
+            .itinerary-day { padding: 15px; }
+            .table { font-size: 0.9rem; }
+        }
+
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: large;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}
+
+.contact-btn {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    border: 2px solid transparent;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.contact-btn:hover::before {
+    left: 0;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn .btn-text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.contact-btn .btn-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    margin-left: -10px;
+}
+
+.contact-btn:hover .btn-icon {
+    opacity: 1;
+    margin-left: 0;
+}
+
+.contact-btn:hover .btn-text {
+    letter-spacing: 0.5px;
+}
+
+/* Pulse effect on button */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+}
+
+/* Ripple effect on click */
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.contact-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.contact-btn:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Active state animation */
+.contact-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-btn {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.85rem;
+    }
+
+    .contact-btn .btn-icon {
+        display: none;
+    }
+}
+   @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">DREAM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                     <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header with Background Image -->
+    <header class="hero-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold" data-aos="fade-down">EUROPEAN HIGHLIGHTS</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">10 Days | Paris → Switzerland → Austria → Italy</p>
+        </div>
+    </header>
+
+    <!-- Pricing Table -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Tour Cost (Per Person)</h2>
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Per Adult in Single Occupancy</th>
+                            <th>Per Adult in Double/Triple</th>
+                            <th>Per CWB (3 To 12 yrs)</th>
+                            <th>Per COB (3 To 12 yrs)</th>
+                            <th>Per Infant (02 yrs)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>INR 1,93,500</strong></td>
+                            <td><strong>INR 1,48,500</strong></td>
+                            <td><strong>INR 1,11,500</strong></td>
+                            <td><strong>INR 89,000</strong></td>
+                            <td><strong>INR 5,200</strong></td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td colspan="5" class="fw-bold">GST & TCS EXTRA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Detailed Itinerary</h2>
+
+            <div class="itinerary-day" data-aos="fade-up">
+                <h4>Day 1: Arrive into Paris – the City of Romance, Lights and Glamour.</h4>
+                <p>Hello! Today, we begin our adventure to Paris, a renowned city known for its exceptional fashion, renowned museums, breathtaking landmarks, and captivating cabaret scenes. Upon reaching your destination, our Tour Manager will extend a warm welcome, assist you with hotel check-in, and be available to support you throughout your stay.<br><strong>Overnight in Paris. (Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="100">
+                <h4>DAY 2: Guided city tour of Paris. Visit to Eiffel tower 2nd Level. Enjoy a romantic cruise on River Seine. Visit Fragonard French perfumery</h4>
+                <p>Today, we commence our guided exploration of Paris, offering you the chance to admire some of its most renowned landmarks. Our schedule includes stops at iconic sites such as Place Vendôme, Place de l'Opéra Garnier, Musée d'Orsay, Place de la Concorde, Champs Elysées, Arc de Triomphe, Alexander Bridge, Les Invalides, and many others. Next, visit the second level of the iconic Eiffel Tower for a breathtaking panoramic view. Later, enjoy a romantic cruise along the Seine River, passing under charming bridges and viewing Notre Dame, the Eiffel Tower, the Louvre, and more. End the day with a visit to Fragonard Perfumery to uncover the art of French perfumes.<br><strong>Overnight in Paris. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="200">
+                <h4>DAY 3: Drive to scenic Switzerland</h4>
+                <p>After checking out, journey to Switzerland, a land of mountains, lakes, and alpine peaks. Enjoy scenic drives through mountain passes and historical landmarks. Check in and unwind upon arrival.<br><strong>Overnight in Central Switzerland. (Breakfast, Packed Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="300">
+                <h4>DAY 4: Day at leisure.</h4>
+                <p>Explore the breathtaking beauty of Switzerland at your own pace.<br><strong>Overnight in Central Switzerland. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="400">
+                <h4>DAY 5: Visit Mt. Titlis – Rotair cable car, Cliff Walk. Orientation tour of Lucerne.</h4>
+                <p>Ascend Mt. Titlis via the world's first revolving Rotair cable car to 3,020 meters. Walk on Europe's highest suspension bridge – the Cliff Walk. Later, enjoy an orientation tour of Lucerne including the Lion Monument and Kapellbrücke. Free time for shopping Swiss watches, knives, and chocolates.<br><strong>Overnight in Central Switzerland. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="500">
+                <h4>DAY 6: Rhine Falls, Swarovski Crystal Museum, Innsbruck Orientation</h4>
+                <p>Witness Europe's largest waterfall at Rhine Falls. Visit Swarovski Crystal Museum in Wattens. Enjoy an orientation tour of Innsbruck featuring the Golden Roof and Maria Theresien Strasse.<br><strong>Overnight in Innsbruck/Seefeld. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="600">
+                <h4>DAY 7: Welcome to Venice – the floating city</h4>
+                <p>Travel by private boat to St. Mark's Square. Admire St. Mark's Basilica, Bell Tower, Clock Tower, and the Bridge of Sighs. Check in and relax.<br><strong>Overnight in Padova/Bologna. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="700">
+                <h4>DAY 8: Photostop at Piazzale Michelangelo</h4>
+                <p>Enjoy a panoramic view of Florence from Piazzale Michelangelo, named after the Renaissance artist.<br><strong>Overnight in Tuscany region. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="800">
+                <h4>DAY 9: Day trip to Rome & Vatican City</h4>
+                <p>Visit St. Peter's Basilica in Vatican City. See the Colosseum and toss a coin in the Trevi Fountain. Return to Tuscany.<br><strong>Overnight in Tuscany region. (Breakfast, Lunch, Dinner)</strong></p>
+            </div>
+
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="900">
+                <h4>DAY 10: Leaning Tower of Pisa. Fly back home.</h4>
+                <p>Visit the Square of Miracles and the Leaning Tower of Pisa. Transfer to Milan Airport. Bid farewell with lifelong memories.<br><strong>(Breakfast, Lunch)</strong></p>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- Inclusions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">INCLUSIONS: SIGHTSEEING & EXCURSIONS</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h5 class="text-success fw-bold">FRANCE – Paris</h5>
+                    <ul class="list-unstyled">
+                        <li>✓ City tour with local guide</li>
+                        <li>✓ Eiffel Tower 2nd Level</li>
+                        <li>✓ Seine River Cruise</li>
+                        <li>✓ Fragonard Perfumery</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h5 class="text-success fw-bold">SWITZERLAND</h5>
+                    <ul class="list-unstyled">
+                        <li>✓ Rhine Falls</li>
+                        <li>✓ Mt. Titlis with Rotair & Cliff Walk</li>
+                        <li>✓ Lucerne orientation tour</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+                    <h5 class="text-success fw-bold">AUSTRIA</h5>
+                    <ul class="list-unstyled">
+                        <li>✓ Golden Roof & Maria Theresien Strasse</li>
+                        <li>✓ Swarovski Crystal Museum</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+                    <h5 class="text-success fw-bold">ITALY & VATICAN</h5>
+                    <ul class="list-unstyled">
+                        <li>✓ St. Mark's Square by boat</li>
+                        <li>✓ Piazzale Michelangelo, Colosseum, Trevi Fountain</li>
+                        <li>✓ Leaning Tower of Pisa</li>
+                        <li>✓ St. Peter's Basilica</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation & Meals -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Accommodation & Meals</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">🏨 Accommodation</h5>
+                            <ul>
+                                <li>02 nights in Paris (B&B or similar)</li>
+                                <li>03 nights in Central Switzerland (Dormero or similar)</li>
+                                <li>01 night in Innsbruck/Seefeld (Olympia or similar)</li>
+                                <li>01 night in Padova (Unaway or similar)</li>
+                                <li>02 nights in Tuscany (Forum or similar)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">🍽️ Meals</h5>
+                            <ul>
+                                <li>Daily Continental Buffet Breakfast</li>
+                                <li>9 Indian Jain/Veg/Non-Veg Lunches</li>
+                                <li>9 Indian Jain/Veg/Non-Veg Dinners</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">What Your Tour Price Does Not Include</h2>
+            <ul class="list-group" data-aos="fade-up">
+                <li class="list-group-item">❌ Airfare, Passport, Visa, Insurance</li>
+                <li class="list-group-item">❌ Personal expenses (laundry, drinks, etc.)</li>
+                <li class="list-group-item">❌ Optional excursions & entrance fees</li>
+                <li class="list-group-item">❌ GST, TCS, and any government taxes</li>
+                <li class="list-group-item">❌ Anything not specified in inclusions</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">BENEFITS OF BOOKING WITH TRAVIZIA WORLD</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-4" data-aos="flip-left">
+                    <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                    <p><strong>100% Money Safe Guarantee</strong></p>
+                </div>
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+                    <i class="fas fa-hotel fa-3x text-warning mb-3"></i>
+                    <p><strong>Branded Hotels (Hilton, Marriott, etc.)</strong></p>
+                </div>
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="400">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <p><strong>Professional Tour Manager</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Notes -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Important Notes</h2>
+            <div class="accordion" id="notesAccordion" data-aos="fade-up">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#note1">
+                            Child Policy & Room Sharing
+                        </button>
+                    </h2>
+                    <div id="note1" class="accordion-collapse collapse" data-bs-parent="#notesAccordion">
+                        <div class="accordion-body">
+                            A person below 12 years is considered a child. Triple rooms use rollaway beds.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#note2">
+                            Tour Operation
+                        </button>
+                    </h2>
+                    <div id="note2" class="accordion-collapse collapse" data-bs-parent="#notesAccordion">
+                        <div class="accordion-body">
+                            Tours operate subject to government regulations. Alternate sightseeing may be provided if closed.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#note3">
+                            Payment & Currency
+                        </button>
+                    </h2>
+                    <div id="note3" class="accordion-collapse collapse" data-bs-parent="#notesAccordion">
+                        <div class="accordion-body">
+                            Tour cost payable in EURO via BTQ. GST/TCS applicable.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 cta-section text-center">
+        <div class="container" data-aos="zoom-in">
+            <h3 class="mb-3">Ready to Explore Europe? 🌍</h3>
+            <p class="lead mb-4">Contact us today for bookings and make your European dream a reality!</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="tel:+918898619371" class="btn btn-light btn-lg">
+                    <i class="fas fa-phone me-2"></i>Call +91 889 861 9371
+                </a>
+                <a href="mailto:info@traviziaworld.com" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-envelope me-2"></i>Email Us
+                </a>
+                <a href="{% url 'loginform' %}" class="btn btn-light btn-lg">
+                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect With Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+    {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+     {% endblock %}
+</body>
+</html>

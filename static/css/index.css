@@ -1,0 +1,530 @@
+/* Custom Styles for Travizia Tours */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    scroll-behavior: smooth;
+}
+
+/* Hero Header */
+.hero-header {
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    color: white;
+    padding: 120px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.hero-header > div {
+    position: relative;
+    z-index: 2;
+}
+
+/* Highlight Cards */
+.highlight-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.highlight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* Package Cards */
+.package-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    background: white;
+}
+
+.package-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+}
+
+.package-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Award Logos */
+.award-logo {
+    max-width: 100px;
+    height: auto;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.award-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Parallax Effect (optional) */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-header {
+        padding: 80px 0;
+    }
+    .hero-header h1 {
+        font-size: 2.2rem;
+    }
+}
+/* -------------------------------------------------
+  /* -------------------------------------------------
+   HERO CAROUSEL – sliding images + simple dark overlay
+   ------------------------------------------------- */
+.hero-carousel {
+    height: 100vh;
+    min-height: 500px;
+}
+.hero-slide {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Dark overlay for text readability */
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* Text content */
+.hero-content {
+    z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-carousel { height: 80vh; }
+    .hero-content h1 { font-size: 2rem; }
+}
+
+/* Category & Place Cards Styling */
+.category-card,
+.place-card {
+    cursor: pointer;
+    height: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-card:hover,
+.place-card:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.category-img,
+.place-img {
+    object-fit: cover;
+    height: 300px;
+    transition: transform 0.4s ease;
+}
+
+.category-card:hover .category-img,
+.place-card:hover .place-img {
+    transform: scale(1.1);
+}
+
+.category-overlay,
+.place-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease;
+    z-index: 1;
+}
+
+.category-card:hover .category-overlay,
+.place-card:hover .place-overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.category-overlay h5,
+.place-overlay h5 {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-overlay h5,
+.place-card:hover .place-overlay h5 {
+    transform: scale(1.1);
+}
+
+/* 5 Column Layout */
+@media (min-width: 1200px) {
+    .col-lg-2-4 {
+        flex: 0 0 calc(20% - 1rem);
+        max-width: calc(20% - 1rem);
+    }
+}
+
+@media (max-width: 1199px) {
+    .col-lg-2-4 {
+        flex: 0 0 calc(25% - 0.5rem);
+        max-width: calc(25% - 0.5rem);
+    }
+}
+
+/* Category & Place Carousel Slides */
+.category-slide,
+.place-slide {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    transition: transform 0.6s ease;
+}
+
+.carousel-item.active .category-slide,
+.carousel-item.active .place-slide {
+    transform: scale(1);
+}
+
+.carousel-item .category-slide,
+.carousel-item .place-slide {
+    transform: scale(1.05);
+}
+
+.category-slide-overlay,
+.place-slide-overlay {
+    transition: background 0.4s ease;
+}
+
+.carousel-item:hover .category-slide-overlay,
+.carousel-item:hover .place-slide-overlay {
+    background: rgba(0,0,0,0.6) !important;
+}
+
+.category-slide-content h3,
+.place-slide-content h3 {
+    transition: all 0.4s ease;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.carousel-item:hover .category-slide-content h3,
+.carousel-item:hover .place-slide-content h3 {
+    transform: scale(1.1);
+}
+
+/* Tour Pictures Carousel Slide */
+.tour-picture-slide {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    transition: transform 0.6s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-item.active .tour-picture-slide {
+    transform: scale(1);
+}
+
+.carousel-item .tour-picture-slide {
+    transform: scale(1.05);
+}
+
+.tour-picture-overlay {
+    transition: background 0.4s ease;
+    z-index: 1;
+}
+
+.carousel-item:hover .tour-picture-overlay {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Contact Button Advanced Animations */
+.contact-btn {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    border: 2px solid transparent;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.contact-btn:hover::before {
+    left: 0;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn .btn-text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.contact-btn .btn-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    margin-left: -10px;
+}
+
+.contact-btn:hover .btn-icon {
+    opacity: 1;
+    margin-left: 0;
+}
+
+.contact-btn:hover .btn-text {
+    letter-spacing: 0.5px;
+}
+
+/* Pulse effect on button */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+}
+
+/* Ripple effect on click */
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.contact-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.contact-btn:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Active state animation */
+.contact-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-btn {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.85rem;
+    }
+
+    .contact-btn .btn-icon {
+        display: none;
+    }
+}
+/* -------------------------------------------------
+   HERO SEARCH BAR – clean, modern, responsive
+   ------------------------------------------------- */
+.hero-search .form-control {
+    height: 54px;
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+.hero-search .form-control:focus {
+    background: white;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.hero-search .btn {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-search .input-group {
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+    .hero-search {
+        margin-top: 15px !important;
+    }
+    .hero-search .input-group {
+        max-width: 100% !important;
+    }
+    .hero-search .form-control {
+        font-size: 1rem;
+        height: 48px;
+    }
+    .hero-search .btn {
+        width: 50px;
+    }
+}
+/* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: large;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}

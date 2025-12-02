@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Clients - Travizia Tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+     {% load static %}
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/clients.css'%}"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+           <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                        <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+ 
+    
+
+    <!-- Main Clients Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Testimonials Heading -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h1 class="display-5 fw-bold mb-3 text-primary"> OUR CLIENTS</h1>
+                    <h2 class="text-muted">WHAT OUR CUSTOMERS SAYS</h2>
+                </div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="row g-4">
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Mr. Paras Chheda Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Had been to Bali through Travizia ; had an excellent trip and service provided by Vini.She was very helpful all through managing our changes which ran upto the last booking...A lot of valueable inputs provided which made our trip memorable... intercity travel was very comfortable.All in a very good guys to book your travel through as they provide amazing packages.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Mr. Paras Chheda & Family</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Amruta Shroff Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>While planning our honeymoon, I would never have thought of going to a exotic international city. Travizia suggested our honeymoon tour to Bali when I first approached them, that too in a very cost effective budget. We had never travelled out of India so we were a little worried about the arrangements. But Travizia took care of everything. From air tickets to food, everything was well arranged.The hotel we stayed in was a nice 3 star hotel with cozy rooms. We had huge variety of food in buffet. Especially for Indian people Indian food was arranged. I'm not lying but in Bali, I got to taste the best quality and better food than India.I always had a fascination about Balenese massage, and I had decided to try it out. As per our request, we were arranged with a very good spa session in a popular Spa in Kuta.Me and my husband, lovers of adventures and traveling, had our itinerary designed/made accordingly.I will never forget those days in Bali. It was the best experience we had till now.I would love to travel with Travizia again and would definitely recommend it to others.Thank you. </p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Amruta Shroff – Mohare</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Mr. Prasanna Mohare Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Our family(14 Members) tour to Sikkim was organised by Travizia. Right from air booking to itinerary everything was perfectly managed as per our requirement.The Itinerary was perfect but the people who implemented it were even better. The manager, the representatives, the drivers and the guides were all professionals and worthy of saying thanks for a well done job. Normally people are fond of complaining about small faults of the tour agency but few will remember to thank who worked hard to make their vacation or trip a success. We are happy to have chosen Travizia over others and we do highly recommend them to travelers who will thank us for that.Thanks and best wishes to Travizia.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Mr. Prasanna Mohare</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Mr. Lorenzo Marsiglio Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Dear Vini I would like to thank you once again for the well-organized trip to the islands of Mauritius and Reunion.My wife and I have been extremely satisfied with the perfect organization by Travizia Tours and Travels!In particular we appreciated the professionalism in the communications and the suggestions about the resorts where to stay.Everything was perfect!!!For our next trips we will still support you and ask you to be followed again by Vini.At the same time we will advise our friends to lean on your agency.Thanks again and good work!</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Mr. Lorenzo Marsiglio & Mrs. Erica De Guglielmi</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="500">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Our six nights seven days tour was organized by Travizia Tours right from air travel tickets, car booking,hotel accommodation, site seeing and most importantly travel with sense of satisfaction! Once Vini is assigned a venue and dates, she makes every bit work for u.Her planning is amazing and most importantly, she is always alert when you are travelling and attempts to turn any odd into even situation. She offers complete package in most reasonable price! Kudos to Vini and Travizia team..keep it up</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Mr. Samir Sanghavi</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="600">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Mr. Pranali Nadkarni Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Had been to Bali through Travizia ; had an excellent trip and service provided by Vini.She was very helpful all through managing our changes which ran upto the last booking...Thanks for excellent planning we enjoyed a lot. .</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Mr.Pranali Nadkarni & group</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="700">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="MR. HEINER P.T. HARTWICH Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>This is to thank you for all the wonderful arrangement you have done for me to make my recent trip to Mumbai and Delhi not only an enjoyable one, but also a profitable one. Due to your constant efforts to attend to my challenging schedule, I was able to make the most of my trip to your great country. I am looking forward to travelling to and within India, soon - with your much appreciated help.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">MR. HEINER P.T. HARTWICH</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="800">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="MR. YADAV AND FAMILY Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Thanks Vini for providing me flight tickets with best service and cost. We will always love to travel with u. Keep it up?</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">MR. YADAV AND FAMILY</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="900">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Jamsheed Dinshaw Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>My experience with Travizia Tours was the best yet.Correct advise, Prompt and Polite response always , and hassle free processing will go to ensure that they will always be my first choice. I highly recommend Travizia Tours for all your travel requirements.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Jamsheed Dinshaw</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="MS. SONALI GAIKWAD Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Travizia literally amazed me with its quick service... it just turned my small thought into reality within a minute.., I was just planning my trip to Dubai so I just called Vini Thomas n she guided me so well and also wit an ease.. whatever I asked fr was delivered within a very short period of time... I would surely recommend my friends to try Travizia n m sure they will get addicted to their services like me...</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">MS. SONALI GAIKWAD AND FAMILY</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1100">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="MR. SAWANT Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>Excellent in service and support.....rather i would say more personalised and committed service we have enjoyed till date... We thoroughly enjoyed every moment of the trips and was 100% satisfied. Therefore, I convey my special thanks and best wishes to Travazia.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">MR. SAWANT AND FAMILY</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="MR. SANTOSH & MRS. RENUKA NIKAM Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>It was a great experience through ur consultancy Vini. From start of the trip till end everything was the perfectly arranged and upto our expectations. We both had a great time in Kerala. I wish you good luck Vini & will look forward for your services in future for other destinations also.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">MR. SANTOSH & MRS. RENUKA NIKAM</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1300">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="Mr. Nicholas Gayner Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>We had a great trip to Kerala. Thank You for all your wonderful arrangements.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Mr. Nicholas Gayner</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1400">
+                    <div class="testimonial-card">
+                        <img src="https://via.placeholder.com/80x80?text=Avatar" alt="DR. ABHISHEK & AMRUTHA JOSHI Avatar" class="rounded-circle mb-3">
+                        <blockquote class="blockquote">
+                            <p>We thank you from our heart for arranging a perfect honeymoon tour we both had a great time. Service was excellent and more than we expected. Hotels given in Singapore & Bali both were extremely good. Follow up was very good.</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">DR. ABHISHEK & AMRUTHA JOSHI</footer>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Corporate Clients Section -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-10" data-aos="fade-up">
+                    <h2 class="text-center mb-4">CORPORATE CLIENTS</h2>
+                    <p class="lead text-center">
+                        Connecting with the right people having the right knowledge, trade and skills not only opens new frontiers but even open vistas for growing and expanding but even allows your businesses to broaden its horizon.We at Travizia are fully aware of your desire of growth and we make sure that you get the best and complete experience with our corporate tours. Crafted with your budget, your business needs,top travel incentive destination coupled with an amazing budget your corporate tours will truly stand out with our excellent personalized services.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Our Satisfied List of Corporate Clients -->
+            <div class="row justify-content-center mt-5 mb-5">
+                <div class="col-lg-10" data-aos="fade-up">
+                    <h3 class="text-center mb-4 fw-bold">Our Satisfied List of Corporate Clients</h3>
+                    
+                    <div class="row g-3">
+                        <!-- Client 1 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. AMTEK PACKAGING PVT. LTD.</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 2 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. ASHOK CHEM-PHARMA INT.</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 3 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. BOMBAY CAPITAL SERVICES</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 4 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S.THANE DISTRICT CENTRAL COOP BANK</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 5 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. INFOTECH RESOURCES</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 6 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="350">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. KAILASH TEXTILE SOLUTION</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 7 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. KETAV CONSULTANTS</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 8 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="450">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. SHREE UDAYA SURYA TEXTILES</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 9 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S SUDEVI INDUSTRIES LTD</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 10 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="550">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. SURYA BAKERY</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 11 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S.VEEKAY PRODUCTS</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 12 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="650">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S.AURA GROUP OF DEVELOPERS</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 13 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S.AL JANAH AL AKHADAR VEGETABLE FRUITS TRADING LLC- DUBAI</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client 14 -->
+                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="750">
+                            <div class="corporate-client-card">
+                                <div class="client-card-content">
+                                    <i class="fas fa-building text-primary me-3"></i>
+                                    <h6 class="mb-0">M/S. B K RESORT AND WATER PARK</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+
+            <!-- CTA -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8 text-center" data-aos="zoom-in">
+                    <h4 class="mb-3">Ready to Join Our Happy Clients?</h4>
+                    <a href="{% url 'loginform' %}" class="btn btn-primary btn-lg me-3">Contact Us</a>
+                    <a href="tel:+918898619371" class="btn btn-outline-primary btn-lg">+91 889 861 9371</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+     {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{% static 'js/clients.js'%}"></script>
+     {% endblock %}
+</body>
+</html>

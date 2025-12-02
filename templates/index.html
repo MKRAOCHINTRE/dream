@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+      {% load static %}
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+
+    <!-- Inline hero styles to ensure slides occupy the viewport and images cover -->
+    <style>
+        
+        /* HERO: make hero always fill viewport (minus navbar) and ensure images cover */
+        :root { --navbar-height: 70px; } /* fallback -- adjust if your navbar height differs */
+
+        .hero-carousel .carousel-inner,
+        .hero-carousel .carousel-item,
+        .hero-carousel .hero-slide {
+            /* use full viewport height minus navbar so hero always fits without gaps */
+            height: calc(100vh - var(--navbar-height));
+            min-height: 360px;
+            min-height: 48vh; /* fallback on some mobiles */
+            max-height: 1400px;
+        }
+
+        .hero-carousel .hero-slide {
+            width: 100%;
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+            display: block;
+        }
+
+        /* overlay & stacking */
+        .hero-carousel .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-carousel .hero-content {
+            z-index: 3;
+        }
+
+        /* small screens tweak */
+        @media (max-height: 600px) {
+            .hero-carousel .carousel-inner,
+            .hero-carousel .carousel-item,
+            .hero-carousel .hero-slide {
+                height: calc(60vh - var(--navbar-height));
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* if navbar height differs on mobile, override the CSS var via inline style or JS */
+            :root { --navbar-height: 56px; }
+        }
+        @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    /* SPECIAL NOTICE POPUP STYLES */
+.notice-popup {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.notice-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.notice-content {
+    background: linear-gradient(135deg, #dbd4d4, #675655);
+    color: white;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: popupBounce 0.8s ease-out;
+}
+
+.notice-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.notice-close:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+@keyframes popupBounce {
+    0% { transform: scale(0.3); }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* Mobile friendly */
+@media (max-width: 576px) {
+    .notice-content h3 { font-size: 1.4rem; }
+    .notice-content h5 { font-size: 1rem; }
+}
+
+        /* ...existing code... */
+    </style>
+</head>
+<body>
+<!-- SPECIAL NOTICE POPUP (Auto Show on Page Load) -->
+<div id="specialNotice" class="notice-popup">
+    <div class="notice-content">
+        <span class="notice-close" onclick="closeNotice()">&times;</span>
+        
+        <div class="text-center py-4 px-3">
+            <i class="fas fa-bullhorn fa-3x text-warning mb-3"></i>
+            <h3 class="text-white fw-bold mb-3">APPLY FOR US VISA </h3>
+            <h5 class="text-white mb-3">
+                Book Any International Package<br>
+                & Get <span class="text-warning">WE ARE THERE HERE FOR </span>  Free Visa Assistance
+            </h5>
+            <a href="tel:+918898619371" class="btn btn-warning btn-lg px-5 shadow-lg">
+                <i class="fas fa-phone me-2"></i> Call Now: +91 88986 19371
+            </a>
+            <p class="text-white mt-3 mb-0 small">Why Late Call Now!</p>
+        </div>
+    </div>
+</div>
+    <!-- Navbar -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tours</a>
+                        <ul class="dropdown-menu" aria-labelledby="toursDropdown">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+               <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Header -->
+   <!-- ==== HERO SECTION – 4 sliding background images + cursor parallax + glass effect ==== -->
+<!-- ==== HERO SECTION – 4 sliding images (NO glass) ==== -->
+<header class="hero-carousel position-relative overflow-hidden">
+    <div id="heroSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg');"></div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/31075163/pexels-photo-31075163.jpeg');"></div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/219692/pexels-photo-219692.jpeg');"></div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/1588032/pexels-photo-1588032.jpeg');"></div>
+            </div>
+
+        </div>
+
+        <!-- Carousel controls (visible on desktop) -->
+        <button class="carousel-control-prev d-none d-md-flex" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next d-none d-md-flex" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <!-- Dark overlay -->
+    <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+    <!-- Search Bar (above hero content) -->
+    <div class="hero-search position-absolute top-0 start-50 translate-middle-x w-100 px-3" style="z-index: 3; margin-top: 20px;">
+        <form class="d-flex justify-content-center" role="search">
+            <div class="input-group input-group-lg" style="max-width: 600px;">
+                <input type="text" class="form-control rounded-start-pill border-0 shadow-sm" 
+                       placeholder="Search destinations, packages..." aria-label="Search">
+                <button class="btn btn-primary rounded-end-pill shadow-sm" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Hero Text Content -->
+    <div class="hero-content container text-center position-absolute top-50 start-50 translate-middle" data-aos="fade-down">
+        <h1 class="display-4 fw-bold text-white mb-3">Discover the World with Affordable Travel Packages</h1>
+        <p class="lead text-white mb-4">DREAM</p>
+        <div>
+            <a href="#contact" class="btn btn-light btn-lg me-3">Contact Us</a>
+            <a href="tel:+918898619371" class="btn btn-outline-light btn-lg">+91 889 861 9371</a>
+        </div>
+    </div>
+
+</header>
+
+   
+
+    <!-- Highlights -->
+    <section id="highlights" class="py-5 bg-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="highlight-card">
+                        <i class="fas fa-smile fa-3x text-primary mb-3"></i>
+                        <h5>40000+ Happy Travelers</h5>
+                        <p>happiness</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="highlight-card">
+                        <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                        <h5>100% Money Safe Guarantee</h5>
+                        <p>shield_new</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="highlight-card">
+                        <i class="fas fa-map-marker-alt fa-3x text-info mb-3"></i>
+                        <h5>70+ Handpicked Destinations</h5>
+                        <p>tracking</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="highlight-card">
+                        <i class="fas fa-headset fa-3x text-warning mb-3"></i>
+                        <h5>24×7 Online Booking Support</h5>
+                        <p>support</p>
+                    </div>
+                </div>
+                 <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="highlight-card">
+                        <i class="fab fa-cc-visa mb-3"></i>
+                        <h5>we provide VISA all over country</h5>
+                        <p>VISA-195 countries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions - REMOVED -->
+
+    
+
+    <!-- Explore Categories Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center fw-bold display-5 text-danger mb-5" data-aos="zoom-in">Explore Categories</h2>
+            
+            <div class="category-carousel-container position-relative" data-aos="fade-up">
+                <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Luxury -->
+                     <a href="{% url 'luxuary' %}">   <div class="carousel-item active">
+                            <div class="category-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/3411135/pexels-photo-3411135.jpeg'); background-size: cover; background-position: center;">
+                                <div class="category-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="category-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                   <h3 class="text-white fw-bold display-5">Luxury</h3>
+                                </div>
+                            </div>
+                        </div></a>
+
+                        <!-- Honeymoon -->
+                       <a href="{% url 'honeymoon' %}"> <div class="carousel-item">
+                            <div class="category-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/12516848/pexels-photo-12516848.jpeg'); background-size: cover; background-position: center;">
+                                <div class="category-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="category-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Honeymoon</h3>
+                                </div>
+                            </div>
+                        </div></a>
+
+                        <!-- Cultural -->
+                      <a href="{% url 'cultural' %}">  <div class="carousel-item">
+                            <div class="category-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/4134644/pexels-photo-4134644.jpeg'); background-size: cover; background-position: center;">
+                                <div class="category-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="category-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Cultural</h3>
+                                </div>
+                            </div>
+                        </div></a>
+
+                        <!-- Relax -->
+                      <a href="{% url 'relax' %}">  <div class="carousel-item">
+                            <div class="category-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/4553024/pexels-photo-4553024.jpeg'); background-size: cover; background-position: center;">
+                                <div class="category-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="category-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Relax</h3>
+                                </div>
+                            </div>
+                        </div></a>
+
+                        <!-- Adventure -->
+                      <a href="{% url 'adventure' %}">  <div class="carousel-item">
+                            <div class="category-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/34022831/pexels-photo-34022831.jpeg'); background-size: cover; background-position: center;">
+                                <div class="category-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="category-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Adventure</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Places to Visit Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold display-5 text-danger mb-5" data-aos="zoom-in">Places to Visit</h2>
+            
+            <div class="place-carousel-container position-relative" data-aos="fade-up">
+                <div id="placeCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- India -->
+                        <div class="carousel-item active">
+                            <div class="place-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/574313/pexels-photo-574313.jpeg'); background-size: cover; background-position: center;">
+                                <div class="place-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="place-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">India</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                       <!--europe-->
+                        <div class="carousel-item">
+                            <div class="place-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg'); background-size: cover; background-position: center;">
+                                <div class="place-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="place-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Europe</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- indonesia -->
+                        <div class="carousel-item">
+                            <div class="place-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/1881467/pexels-photo-1881467.jpeg'); background-size: cover; background-position: center;">
+                                <div class="place-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="place-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Indonesia</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- asia -->
+                        <div class="carousel-item">
+                            <div class="place-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://images.pexels.com/photos/441379/pexels-photo-441379.jpeg'); background-size: cover; background-position: center;">
+                                <div class="place-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="place-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Asia</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- switzerland -->
+                        <div class="carousel-item">
+                            <div class="place-slide position-relative overflow-hidden rounded-3" style="height: 400px; background-image: url('https://media.istockphoto.com/id/472498344/photo/flowers-mountains-and-lake-geneva-in-montreux-switzerland.jpg?b=1&s=612x612&w=0&k=20&c=rfc_kz8QfD5rYRexl8SFCRpLw4i8TNC0BfrYUQkQrvw='); background-size: cover; background-position: center;">
+                                <div class="place-slide-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+                                <div class="place-slide-content position-absolute top-50 start-50 translate-middle w-100 text-center" style="z-index: 2;">
+                                    <h3 class="text-white fw-bold display-5">Switzerland</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#placeCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#placeCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center fw-bold text-danger mb-5" data-aos="zoom-in">Happy Customers</h2>
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial-card mx-auto" data-aos="fade-up">
+                            <p class="lead">"Our six nights seven days tour was organized by Travizia Tours... Kudos to Vini and Travizia team..keep it up"</p>
+                            <h6 class="text-end">- Mr. Samir Sanghavi</h6>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card mx-auto" data-aos="fade-up">
+                            <p class="lead">"Had been to Bali through Travizia... A lot of valuable inputs provided which made our trip memorable..."</p>
+                            <h6 class="text-end">- Mr. Paras Chheda & Family</h6>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Some Pictures From Their Tour Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold text-danger mb-5" data-aos="zoom-in">Some Pictures From Their Tour</h2>
+            
+            <div class="tour-pictures-container position-relative" data-aos="fade-up">
+                <div id="tourPicturesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Picture 1 -->
+                        <div class="carousel-item active">
+                            <div class="tour-picture-slide position-relative overflow-hidden rounded-4" style="height: 500px; background-image: url('https://images.pexels.com/photos/34772119/pexels-photo-34772119.jpeg'); background-size: cover; background-position: center;">
+                                <div class="tour-picture-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Picture 2 -->
+                        <div class="carousel-item">
+                            <div class="tour-picture-slide position-relative overflow-hidden rounded-4" style="height: 500px; background-image: url('https://via.placeholder.com/1000x500?text=Tour+Picture+2'); background-size: cover; background-position: center;">
+                                <div class="tour-picture-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Picture 3 -->
+                        <div class="carousel-item">
+                            <div class="tour-picture-slide position-relative overflow-hidden rounded-4" style="height: 500px; background-image: url('https://via.placeholder.com/1000x500?text=Tour+Picture+3'); background-size: cover; background-position: center;">
+                                <div class="tour-picture-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Picture 4 -->
+                        <div class="carousel-item">
+                            <div class="tour-picture-slide position-relative overflow-hidden rounded-4" style="height: 500px; background-image: url('https://via.placeholder.com/1000x500?text=Tour+Picture+4'); background-size: cover; background-position: center;">
+                                <div class="tour-picture-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Picture 5 -->
+                        <div class="carousel-item">
+                            <div class="tour-picture-slide position-relative overflow-hidden rounded-4" style="height: 500px; background-image: url('https://via.placeholder.com/1000x500?text=Tour+Picture+5'); background-size: cover; background-position: center;">
+                                <div class="tour-picture-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#tourPicturesCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#tourPicturesCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">### PROGRAMS AND AWARDS</h2>
+            <h4 class="text-center mb-4" data-aos="zoom-in" data-aos-delay="200">## Some of our Certifications</h4>
+            <div class="row justify-content-center">
+                <div class="col-md-2 col-4 mb-3" data-aos="flip-left" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/100x50?text=PATA" class="award-logo" alt="PATA">
+                </div>
+                <div class="col-md-2 col-4 mb-3" data-aos="flip-left" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/100x50?text=PP+Specialist" class="award-logo" alt="PP Specialist">
+                </div>
+                <div class="col-md-2 col-4 mb-3" data-aos="flip-left" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/100x50?text=Aussie+Specialist" class="award-logo" alt="Aussie Specialist">
+                </div>
+                <div class="col-md-2 col-4 mb-3" data-aos="flip-left" data-aos-delay="400">
+                    <img src="https://via.placeholder.com/100x50?text=SA+Specialist" class="award-logo" alt="SA Specialist">
+                </div>
+                <div class="col-md-2 col-4 mb-3" data-aos="flip-left" data-aos-delay="500">
+                    <img src="https://via.placeholder.com/100x50?text=ETTA" class="award-logo" alt="ETTA">
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+       {% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+       
+    <!-- Ensure hero height matches viewport minus navbar (adjusts on resize) -->
+   
+    <script>
+    (function () {
+      function setHeroHeight() {
+        var nav = document.querySelector('.navbar');
+        var navH = nav ? nav.offsetHeight : parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
+        var target = Math.max(window.innerHeight - navH, 360);
+        document.querySelectorAll('.hero-carousel .carousel-inner, .hero-carousel .carousel-item, .hero-carousel .hero-slide')
+          .forEach(function (el) { el.style.height = target + 'px'; });
+        // update CSS var for CSS-only fallback
+        document.documentElement.style.setProperty('--navbar-height', navH + 'px');
+      }
+      window.addEventListener('resize', setHeroHeight);
+      document.addEventListener('DOMContentLoaded', setHeroHeight);
+      // also call after a short delay to handle fonts/images load
+      setTimeout(setHeroHeight, 250);
+    })();
+
+    // Auto show popup when page loads
+window.onload = function() {
+    setTimeout(() => {
+        document.getElementById('specialNotice').classList.add('show');
+    }, 1000); // shows after 1 second
+
+    // Auto hide after 15 seconds (optional)
+    setTimeout(() => {
+        closeNotice();
+    }, 15000); // 15 seconds
+};
+
+function closeNotice() {
+    document.getElementById('specialNotice').classList.remove('show');
+}
+    </script>
+    {% endblock %}
+</body>
+</html>

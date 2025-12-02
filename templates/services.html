@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Services - Travizia Tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+      {% load static %}
+    <link rel="stylesheet" href="{% static 'css/services.css' %}"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                         <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Main Services Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Subheading -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="text-primary mb-4">WHAT WE OFFER</h2>
+                    <p>Some of our Best Services that we Offer.</p>
+                </div>
+            </div>
+
+            <!-- Services Grid with Emojis -->
+            <div class="row g-4">
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">✈️</span> CUSTOMIZED PACKAGES</h5>
+                        <p>International/Domestic Customized Leisure tour packages</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🌍</span> WIDE SELECTION</h5>
+                        <p>Wide selection of tours to international and national destinations</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">👥</span> GROUP PACKAGES</h5>
+                        <p>Foreign Independent Tour /Group Packages.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🏨</span> ACCOMMODATION</h5>
+                        <p>Luxurious or budget, we do all the groundwork and offer hotels, resorts and service apartments assuring you a comfortable stay.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🚢</span> CRUISE VACATIONS</h5>
+                        <p>Cruise Vacations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🛡️</span> TRAVEL INSURANCE</h5>
+                        <p>We provide travel insurance that covers Medical emergencies, Trip cancellation fees and many other benefits.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="700">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">👤</span> PERSONALIZED SERVICES</h5>
+                        <p>Personalized services for each clients.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="800">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">⭐</span> VALUE ADDED SERVICES</h5>
+                        <p>Value added services.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="900">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">✅</span> INCLUSIONS EXCLUSIONS</h5>
+                        <p>More inclusions & less exclusions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🚗</span> CAR HIRE</h5>
+                        <p>Luxury or modest,we provide a wide range of vehicles on hire at competitive rates, Quality, comfort and security are rest assured.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1100">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">✈️</span> AIR TICKETING</h5>
+                        <p>We offer quick flight connections at a competitive price i.e."Corporate Rates" coombined with round the clock service to our clients.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">💳</span> FOREIGN EXCHANGE ASSISTANCE</h5>
+                        <p>We provide foreign exchange assistance in terms of Foreign Currency & Forex cards.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1300">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🚐</span> AIRPORT TRANSFER</h5>
+                        <p>We provide luxurious as well as economical transfer service to and from the airport making sure our clients are never lost in the chaos of the city.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1400">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">📋</span> VISA AND LEGAL DOCUMENTATION</h5>
+                        <p>No matter how your schedule looks like we take care of Vida processing and all the other travel related documents of our clients thus making it a hassle-free expereince.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1500">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">🗣️</span> MULTILINGUAL GUIDE</h5>
+                        <p>Scared of not being understood. Well we got you covered Apart from widely used languages, a guide conversing in any specific language can be arranged for our guests.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="1600">
+                    <div class="service-item">
+                        <h5 class="fw-bold mb-2"><span class="emoji">👥</span> PERSONAL GROUP TOUR</h5>
+                        <p>These kind of tours are suited for those who love to travel with their family & friends in a private group.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8 text-center" data-aos="zoom-in">
+                    <h4 class="mb-3">Ready to Plan Your Trip?</h4>
+                    <a href="/contact" class="btn btn-primary btn-lg me-3">Contact Us</a>
+                    <a href="tel:+918898619371" class="btn btn-outline-primary btn-lg">+91 889 861 9371</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+     {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{% static 'js/services.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

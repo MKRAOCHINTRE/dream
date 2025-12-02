@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About Us - Travizia Tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+      {% load static %}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}"/>
+       <style>
+        .hero-carousel .carousel-inner,
+        .hero-carousel .carousel-item,
+        .hero-carousel .hero-slide {
+            height: 75vh;
+            min-height: 480px;
+        }
+
+        .hero-carousel .hero-slide {
+            width: 100%;
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+        }
+
+        /* overlay and content stacking */
+        .hero-carousel .hero-overlay {
+            background: rgba(0,0,0,0.35);
+            z-index: 1;
+        }
+        .hero-carousel .hero-content {
+            z-index: 2;
+        }
+
+        /* ensure carousel controls sit above slides */
+        .hero-carousel .carousel-control-prev,
+        .hero-carousel .carousel-control-next {
+            z-index: 3;
+        }
+
+        /* small tweak for very short screens */
+        @media (max-height: 600px) {
+            .hero-carousel .carousel-inner,
+            .hero-carousel .carousel-item,
+            .hero-carousel .hero-slide {
+                height: 55vh;
+                min-height: 360px;
+            }
+        }
+        @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+           <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                         <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero/About Intro -->
+<header class="hero-carousel position-relative overflow-hidden">
+    <div id="heroSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg');"></div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/31075163/pexels-photo-31075163.jpeg');"></div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/219692/pexels-photo-219692.jpeg');"></div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/1588032/pexels-photo-1588032.jpeg');"></div>
+            </div>
+
+        </div>
+
+        <!-- Carousel controls (visible on desktop) -->
+        <button class="carousel-control-prev d-none d-md-flex" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next d-none d-md-flex" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <!-- Dark overlay -->
+    <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+    <!-- Search Bar (above hero content) -->
+    <div class="hero-search position-absolute top-0 start-50 translate-middle-x w-100 px-3" style="z-index: 3; margin-top: 20px;">
+        <form class="d-flex justify-content-center" role="search">
+            <div class="input-group input-group-lg" style="max-width: 600px;">
+                <input type="text" class="form-control rounded-start-pill border-0 shadow-sm" 
+                       placeholder="Search destinations, packages..." aria-label="Search">
+                <button class="btn btn-primary rounded-end-pill shadow-sm" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Hero Text Content -->
+    <div class="hero-content container text-center position-absolute top-50 start-50 translate-middle" data-aos="fade-down">
+        <h1 class="display-4 fw-bold text-white mb-3">Discover the World with Affordable Travel Packages</h1>
+        <p class="lead text-white mb-4">DREAM</p>
+        <div>
+            <a href="{% url 'loginform' %}" class="btn btn-light btn-lg me-3">Contact Us</a>
+            <a href="tel:+918898619371" class="btn btn-outline-light btn-lg">+91 889 861 9371</a>
+        </div>
+    </div>
+
+</header>
+
+    <!-- Main About Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Intro Paragraph -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up">
+                    <h2 class="text-center mb-4">ABOUT US</h2>
+                    <h5 class="text-center mb-4 text-muted">WE PROVIDE A PERSONAL TOUCH IN OUR BUSINESS</h5>
+                    <p class="lead text-center">
+                        We are one of the leading International and Domestic Tourism Company that mainly focuses on providing the highest standard and the best quality towards end to end customer service. We handle every aspect of your travel programme from providing emergency travel services, provisioning business trips or leisure travel or even renting a car. To summarize our service Travizia delivers excellent Customer Satisfaction and a joyful experience. We have a pioneering and innovative way of catering to our customer needs from all walks of life. Our base of happy customers comprises students, bachelors, couples, families, senior citizens and all travel enthusiasts. We deliver top-notch 24/7 customer-focused service and no matter how small the grievance, we are just a phone call away. We will address your issues and get it resolved on priority.
+                    </p>
+                    <p class="lead text-center">
+                        We are the new age Tourism Company that is aggressive in pricing, affordable and high in value. We are at par with best Global Standards in the Travel and Tourism Industry. We are committed to deliver an enhanced customer satisfaction with dedication and passion to serve our customers and the Travel Industry. Hope this introduction will foster the sense of trust in us and help you connect with the world through us.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Strategic Vision Image -->
+            <!-- <div class="row justify-content-center mt-5" data-aos="zoom-in">
+                <div class="col-lg-8">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Strategic Vision" class="img-fluid rounded shadow">
+                </div>
+            </div> -->
+
+            <!-- Mission & Vision -->
+            <div class="row mt-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+                            <h4 class="card-title">MISSION</h4>
+                            <p class="card-text lead">To Represent, Lead, and Serve the Travel & Tourism Industry.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-eye fa-3x text-success mb-3"></i>
+                            <h4 class="card-title">VISION</h4>
+                            <p class="card-text lead">Simplify and Streamline the business of travel without compromising on service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div class="row mt-5">
+                <div class="col-lg-10 mx-auto" data-aos="fade-up">
+                    <h2 class="text-center mb-4">WHY CHOOSE US?</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-laptop-code fa-2x text-primary me-3"></i>
+                                <div>
+                                    <h5>We use the latest technology for reservations and operations.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-map-marked-alt fa-2x text-success me-3"></i>
+                                <div>
+                                    <h5>Expert destination knowledge.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-tag fa-2x text-info me-3"></i>
+                                <div>
+                                    <h5>Guaranteed lower rates.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-handshake fa-2x text-warning me-3"></i>
+                                <div>
+                                    <h5>We only work with the best in the industry.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock fa-2x text-danger me-3"></i>
+                                <div>
+                                    <h5>We deliver the right services at the right time for the right people.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-balance-scale fa-2x text-secondary me-3"></i>
+                                <div>
+                                    <h5>We value both your time and money.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}"  class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+      {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{% static 'js/about.js' %}"></script>
+     <script>
+    (function () {
+      function setHeroHeight() {
+        var nav = document.querySelector('.navbar');
+        var navH = nav ? nav.offsetHeight : parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
+        var target = Math.max(window.innerHeight - navH, 360);
+        document.querySelectorAll('.hero-carousel .carousel-inner, .hero-carousel .carousel-item, .hero-carousel .hero-slide')
+          .forEach(function (el) { el.style.height = target + 'px'; });
+        // update CSS var for CSS-only fallback
+        document.documentElement.style.setProperty('--navbar-height', navH + 'px');
+      }
+      window.addEventListener('resize', setHeroHeight);
+      document.addEventListener('DOMContentLoaded', setHeroHeight);
+      // also call after a short delay to handle fonts/images load
+      setTimeout(setHeroHeight, 250);
+    })();
+    </script>
+    {% endblock %}
+</body>
+</html>

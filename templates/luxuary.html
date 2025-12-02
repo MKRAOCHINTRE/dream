@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Luxury Packages - Travizia Tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="luxuary.css"/>
+
+    <style>
+        /* Hero and cards polish + animated emoji */
+        .hero-slide {
+            height: 70vh;
+            min-height: 420px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        .pkg-badge {
+            display:inline-flex;
+            align-items:center;
+            gap:.5rem;
+            background: rgba(255,255,255,0.08);
+            padding:.35rem .75rem;
+            border-radius: 999px;
+            border:1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(4px);
+        }
+        .feature-emoji {
+            font-size: 1.45rem;
+            display:inline-block;
+            transform-origin:center;
+            animation: float-emoji 3s ease-in-out infinite;
+        }
+        @keyframes float-emoji {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(6deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        .package-card {
+            transition: transform .35s ease, box-shadow .35s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .package-card:hover { transform: translateY(-8px); box-shadow: 0 14px 40px rgba(0,0,0,.12); }
+        .card-img-top { height:220px; object-fit:cover; }
+
+        /* animated CTA */
+        .cta-animated {
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s ease;
+        }
+        .cta-animated::before {
+            content: '✨';
+            position: absolute;
+            right: -40px;
+            top: -30px;
+            font-size: 2.6rem;
+            opacity: .15;
+            transform: rotate(25deg);
+            transition: all .4s ease;
+        }
+        .cta-animated:hover::before { right: 6px; top: -6px; opacity: .35; transform: rotate(0deg) scale(1.06); }
+
+        /* gallery big card */
+        .tour-picture-slide {
+            background-size: cover !important;
+            background-position: center center !important;
+            height: 480px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        /* small utility */
+        .muted-small { color:#6c757d; font-size:.95rem; }
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}
+  @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                      <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}"  class="nav-link contact-btn cta-animated">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-plane-departure"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel (single-image slide look with AOS) -->
+    <header class="hero-carousel position-relative overflow-hidden mb-4">
+        <div id="luxHero" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80');">
+                        <div class="hero-overlay"></div>
+                        <div class="container hero-content text-center" data-aos="fade-up">
+                            <div class="pkg-badge mb-3"><span class="feature-emoji">✨</span> <strong>Luxury Collection</strong></div>
+                            <h1 class="display-5 fw-bold">Curated Luxury Packages 🌍</h1>
+                            <p class="lead muted-small">Private transfers • 5★ hotels • Exclusive experiences — crafted for discerning travellers.</p>
+                            <div class="mt-4">
+                                <a class="btn btn-lg btn-primary me-2" href="{% url 'loginform' %}">Enquire Now</a>
+                                <a class="btn btn-outline-light btn-lg" href="#gallery">View Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/9482120/pexels-photo-9482120.jpeg');">
+                        <div class="hero-overlay"></div>
+                        <div class="container hero-content text-center" data-aos="fade-up">
+                            <div class="pkg-badge mb-3"><span class="feature-emoji">🏝️</span> <strong>Island Escapes</strong></div>
+                            <h1 class="display-5 fw-bold">Overwater Villas & Private Beaches</h1>
+                            <p class="lead muted-small">Romantic escapes, sunset dinners and bespoke island activities.</p>
+                            <div class="mt-4">
+                                <a class="btn btn-lg btn-primary me-2" href="{% url 'loginform' %}">Get Quote</a>
+                                <a class="btn btn-outline-light btn-lg" href="#itinerary">Itinerary</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/3581364/pexels-photo-3581364.jpeg');">
+                        <div class="hero-overlay"></div>
+                        <div class="container hero-content text-center" data-aos="fade-up">
+                            <div class="pkg-badge mb-3"><span class="feature-emoji">🏰</span> <strong>Cultural Luxury</strong></div>
+                            <h1 class="display-5 fw-bold">Exclusive Cultural Journeys</h1>
+                            <p class="lead muted-small">Private access, curated guides and luxury stays in heritage settings.</p>
+                            <div class="mt-4">
+                                <a class="btn btn-lg btn-primary me-2" href="{% url 'loginform' %}">Reserve a Spot</a>
+                                <a class="btn btn-outline-light btn-lg" href="#packages">See Packages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#luxHero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#luxHero" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Packages grid -->
+    <section id="packages" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Featured Luxury Packages ✨</h2>
+            <p class="text-center muted-small mb-5" data-aos="fade-up" data-aos-delay="50">Hand-picked itineraries with premium inclusions and seamless logistics.</p>
+
+            <div class="row g-4">
+                <!-- Reuse existing package cards; text is generic -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg" class="card-img-top" alt="Europe Luxury">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Europe Signature Tour</h5>
+                            <p class="text-muted mb-2">10 days • Private & Lux</p>
+                            <p class="card-text muted-small">Iconic cities, private guides and premium rail transfers. Designed for a relaxed, elevated experience.</p>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'europe' %}" class="btn btn-primary">MORE DETAILS</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="160">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/1718337/pexels-photo-1718337.jpeg" class="card-img-top" alt="Dubai Luxury">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Grand Europe Fly-N-Stay</h5>
+                            <p class="text-muted mb-2"> 12 Nights and 13 days • VIP Services</p>
+                            <p class="card-text muted-small">Skyline dining, desert exclusives and yacht experiences. Tailored to preference.</p>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'grandeurope' %}" class="btn btn-primary">MORE DETAILS </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="240">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/31726431/pexels-photo-31726431.jpeg" class="card-img-top" alt="Singapore Luxury">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Australian rendezvous 🌆</h5>
+                            <p class="text-muted mb-2">12 Nights and 13 days • Curated</p>
+                            <p class="card-text muted-small">Marina views, Michelin dining and private tours for a seamless urban luxury stay.</p>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'austrlia' %}" class="btn btn-primary">MORE DETAILS </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- additional sample cards (kept short for readability) -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="320">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/1018478/pexels-photo-1018478.jpeg" class="card-img-top" alt="Maldives">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">vietnam highlights 🏝️</h5>
+                            <p class="text-muted mb-2">6 days • Couple</p>
+                            <p class="card-text muted-small">Private dinners, overwater villas and spa rituals — perfect for honeymoons.</p>
+                            <a href="{% url 'vietnam' %}" class="btn btn-primary w-100">MORE DETAILS </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/2832183/pexels-photo-2832183.jpeg" class="card-img-top" alt="Japan">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">exclusive europe  🏯</h5>
+                            <p class="text-muted mb-2">10 Nights and 11 days • Cultural Luxury</p>
+                            <p class="card-text muted-small">Private culinary experiences, exclusive temple access and luxury ryokan stays.</p>
+                            <a href="{% url 'exclusiveeurope' %}" class="btn btn-primary w-100">MORE DETAILS </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="480">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg" class="card-img-top" alt="Australia">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"> ITINERARY FOR GREECE🚁</h5>
+                            <p class="text-muted mb-2">6 days • Active Luxury</p>
+                            <p class="card-text muted-small">Helicopter tours, private wildlife encounters and curated coastal stays.</p>
+                            <a href="{% url 'greece' %}" class="btn btn-primary w-100">MORE DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="480">
+                    <div class="package-card card">
+                        <img src="https://images.pexels.com/photos/32261823/pexels-photo-32261823.jpeg" class="card-img-top" alt="Australia">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"> JAIPUR – PINK CITY PULSE</h5>
+                            <p class="text-muted mb-2">4 days • Active Luxury</p>
+                            <p class="card-text muted-small">Helicopter tours, private wildlife encounters and curated coastal stays.</p>
+                            <a href="{% url 'jaipur' %}" class="btn btn-primary w-100">MORE DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary + inclusions -->
+    <section id="itinerary" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Sample Itinerary & Inclusions 🧾</h2>
+
+            <div class="row g-4">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="card p-3">
+                        <h5 class="fw-bold">Sample 7-Day Itinerary</h5>
+                        <ul class="list-group list-group-flush mt-3">
+                            <li class="list-group-item">Day 1 — Arrival & private transfer to 5★ hotel</li>
+                            <li class="list-group-item">Day 2 — Private city tour with premium guide</li>
+                            <li class="list-group-item">Day 3 — Exclusive experience (sunset cruise / private tasting)</li>
+                            <li class="list-group-item">Day 4 — Leisure day & spa or optional excursions</li>
+                            <li class="list-group-item">Day 5 — Cultural immersion with local expert</li>
+                            <li class="list-group-item">Day 6 — Scenic day trip and fine dining</li>
+                            <li class="list-group-item">Day 7 — Departure with private transfer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="card p-3">
+                        <h5 class="fw-bold">Inclusions ✅</h5>
+                        <ul class="list-unstyled mt-3">
+                            <li>• 5★ accommodation (as per itinerary)</li>
+                            <li>• Private transfers & local taxes</li>
+                            <li>• Selected meals & curated experiences</li>
+                            <li>• Local guide & concierge support</li>
+                        </ul>
+
+                        <h5 class="fw-bold mt-4">Exclusions ❌</h5>
+                        <ul class="list-unstyled mt-3">
+                            <li>• International flights (unless specified)</li>
+                            <li>• Personal expenses, gratuities & insurance</li>
+                        </ul>
+
+                        <div class="mt-4">
+                            <a href="loginform.html" class="btn btn-outline-primary w-100">Request Full Itinerary • 📩</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery large carousel -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Some Pictures From Their Tour 📸</h2>
+
+            <div id="tourPicturesCarousel" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Tour+Picture+1');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Tour+Picture+2');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Tour+Picture+3');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Tour+Picture+4');"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tour-picture-slide" style="background-image:url('https://via.placeholder.com/1400x700?text=Tour+Picture+5');"></div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#tourPicturesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#tourPicturesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Happy Guests 🥂</h2>
+
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card testimonial-card p-4 mx-auto" style="max-width:800px;">
+                            <p class="lead">"A seamless luxury experience — private guides, flawless transfers and unforgettable moments." — <strong>R.M.</strong></p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card testimonial-card p-4 mx-auto" style="max-width:800px;">
+                            <p class="lead">"Attention to detail and superb service throughout our trip." — <strong>S.K.</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA footer strip -->
+    <!-- <section class="py-5 bg-primary text-white">
+        <div class="container text-center" data-aos="zoom-in">
+            <h3 class="fw-bold">Ready to travel in style? </h3>
+            <p class="muted-small">Tell us your dates & preferences — we’ll handle the rest.</p>
+            <a href="loginform.html" class="btn btn-light btn-lg">Start Your Luxury Journey • 🚀</a>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+      {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 900, once: true });
+            }
+        });
+          (function () {
+      function setHeroHeight() {
+        var nav = document.querySelector('.navbar');
+        var navH = nav ? nav.offsetHeight : parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
+        var target = Math.max(window.innerHeight - navH, 360);
+        document.querySelectorAll('.hero-carousel .carousel-inner, .hero-carousel .carousel-item, .hero-carousel .hero-slide')
+          .forEach(function (el) { el.style.height = target + 'px'; });
+        // update CSS var for CSS-only fallback
+        document.documentElement.style.setProperty('--navbar-height', navH + 'px');
+      }
+      window.addEventListener('resize', setHeroHeight);
+      document.addEventListener('DOMContentLoaded', setHeroHeight);
+      // also call after a short delay to handle fonts/images load
+      setTimeout(setHeroHeight, 250);
+    })();
+    </script>
+    <script src="luxuary.js"></script>
+    {% endblock %}
+</body>
+</html>

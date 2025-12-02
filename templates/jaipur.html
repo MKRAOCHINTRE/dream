@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rajasthan Heritage 4 Days - Travizia World</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --primary: #d35400;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #2980b9;
+            --dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fef9e7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .itinerary-day {
+            background: #ffffff;
+            padding: 22px;
+            border-left: 6px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .itinerary-day:hover {
+            transform: translateY(-5px);
+        }
+
+        .itinerary-day h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        .city-badge {
+            background: var(--info);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-image {
+            max-height: 520px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .price-table th, .price-table td {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .hotel-table th, .hotel-table td {
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            position: relative;
+            color: #fff;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('https://images.unsplash.com/photo-1580130718674-db272e1f751d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.35);
+        }
+
+        .hero-header h1 { text-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+        .hero-header .lead { text-shadow: 0 4px 12px rgba(0,0,0,0.45); }
+
+        @media (max-width: 768px) {
+            .hero-header { min-height: 300px; padding: 3rem 1rem; }
+            .hero-header h1 { font-size: 2rem; }
+            .hero-header .lead { font-size: 1rem; }
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #2c3e50;
+            color: #ddd;
+            font-size: 1rem;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .site-footer h5 {
+            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .site-footer .btn-outline-light {
+            border-color: #555;
+            color: #ccc;
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .site-footer .btn-outline-light:hover {
+            background: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .hover-link {
+            transition: color 0.3s ease;
+        }
+        .hover-link:hover {
+            color: #007bff !important;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-icon.twitter   { background: #1da1f2; }
+        .social-icon.whatsapp  { background: #25d366; }
+        .social-icon.facebook  { background: #1877f2; }
+        .social-icon.linkedin  { background: #0a66c2; }
+        .social-icon.youtube   { background: #ff0000; }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Contact Button */
+        .contact-btn {
+            position: relative;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            border: 2px solid transparent;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+
+        .contact-btn:hover::before { left: 0; }
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn .btn-text { position: relative; z-index: 1; }
+        .contact-btn .btn-icon {
+            opacity: 0;
+            margin-left: -10px;
+            transition: all 0.4s ease;
+        }
+        .contact-btn:hover .btn-icon {
+            opacity: 1;
+            margin-left: 0;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .display-4 { font-size: 2.5rem; }
+            .itinerary-day { padding: 18px; }
+            .city-badge { font-size: 0.8rem; }
+            .price-table, .hotel-table { font-size: 0.8rem; }
+            .contact-btn { padding: 0.6rem 1.2rem !important; font-size: 0.85rem; }
+            .contact-btn .btn-icon { display: none; }
+            .site-footer { padding: 2rem 0 1rem; font-size: 0.9rem; }
+            .site-footer h5 { font-size: 1rem; }
+            .social-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+        }
+          @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                        <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn ms-2">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold" data-aos="fade-down">RAJASTHAN HERITAGE</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">4 Days | Jaipur – Pushkar – Ajmer</p>
+            <p class="h5" data-aos="fade-up" data-aos-delay="300">Pink City • Brahma Temple • Royal Palaces</p>
+        </div>
+    </header>
+
+    <!-- Pricing Table -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Tour Cost Per Person (CP Plan)</h2>
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table table-bordered price-table text-center">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>NO OF PAX</th>
+                            <th>Budget (2★)<br>(CP)</th>
+                            <th>Deluxe (3★)<br>(CP)</th>
+                            <th>Luxury (4★)<br>(CP)</th>
+                            <th>Premium (5★)<br>(CP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>02 PAX</strong></td>
+                            <td>₹10,900</td>
+                            <td>₹12,500</td>
+                            <td>₹15,500</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td><strong>04 PAX</strong></td>
+                            <td>₹8,900</td>
+                            <td>₹10,500</td>
+                            <td>₹13,500</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td><strong>EXTRA PAX (EPSR)</strong></td>
+                            <td>₹1,900</td>
+                            <td>₹2,500</td>
+                            <td>₹3,500</td>
+                            <td>On Request</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Table -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Accommodation</h2>
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table table-bordered hotel-table text-center">
+                    <thead class="table-success">
+                        <tr>
+                            <th>DESTINATION</th>
+                            <th>Budget (2★)<br>(CP)</th>
+                            <th>Deluxe (3★)<br>(CP)</th>
+                            <th>Luxury (4★)<br>(CP)</th>
+                            <th>Premium (5★)<br>(CP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Jaipur</strong></td>
+                            <td>Hotel Aashish / Hotel Laxmi Niwas / Similar</td>
+                            <td>Hotel Lords Plaza / Hotel Megenta / Similar</td>
+                            <td>Hotel Park Prime / Hotel The Fern Residency / Similar</td>
+                            <td>Hotel Trident / ITC Rajputana / Similar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ajmer / Pushkar</strong></td>
+                            <td>Hotel Satyam Palace / Hotel Aravali Hills / Similar</td>
+                            <td>Hotel Rang Mahal / Hotel Savitri Resort / Similar</td>
+                            <td>Hotel Clarks Safari / Hotel Sehdev Bagh / Similar</td>
+                            <td>Ananta Resort / The Westin / Similar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Detailed Itinerary</h2>
+
+            <!-- Day 1 -->
+            <div class="itinerary-day" data-aos="fade-up">
+                <h4><span class="city-badge">JAIPUR</span> Day 01: Arrival Jaipur</h4>
+                <ul class="list-unstyled">
+                    <li>Arrival at Jaipur Airport / Railway Station</li>
+                    <li>Meet & assist by local representative</li>
+                    <li>Transfer to hotel & check-in</li>
+                    <li>Evening: Visit <strong>Birla Mandir</strong> & <strong>Moti Dungri Temple</strong></li>
+                    <li><strong>Overnight: Jaipur</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="100">
+                <h4>Day 02: Jaipur Local Sightseeing</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast at hotel</li>
+                    <li>Full day sightseeing:</li>
+                    <li><strong>Amber Fort & Palace</strong> (Elephant/Jeep ride optional)</li>
+                    <li>Photo stop: <strong>Jal Mahal</strong></li>
+                    <li><strong>City Palace & Museum</strong></li>
+                    <li><strong>Jantar Mantar Observatory</strong></li>
+                    <li>Photo stop: <strong>Hawa Mahal</strong></li>
+                    <li>Evening free for leisure</li>
+                    <li><strong>Overnight: Jaipur</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="200">
+                <h4><span class="city-badge">PUSHKAR</span> Day 03: Jaipur → Pushkar (145 km / 3 hrs)</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Drive to Pushkar</li>
+                    <li>Visit: <strong>Pushkar Lake</strong>, <strong>Brahma Temple</strong>, Ghats</li>
+                    <li>Explore 400+ temples</li>
+                    <li><strong>Overnight: Pushkar</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="300">
+                <h4>Day 04: Pushkar → Jaipur Departure (145 km / 3 hrs)</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Drop to Jaipur Airport / Railway Station</li>
+                    <li class="text-success fw-bold">*** TOUR ENDS WITH SWEET MEMORIES ***</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image ABOVE Inclusions -->
+    <section class="py-5">
+        <div class="container text-center" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                 alt="Rajasthan Inclusions" class="img-fluid tour-image">
+            <p class="mt-3 text-muted"><em>Royal hospitality, heritage stays, unforgettable journeys</em></p>
+        </div>
+    </section>
+
+    <!-- Inclusions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">INCLUSIONS</h2>
+            <ul class="list-group" data-aos="fade-up">
+                <li class="list-group-item">Assistance on Arrival</li>
+                <li class="list-group-item">24-hour helpline</li>
+                <li class="list-group-item">Welcome Drink on Arrival</li>
+                <li class="list-group-item">Daily Breakfast (CP Plan)</li>
+                <li class="list-group-item">Hotel Accommodation on twin/double sharing</li>
+                <li class="list-group-item">A/C Vehicle throughout the journey</li>
+                <li class="list-group-item">All Toll, Parking, Night Halt, State Taxes</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Exclusions -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">EXCLUSIONS</h2>
+            <ul class="list-group" data-aos="fade-up">
+                <li class="list-group-item">Airfare / Train fare</li>
+                <li class="list-group-item">Guide & Monument Entrance Fees</li>
+                <li class="list-group-item">Jeep / Camel / Elephant Ride Charges</li>
+                <li class="list-group-item">Personal expenses (tips, laundry, liquor, etc.)</li>
+                <li class="list-group-item">Insurance</li>
+                <li class="list-group-item">GST & any Govt. tax increase</li>
+                <li class="list-group-item">Single occupancy supplement</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918247544593" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+    {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+    </script>
+     {% endblock %}
+</body>
+</html>

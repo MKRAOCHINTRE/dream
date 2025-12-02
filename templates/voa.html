@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Visa on Arrival Countries | DREAM IMMIGRATIONS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .hero-voa {
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
+                        url('https://imgs.search.brave.com/Ouy_tFEERGLRQiM_9uDV2kS-eXIS969vsyXNNOCb2XU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTY4/NDUwMTY4L3Bob3Rv/L3Zpc2EtYXBwbGlj/YXRpb24tZm9ybS5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/ZjlEZVdRbXJGM2tt/Wk5iUWZsVEY5M01o/b2xRVnhEOFlvc0Vv/V1BkX0swST0') center/cover no-repeat;
+            min-height: 70vh; display: flex; align-items: center; padding-top: 80px; color: white;
+        }
+        .search-container { position: relative; max-width: 650px; margin: 0 auto; }
+        #searchInput {
+            border-radius: 50px; padding: 15px 25px; font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: none;
+        }
+        .suggestions {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            width: 100%; max-height: 340px; overflow-y: auto; background: white;
+            border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); z-index: 1000;
+            display: none; margin-top: 10px; border: 1px solid #ddd;color: black;
+        }
+        .suggestion-item {
+            padding: 15px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px;
+            transition: 0.2s; border-bottom: 1px solid #eee;
+        }
+        .suggestion-item:hover { background: #d4edda; }
+        .suggestion-item img { width: 38px; border-radius: 6px; }
+        .country-card {
+            transition: all 0.4s ease; border-radius: 18px; overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12); cursor: pointer;
+        }
+        .country-card:hover {
+            transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+        .country-card img { height: 170px; object-fit: cover; }
+        .btn-info { border-radius: 50px; padding: 14px 50px; font-weight: bold; font-size: 1.1rem; }
+        /* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: large;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-footer .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .site-footer h5 {
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+      <div class="container">
+         <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tours</a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                          <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                          <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                          <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                          <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                  <li class="nav-item">
+                      <a href="{% url 'getvisaform' %}" class="btn btn-success rounded-pill px-5">APPLY NOW</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero-voa text-center">
+      <div class="container">
+          <h1 class="display-3 fw-bold mb-3">Visa on Arrival</h1>
+          <p class="lead fs-2 mb-4">Get visa at airport — <strong>33 Countries</strong></p>
+          <div class="search-container">
+              <input type="text" id="searchInput" class="form-control form-control-lg shadow-lg" placeholder="Search country..." autocomplete="off">
+              <div id="suggestions" class="suggestions"></div>
+          </div>
+      </div>
+  </header>
+
+  <!-- List -->
+  <section class="container py-5">
+      <h2 class="text-center mb-5 display-5 fw-bold text-info">Visa on Arrival for Indians</h2>
+      <div class="text-center mb-5">
+          <button id="showListBtn" class="btn btn-info btn-lg shadow">Show All 33 Countries</button>
+      </div>
+      <div class="row row-cols-2 row-cols-md-4 g-4" id="countryList"></div>
+  </section>
+
+  <!-- Footer (your beautiful footer) -->
+  <footer class="site-footer bg-dark text-white py-5">
+      <div class="container">
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                  <a href="{% url 'cultural' %}"  class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                  <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                  <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                  <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                  <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+              <div class="d-flex flex-wrap justify-content-center gap-3">
+                  <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                  <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                  <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                  <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                  <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+              <div class="d-flex justify-content-center gap-3">
+                  <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                  <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+              <div class="d-flex justify-content-center gap-3">
+                  <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                  <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                  <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                  <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+              </div>
+          </div>
+          <div class="text-center mb-5">
+              <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+              <p><i class="fas fa-map-marker-alt me-2"></i>148, Boulevard Mall Lodha Paradise, Thane, Maharashtra 400609</p>
+              <p><i class="fas fa-envelope me-2"></i><a href="mailto:info@dreamimmigrations.com" class="text-white hover-link">mallikarjunraochintre@gmail.com</a></p>
+              <p><i class="fas fa-phone me-2"></i><a href="tel:+918247544593" class="text-white hover-link">+91 8247544593</a></p>
+          </div>
+          <div class="text-center border-top border-secondary pt-4">
+              <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS RESERVED.</p>
+          </div>
+      </div>
+  </footer>
+  {% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ALL 33 VISA ON ARRIVAL COUNTRIES (2025)
+    const voaCountries = [
+     // ALL 33 VISA ON ARRIVAL COUNTRIES (2025) - FULLY DETAILED
+    
+      { name: "Maldives", flag: "https://flagcdn.com/mv.svg", fee: "Free", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Passport valid for 1 month from arrival</li>
+          <li>Return/onward ticket</li>
+          <li>Hotel booking OR $100 + $50/day proof</li>
+        </ul><div class="alert alert-success mt-3">No.1 honeymoon destination for Indians!</div>`,
+        notes: "Crystal clear water, overwater villas, Indian food everywhere.",
+        attractions: "Malé, Maafushi, Ari Atoll, Veligandu, COMO Cocoa Island",
+        bestTime: "November to April" },
+
+      { name: "Thailand", flag: "https://flagcdn.com/th.svg", fee: "Free (till Nov 2025)", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Passport valid for 6 months</li>
+          <li>Return ticket within 30 days</li>
+          <li>Proof of funds: 10,000 THB (~₹25,000)</li>
+        </ul><div class="alert alert-info mt-3">Free entry extended till Nov 2025!</div>`,
+        notes: "Bangkok, Phuket, Pattaya — Indian restaurants everywhere.",
+        attractions: "Grand Palace, Phi Phi Islands, Chiang Mai, Ayutthaya",
+        bestTime: "November to February" },
+
+      { name: "Indonesia", flag: "https://flagcdn.com/id.svg", fee: "$35", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Passport valid for 6 months</li>
+          <li>Return ticket</li>
+          <li>Pay $35 cash at Bali/Jakarta airport</li>
+        </ul>`,
+        notes: "Bali is paradise — temples, beaches, nightlife, luxury villas.",
+        attractions: "Bali, Ubud, Gili Islands, Mount Bromo, Borobudur",
+        bestTime: "April to October" },
+
+      { name: "Cambodia", flag: "https://flagcdn.com/kh.svg", fee: "$30", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Passport valid for 6 months</li>
+          <li>1 passport photo</li>
+          <li>Pay $30 cash at airport</li>
+        </ul>`,
+        notes: "Angkor Wat sunrise is unforgettable. Very affordable.",
+        attractions: "Angkor Wat, Siem Reap, Phnom Penh, Koh Rong",
+        bestTime: "November to March" },
+
+      { name: "Jordan", flag: "https://flagcdn.com/jo.svg", fee: "$56 (40 JOD)", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Passport valid for 6 months</li>
+          <li>Jordan Pass recommended (includes visa + Petra entry)</li>
+        </ul>`,
+        notes: "Petra, Dead Sea, Wadi Rum — very safe & welcoming.",
+        attractions: "Petra, Wadi Rum, Dead Sea, Amman, Jerash",
+        bestTime: "March to May, September to November" },
+
+      { name: "Seychelles", flag: "https://flagcdn.com/sc.svg", fee: "Free", stay: "90 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Return ticket</li>
+          <li>Hotel booking or invitation</li>
+          <li>Proof of sufficient funds</li>
+        </ul>`,
+        notes: "World's most beautiful beaches. Luxury + budget options.",
+        attractions: "Mahe, Praslin, La Digue, Anse Lazio, Vallée de Mai",
+        bestTime: "April to November" },
+
+      { name: "Bahrain", flag: "https://flagcdn.com/bh.svg", fee: "$25 (BD 10)", stay: "14 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Pay online or at airport</li>
+          <li>Return ticket</li>
+        </ul>`,
+        notes: "Perfect weekend getaway. Modern & safe.",
+        attractions: "Manama, Bahrain Fort, Tree of Life, Qalat al-Bahrain",
+        bestTime: "November to March" },
+
+      { name: "Qatar", flag: "https://flagcdn.com/qa.svg", fee: "Free (Hayya)", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Hotel booking via Discover Qatar OR Qatar Airways ticket</li>
+        </ul>`,
+        notes: "Doha is stunning. Luxury malls, desert safari.",
+        attractions: "Souq Waqif, The Pearl, Museum of Islamic Art, Katara",
+        bestTime: "November to March" },
+
+      { name: "Armenia", flag: "https://flagcdn.com/am.svg", fee: "Free", stay: "120 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Land entry only (not by air)</li>
+          <li>Passport valid for 6 months</li>
+        </ul>`,
+        notes: "Beautiful mountains, ancient churches, friendly people.",
+        attractions: "Yerevan, Lake Sevan, Garni Temple, Tatev Monastery",
+        bestTime: "May to October" },
+
+      { name: "Iran", flag: "https://flagcdn.com/ir.svg", fee: "€75", stay: "30 days",
+        requirements: `<ul class="list-group list-group-flush fs-5">
+          <li>Apply at major airports or Kish Island (free)</li>
+          <li>Fingerprints taken</li>
+        </ul>`,
+        notes: "Rich history, warm hospitality, stunning architecture.",
+        attractions: "Tehran, Isfahan, Shiraz, Persepolis, Yazd",
+        bestTime: "March to May, September to November" },
+
+      { name: "Bolivia", flag: "https://flagcdn.com/bo.svg", fee: "$160", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Pay in cash at airport</li><li>Yellow fever certificate if coming from affected area</li></ul>`, notes: "Salar de Uyuni salt flats, La Paz", attractions: "Uyuni, La Paz, Lake Titicaca", bestTime: "May to October" },
+      { name: "Tanzania", flag: "https://flagcdn.com/tz.svg", fee: "$50", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment preferred</li></ul>`, notes: "Zanzibar beaches, Serengeti safari", attractions: "Zanzibar, Serengeti, Kilimanjaro", bestTime: "June to October" },
+      { name: "Zimbabwe", flag: "https://flagcdn.com/zw.svg", fee: "$30", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>KAZA Univisa available ($50) with Zambia</li></ul>`, notes: "Victoria Falls", attractions: "Victoria Falls, Hwange", bestTime: "May to October" },
+      { name: "Zambia", flag: "https://flagcdn.com/zm.svg", fee: "$50", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>K AZA Univisa with Zimbabwe</li></ul>`, notes: "Victoria Falls", attractions: "Victoria Falls, South Luangwa", bestTime: "May to October" },
+      { name: "Madagascar", flag: "https://flagcdn.com/mg.svg", fee: "$35", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash in EUR/USD</li></ul>`, notes: "Unique wildlife, lemurs", attractions: "Avenue of Baobabs, Nosy Be", bestTime: "April to December" },
+      { name: "Laos", flag: "https://flagcdn.com/la.svg", fee: "$35", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>2 passport photos</li></ul>`, notes: "Luang Prabang, Vang Vieng", attractions: "Luang Prabang, Vang Vieng, 4000 Islands", bestTime: "November to February" },
+      { name: "Myanmar", flag: "https://flagcdn.com/mm.svg", fee: "$50", stay: "28 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Only at Yangon, Mandalay, Naypyidaw airports</li></ul>`, notes: "Bagan temples", attractions: "Bagan, Yangon, Inle Lake", bestTime: "November to February" },
+      { name: "Timor-Leste", flag: "https://flagcdn.com/tl.svg", fee: "$30", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment</li></ul>`, notes: "Emerging destination", attractions: "Dili, Atauro Island", bestTime: "May to November" },
+      { name: "Comoros", flag: "https://flagcdn.com/km.svg", fee: "$50", stay: "45 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment</li></ul>`, notes: "Indian Ocean islands", attractions: "Moroni, Moheli", bestTime: "May to October" },
+      { name: "Djibouti", flag: "https://flagcdn.com/dj.svg", fee: "$30", stay: "31 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment</li></ul>`, notes: "Lake Assal, whale sharks", attractions: "Lake Assal, Djibouti City", bestTime: "November to March" },
+      { name: "Ethiopia purus", flag: "https://flagcdn.com/et.svg", fee: "$52", stay: "30-90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Online or at airport</li></ul>`, notes: "Addis Ababa, Lalibela rock churches", attractions: "Lalibela, Simien Mountains", bestTime: "October to June" },
+      { name: "Guinea-Bissau", flag: "https://flagcdn.com/gw.svg", fee: "€85", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash in EUR</li></ul>`, notes: "West Africa", attractions: "Bijagos Islands", bestTime: "December to April" },
+      { name: "Mauritania", flag: "https://flagcdn.com/mr.svg", fee: "€55", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash in EUR</li></ul>`, notes: "Sahara desert", attractions: "Chinguetti, Terjit Oasis", bestTime: "November to March" },
+      { name: "Mozambique", flag: "https://flagcdn.com/mz.svg", fee: "$50", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment</li></ul>`, notes: "Beaches & wildlife", attractions: "Bazaruto Archipelago, Maputo", bestTime: "May to November" },
+      { name: "Palau", flag: "https://flagcdn.com/pw.svg", fee: "$50", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment</li></ul>`, notes: "Rock Islands, Jellyfish Lake", attractions: "Rock Islands, Koror", bestTime: "December to March" },
+      { name: "Rwanda", flag: "https://flagcdn.com/rw.svg", fee: "$50", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash or card</li></ul>`, notes: "Gorilla trekking", attractions: "Volcanoes National Park, Kigali", bestTime: "June to September" },
+      { name: "Samoa", flag: "https://flagcdn.com/ws.svg", fee: "Free", stay: "60 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Return ticket</li></ul>`, notes: "South Pacific paradise", attractions: "Apia, Upolu beaches", bestTime: "May to October" },
+      { name: "Sierra Leone", flag: "https://flagcdn.com/sl.svg", fee: "$80", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash payment</li></ul>`, notes: "Freetown beaches", attractions: "Banana Islands, Tacugama", bestTime: "December to April" },
+      { name: "Togo", flag: "https://flagcdn.com/tg.svg", fee: "Free", stay: "7 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Extendable at immigration</li></ul>`, notes: "Lomé markets", attractions: "Lomé, Togoville", bestTime: "November to March" },
+      { name: "Tuvalu", flag: "https://flagcdn.com/tv.svg", fee: "Free", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Return ticket</li></ul>`, notes: "World's smallest nation", attractions: "Funafuti Atoll", bestTime: "May to October" },
+      { name: "Uganda", flag: "https://flagcdn.com/ug.svg", fee: "$50", stay: "90 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Cash or card</li></ul>`, notes: "Gorilla & safari", attractions: "Bwindi, Queen Elizabeth Park", bestTime: "June to September" },
+      { name: "Cape Verde", flag: "https://flagcdn.com/cv.svg", fee: "€25", stay: "30 days", requirements: `<ul class="list-group list-group-flush fs-5"><li>Pay on arrival</li></ul>`, notes: "Atlantic islands", attractions: "Sal, Boa Vista", bestTime: "November to June" }
+    ];
+
+    const countryList = document.getElementById("countryList");
+    const searchInput = document.getElementById("searchInput");
+    const suggestions = document.getElementById("suggestions");
+    const showListBtn = document.getElementById("showListBtn");
+
+    // UPDATED FUNCTION — NOW REMEMBERS SOURCE PAGE
+    window.openCountryPage = function(country, source = 'voa') {
+      localStorage.setItem("selectedCountry", JSON.stringify(country));
+      localStorage.setItem("sourcePage", source);  // This makes back button work correctly
+      window.open("{% url 'countrydetail' %}", "_blank");
+    };
+    window.openVisaForm = function(c) {
+      localStorage.setItem("selectedCountry", JSON.stringify(c));
+      localStorage.setItem("sourcePage", "voa");
+      window.open("get-visa-form.html", "_blank");
+    };
+
+    function renderCountries(countries) {
+      countryList.innerHTML = countries.map(c => `
+        <div class="col">
+          <div class="country-card bg-white h-100 text-center" onclick="openCountryPage(${JSON.stringify(c).replace(/"/g, '&quot;')}, 'voa')">
+            <img src="${c.flag}" alt="${c.name}" class="w-100">
+            <div class="p-4">
+              <h5 class="fw-bold text-info mb-2">${c.name}</h5>
+              <p class="mb-1 text-success"><strong>${c.fee}</strong></p>
+              <small class="text-muted">${c.stay}</small>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderSuggestions(filtered) {
+      if (filtered.length === 0) { suggestions.style.display = "none"; return; }
+      suggestions.innerHTML = filtered.map(c => `
+        <div class="suggestion-item" onclick="openCountryPage(${JSON.stringify(c).replace(/"/g, '&quot;')}, 'voa')">
+          <img src="${c.flag}" alt="${c.name}">
+          <div>
+            <strong>${c.name}</strong>
+            <small class="text-muted d-block">${c.stay} • ${c.fee}</small>
+          </div>
+        </div>
+      `).join('');
+      suggestions.style.display = "block";
+    }
+
+    showListBtn.addEventListener("click", () => {
+      renderCountries(voaCountries);
+      showListBtn.style.display = "none";
+    });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        suggestions.style.display = "none";
+        countryList.innerHTML = "";
+        showListBtn.style.display = "block";
+        return;
+      }
+      const filtered = voaCountries.filter(c => c.name.toLowerCase().includes(query));
+      renderSuggestions(filtered);
+      renderCountries(filtered);
+      showListBtn.style.display = "none";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+        suggestions.style.display = "none";
+      }
+    });
+  </script>
+  {% endblock %}
+</body>
+</html>

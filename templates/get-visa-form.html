@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Visa Help | DREAM</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: linear-gradient(135deg, #ffffff, #f7f7f7); min-height: 100vh; padding: 40px 0; }
+    .card { max-width: 600px; margin: auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .card-header { background: linear-gradient(45deg, #807878, #5d5c5c); color: white; padding: 30px; text-align: center; }
+    .btn-submit { background: linear-gradient(45deg, #807878, #5d5c5c); border: none; padding: 16px; border-radius: 50px; font-size: 1.2rem; }
+    .success { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 12px; text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Get Visa Assistance</h2>
+    <p class="mb-0">Our expert will call you in 5 minutes!</p>
+  </div>
+  <div class="card-body p-5">
+    <form  action="{% url 'submit_visa_form' %}" method="POST"  id="visaForm">
+      {% csrf_token %}
+      <div class="mb-3"><input type="text" class="form-control form-control-lg" id="name" placeholder="Full Name" required></div>
+      <div class="mb-3"><input type="tel" class="form-control form-control-lg" id="phone" placeholder="Phone Number" required></div>
+      <div class="mb-3"><input type="email" class="form-control form-control-lg" id="email" placeholder="Email" required></div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Visa Type</label>
+        <select class="form-select form-select-lg" id="visaType" required>
+          <option value="">Select Visa Type</option>
+          <option value="evisa">e-Visa</option>
+          <option value="visa-free">Visa-Free</option>
+          <option value="voa">Visa on Arrival</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-bold">Country</label>
+        <select class="form-select form-select-lg" id="countrySelect" required>
+          <option value="">First select visa type...</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-submit w-100 text-white fw-bold">Submit – We'll Call You!</button>
+    </form>
+    <div id="success" class="success">Thank you! Our expert will call you soon.</div>
+  </div>
+  <div class="d-flex flex-row mt-3 mb-2">
+  <a href="{% url 'visa' %}" class="btn btn-submit w-50 ms-2 text-white fw-bold">back to visa(home)</a>
+  <a href="{% url 'home' %}" class="btn btn-submit w-50 ms-3 me-2 text-white fw-bold">back to home</a>
+</div>
+
+  {% block extra_js %}
+<script>
+// Country Database
+const countriesDB = {
+  // ==================== VISA-FREE (30+ Countries) ====================
+  "visa-free": [
+    "Thailand", "Malaysia", "Singapore", "Mauritius", "Nepal", "Bhutan",
+    "Indonesia", "Maldives", "Fiji", "Barbados", "Grenada", "Haiti",
+    "Jamaica", "Saint Vincent and the Grenadines", "Trinidad and Tobago",
+    "Dominica", "Vanuatu", "Samoa", "Cook Islands", "Micronesia",
+    "Niue", "Palau Islands", "Tuvalu", "Senegal", "Qatar", "Hong Kong",
+    "Macau", "Kazakhstan", "Albania", "Serbia", "Bosnia and Herzegovina",
+    "Tunisia", "Iran"  // 15 days
+  ],
+
+  // ==================== e-VISA (80+ Countries – Online Application) ====================
+  evisa: [
+    "Turkey", "Vietnam", "Australia", "Russia", "Saudi Arabia", "UAE",
+    "Sri Lanka", "Oman", "New Zealand", "India (for foreigners)",
+    "Myanmar", "Cambodia", "Kenya", "Uganda", "Djibouti", "Ethiopia",
+    "Zambia", "Zimbabwe", "Madagascar", "Lesotho", "Moldova", "Ukraine",
+    "Armenia", "Georgia", "Azerbaijan", "Kyrgyzstan", "Tajikistan",
+    "Uzbekistan", "Bahrain", "Kuwait", "Qatar", "Jordan", "Egypt",
+    "Morocco", "Algeria", "South Africa", "Nigeria", "Ghana", "Ivory Coast",
+    "Gabon", "São Tomé and Príncipe", "Benin", "Togo", "Cameroon",
+    "Papua New Guinea", "Suriname", "Antigua and Barbuda", "Saint Kitts and Nevis",
+    "Montserrat", "Anguilla", "Bahamas", "Bermuda", "Cayman Islands",
+    "Turks and Caicos", "British Virgin Islands", "Montserrat", "Ascension Island",
+    "Saint Helena", "Tristan da Cunha", "South Georgia", "Falkland Islands",
+    "Norfolk Island", "Christmas Island", "Cocos Islands", "Heard Island",
+    "Pitcairn Islands", "Tokelau", "Wallis and Futuna", "French Polynesia",
+    "New Caledonia", "Guinea-Bissau", "Equatorial Guinea", "Pakistan",
+    "Philippines", "Laos", "Mongolia", "Kazakhstan"
+  ],
+
+  // ==================== VISA ON ARRIVAL (33+ Countries) ====================
+  voa: [
+    "Maldives", "Indonesia", "Thailand (until May 2025)", "Sri Lanka (conditional)",
+    "Jordan", "Egypt", "Kenya", "Tanzania", "Zambia", "Zimbabwe",
+    "Madagascar", "Seychelles", "Mauritius (also free)", "Comoros",
+    "Guinea-Bissau", "Togo", "Bolivia", "Cape Verde", "Timor-Leste",
+    "Tuvalu", "Palau", "Marshall Islands", "Samoa", "Micronesia",
+    "Iran", "Armenia", "Nepal (for some)", "Qatar", "Bahrain",
+    "Laos", "Cambodia", "Myanmar", "Rwanda", "Burundi"
+  ]
+};
+
+// AUTO-FILL LOGIC — NOW 100% WORKING
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("selectedCountry");
+  const source = localStorage.getItem("sourcePage") || "";
+
+  if (saved) {
+    const country = JSON.parse(saved);
+    let type = "visa-free";
+    if (source.includes("evisa")) type = "evisa";
+    if (source.includes("voa")) type = "voa";
+
+    // Set visa type
+    document.getElementById("visaType").value = type;
+    populateCountries(type);
+
+    // Set country after small delay
+    setTimeout(() => {
+      document.getElementById("countrySelect").value = country.name;
+    }, 100);
+  }
+});
+
+document.getElementById("visaType").addEventListener("change", function() {
+  populateCountries(this.value);
+});
+
+function populateCountries(type) {
+  const select = document.getElementById("countrySelect");
+  select.innerHTML = '<option value="">Choose country...</option>';
+  if (countriesDB[type]) {
+    countriesDB[type].forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      select.appendChild(opt);
+    });
+  }
+}
+
+// FORM SUBMIT — DO NOT DELETE localStorage!
+document.getElementById("visaForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  document.getElementById("success").style.display = "block";
+  this.reset();
+  document.getElementById("countrySelect").innerHTML = '<option value="">First select visa type...</option>';
+  document.getElementById("visaType").value = "";
+  // We do NOT clear localStorage → auto-fill works every time
+});
+</script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact Us - Travizia Tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/loginform.css' %}"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+           <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                      <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <!-- <li class="nav-item">
+                        <a href="#contact" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Contact Content -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Get In Touch With Us</h2>
+
+            <div class="row g-4">
+                <!-- Contact Form (appears first on mobile) -->
+                <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+                    <div class="contact-form-card p-4 rounded-4 shadow">
+                        <h4 class="mb-4 fw-bold">Send us a Message</h4>
+                        <form  action="{% url 'submit_contact' %}" method="POST"  id="contactForm" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <!-- Name Field -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Enter your full name" required>
+                                <div class="invalid-feedback">
+                                    Name is required.
+                                </div>
+                            </div>
+
+                            <!-- Email Field -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email.
+                                </div>
+                            </div>
+
+                            <!-- Phone Number Field -->
+                            <div class="mb-3">
+                                <label for="phone" class="form-label fw-bold">Phone Number <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control form-control-lg" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid 10-digit phone number.
+                                </div>
+                            </div>
+
+                            <!-- Destination Field -->
+                            <div class="mb-3">
+                                <label for="destination" class="form-label fw-bold">Destination <span class="text-danger">*</span></label>
+                                <select class="form-select form-select-lg" id="destination" name="destination" required>
+                                    <option value="">Select a destination</option>
+                                    <option value="India">India</option>
+                                    <option value="America">America</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Sri Lanka">Sri Lanka</option>
+                                    <option value="Europe">Europe</option>
+                                    <option value="Maldives">Maldives</option>
+                                    <option value="Bali">Bali</option>
+                                    <option value="Dubai">Dubai</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a destination.
+                                </div>
+                            </div>
+
+                            <!-- Travel Date Field -->
+                            <div class="mb-3">
+                                <label for="travelDate" class="form-label fw-bold">When are you planning to visit? <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control form-control-lg" id="travelDate" name="travelDate" required>
+                                <div class="invalid-feedback">
+                                    Please select a travel date.
+                                </div>
+                            </div>
+
+                            <!-- Message Field -->
+                            <div class="mb-4">
+                                <label for="message" class="form-label fw-bold">Additional Message</label>
+                                <textarea class="form-control form-control-lg" id="message" name="message" rows="4" placeholder="Tell us more about your travel plans..."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold form-submit-btn">
+                                <span class="submit-text">Send Message</span>
+                                <span class="submit-icon"><i class="fas fa-paper-plane ms-2"></i></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Details (appears second on mobile) -->
+                <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+                    <div class="contact-info">
+                        <h4 class="mb-4 fw-bold">Contact Information</h4>
+                        
+                        <div class="contact-detail-card mb-4 p-4 rounded-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-map-marker-alt fa-lg text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-2">ADDRESS</h6>
+                                    <p class="text-muted mb-0">148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail-card mb-4 p-4 rounded-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-envelope fa-lg text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-2">WRITE TO US</h6>
+                                    <p class="text-muted mb-0"><a href="mailto:mallikarjunraochintre@gmail.com" class="text-primary text-decoration-none">mallikarjunraochintre@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail-card mb-4 p-4 rounded-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-phone fa-lg text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-2">CALL US</h6>
+                                    <p class="text-muted mb-0">
+                                        <a href="tel:+918247544593" class="text-primary text-decoration-none">+91 8247544593</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail-card p-4 rounded-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-clock fa-lg text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-2">OPERATING HOURS</h6>
+                                    <p class="text-muted mb-0">Monday to Friday: 9:00 AM – 7:30 PM</p>
+                                    <p class="text-muted mb-0">Saturday: 10:00 AM – 5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+     {% block extra_js %}
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{% static 'js/loginform.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

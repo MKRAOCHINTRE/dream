@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Visa Details | DREAM IMMIGRATIONS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background:#f8f9fa; font-family:'Segoe UI',sans-serif; }
+    .hero { 
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+                  url('https://images.unsplash.com/photo-1488646953014-85cb44e25828') center/cover;
+      min-height:80vh; color:white; display:flex; align-items:center; text-align:center;
+    }
+    .flag { width:170px; height:170px; object-fit:cover; border-radius:50%; border:7px solid rgba(255,255,255,0.4); box-shadow:0 15px 40px rgba(0,0,0,0.7); }
+    .badge { background:rgba(255,255,255,0.25); padding:14px 35px; border-radius:50px; font-size:1.4rem; font-weight:bold; }
+    .btn-apply { 
+      background:linear-gradient(45deg,#28a745,#20c997); color:white; font-weight:bold; 
+      padding:18px 60px; border-radius:50px; font-size:1.4rem; border:none;
+      box-shadow:0 12px 35px rgba(40,167,69,0.5);
+    }
+    .btn-apply:hover { transform:translateY(-6px); box-shadow:0 25px 50px rgba(40,167,69,0.6); }
+  </style>
+</head>
+<body>
+
+  <!-- Back Button -->
+  <nav class="navbar navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+      <a id="backBtn" href="{% url 'visafree'%}" class="navbar-brand fw-bold fs-5 text-success">
+        Back to Visa-Free Countries
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <img id="flagImg" src="" alt="Flag" class="flag mb-4">
+      <h1 id="countryName" class="display-2 fw-bold mb-3">Loading...</h1>
+      <div id="visaBadge" class="badge mb-4">Loading...</div>
+      <button id="applyTop" class="btn btn-apply">Get Visa Help – Call in 5 Min!</button>
+    </div>
+  </section>
+
+  <!-- Details -->
+  <section class="container py-5">
+    <div class="card shadow-lg mx-auto" style="max-width:900px; border-radius:20px;">
+      <div class="card-body p-5">
+        <h2 class="text-center text-success mb-5 fw-bold">Visa Details for Indians</h2>
+
+        <div class="bg-light p-4 rounded mb-4">
+          <h4 class="text-primary fw-bold">Requirements</h4>
+          <div id="reqs" class="fs-5"></div>
+        </div>
+
+        <h4 class="text-success fw-bold">Why Visit <span id="name2"></span>?</h4>
+        <p class="lead" id="notes"></p>
+
+        <div class="row text-center g-4 mt-4">
+          <div class="col-md-6">
+            <div class="bg-primary text-white p-4 rounded shadow">
+              <h5>Top Attractions</h5>
+              <p id="attractions" class="fs-5 mb-0">-</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="bg-success text-white p-4 rounded shadow">
+              <h5>Best Time</h5>
+              <p id="bestTime" class="fs-5 mb-0">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <button id="applyBottom" class="btn btn-success btn-lg rounded-pill px-5 py-3 shadow">
+            Apply <span id="name3"></span> Visa Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% block extra_js %}
+  <script>
+    // ===== GET DATA FROM localStorage =====
+    let country = null;
+    let source = "visa-free";
+
+    try {
+      const c = localStorage.getItem("selectedCountry");
+      const s = localStorage.getItem("sourcePage");
+      if (c) country = JSON.parse(c);
+      if (s) source = s;
+    } catch(e) { console.error(e); }
+
+    if (!country || !country.name) {
+      document.body.innerHTML = "<h1 class='text-center text-danger mt-5'>No country selected!</h1>";
+      throw new Error("No country");
+    }
+
+    // ===== BACK BUTTON LOGIC =====
+    const backMap = {
+      "visa-free": { url: "{% url 'visafree'%}", text: "Back to Visa-Free Countries", color: "text-success" },
+      "evisa":     { url: "{% url 'evisa' %}",     text: "Back to e-Visa Countries",     color: "text-primary" },
+      "voa":       { url: "{% url 'voa' %}",       text: "Back to Visa on Arrival",      color: "text-warning" }
+    };
+
+    const pageType = source.includes("evisa") ? "evisa" : 
+                     source.includes("voa")   ? "voa"   : "visa-free";
+
+    const back = backMap[pageType];
+    document.getElementById("backBtn").href = back.url;
+    document.getElementById("backBtn").textContent = back.text;
+    document.getElementById("backBtn").className = `navbar-brand fw-bold fs-5 ${back.color}`;
+
+    // ===== FILL CONTENT =====
+    document.getElementById("flagImg").src = country.flag;
+    document.getElementById("countryName").textContent = country.name;
+    document.getElementById("name2").textContent = country.name;
+    document.getElementById("name3").textContent = country.name;
+
+    // Visa badge
+    let badgeText = "";
+    if (pageType === "evisa") badgeText = `e-Visa • ${country.fee || "Online"} • ${country.stay || "30 days"}`;
+    else if (pageType === "voa") badgeText = `Visa on Arrival • ${country.fee || "At Airport"} • ${country.stay || "30 days"}`;
+    else badgeText = `Visa-Free • ${country.stay || "Unlimited"}`;
+    document.getElementById("visaBadge").textContent = badgeText;
+
+    document.getElementById("reqs").innerHTML = country.requirements || 
+      "<ul><li>Valid Passport (6+ months)</li><li>Return Ticket</li><li>Hotel Booking</li></ul>";
+    document.getElementById("notes").textContent = country.notes || `${country.name} is an amazing destination!`;
+    document.getElementById("attractions").textContent = country.attractions || "Beautiful places";
+    document.getElementById("bestTime").textContent = country.bestTime || "Oct–Mar";
+
+    // ===== OPEN FORM WITH AUTO-FILL (100% WORKING) =====
+    function openForm() {
+      localStorage.setItem("selectedCountry", JSON.stringify(country));
+      localStorage.setItem("sourcePage", source);
+      window.open("{% url 'getvisaform' %}", "_blank");
+    }
+
+    document.getElementById("applyTop").onclick = openForm;
+    document.getElementById("applyBottom").onclick = openForm;
+
+    // Clean old data after 15 seconds
+    setTimeout(() => {
+      localStorage.removeItem("selectedCountry");
+      localStorage.removeItem("sourcePage");
+    }, 15000);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  {% endblock %}
+</body>
+</html>

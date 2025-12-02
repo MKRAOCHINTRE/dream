@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Greece Escape 6 Days - Travizia World</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --primary: #007bff;
+            --success: #28a745;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --dark: #343a40;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .itinerary-day {
+            background: #ffffff;
+            padding: 22px;
+            border-left: 6px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .itinerary-day:hover {
+            transform: translateY(-5px);
+        }
+
+        .itinerary-day h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        .city-badge {
+            background: var(--info);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-image {
+            max-height: 520px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .cost-highlight {
+            background: #fff3cd !important;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #856404;
+        }
+
+        .terms-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .display-4 { font-size: 2.5rem; }
+            .itinerary-day { padding: 18px; }
+            .city-badge { font-size: 0.8rem; }
+            .cost-highlight { font-size: 1rem; }
+        }
+        /* Contact Button Advanced Animations */
+.contact-btn {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    border: 2px solid transparent;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.contact-btn:hover::before {
+    left: 0;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn .btn-text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.contact-btn .btn-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    margin-left: -10px;
+}
+
+.contact-btn:hover .btn-icon {
+    opacity: 1;
+    margin-left: 0;
+}
+
+.contact-btn:hover .btn-text {
+    letter-spacing: 0.5px;
+}
+
+/* Pulse effect on button */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+}
+
+/* Ripple effect on click */
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.contact-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.contact-btn:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Active state animation */
+.contact-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-btn {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.85rem;
+    }
+
+    .contact-btn .btn-icon {
+        display: none;
+    }
+}
+/* ==============================================
+   FOOTER STYLES – Modern, Responsive, Clean
+   ============================================== */
+.site-footer {
+    background: #6a5d5d;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: large;
+}
+
+.site-footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.site-footer .btn-outline-light {
+    border-color: #555;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.site-footer .btn-outline-light:hover {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Links */
+.hover-link {
+    transition: color 0.3s ease;
+}
+.hover-link:hover {
+    color: #007bff !important;
+}
+
+/* Social Icons */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-icon.twitter   { background: #1da1f2; }
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.facebook  { background: #1877f2; }
+.social-icon.linkedin  { background: #0a66c2; }
+.social-icon.youtube   { background: #ff0000; }
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Header hero background */
+.hero-header {
+    position: relative;
+    color: #fff;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.38)),
+                url('https://images.unsplash.com/photo-1505576391880-8b4d7b1b7f3b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.35);
+}
+
+.hero-header h1 {
+    text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+.hero-header .lead {
+    text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+}
+
+@media (max-width: 768px) {
+    .hero-header { min-height: 300px; padding: 3rem 1rem; }
+    .hero-header h1 { font-size: 2rem; }
+    .hero-header .lead { font-size: 1rem; }
+}
+     @media (max-width: 991.98px) {
+        /* Full width & perfectly centered VISA on mobile */
+        .navbar-collapse .nav-item.w-100 {
+            width: 100% !important;
+        }
+        .navbar-collapse .nav-link.fs-4 {
+            font-size: 1.8rem !important;
+        }
+        .navbar-nav .nav-link {
+            padding: 12px 0 !important;
+        }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+</head>
+<body>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+           <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="https://dream-visa-website.vercel.app/assets/logo.png" alt="DREAM Logo" height="50"/>
+            
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toursDropdown" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'luxuary' %}">Luxury</a></li>
+                            <li><a class="dropdown-item" href="{% url 'honeymoon' %}">Honeymoon</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cultural' %}">Cultural</a></li>
+                            <li><a class="dropdown-item" href="{% url 'relax' %}">Relax</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adventure' %}">Adventure</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clients' %}">Clients</a></li>
+                        <li class="nav-item w-100 d-lg-none text-center my-3">
+                    <a class="nav-link position-relative d-inline-flex align-items-center justify-content-center fw-bold fs-4 text-danger" 
+                       href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-3 rounded-pill shadow animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                
+                <!-- Desktop version (hidden on mobile) -->
+                <li class="nav-item d-none d-lg-block mx-3">
+                    <a class="nav-link position-relative d-flex align-items-center fw-bold text-danger" href="{% url 'visa' %}">
+                        VISA
+                        <span class="badge bg-danger text-white ms-2 rounded-pill animate__animated animate__pulse animate__infinite">
+                            195 Countries
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'loginform' %}" class="nav-link contact-btn">
+                            <span class="btn-text">Start Journey</span>
+                            <span class="btn-icon"><i class="fas fa-phone"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header (updated to use hero background) -->
+    <header class="hero-header">
+         <div class="container">
+             <h1 class="display-4 fw-bold" data-aos="fade-down">GREECE ESCAPE</h1>
+             <p class="lead" data-aos="fade-up" data-aos-delay="200">6 Days | Athens – Santorini</p>
+             <p class="h5" data-aos="fade-up" data-aos-delay="300">2N Athens | 3N Santorini</p>
+         </div>
+     </header>
+
+    <!-- Hotel & Cost Table -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Accommodation & Tour Cost</h2>
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table table-bordered text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>CITY</th>
+                            <th>HOTEL NAME</th>
+                            <th>NO. OF NIGHTS</th>
+                            <th>MEAL PLAN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Athens</strong></td>
+                            <td>Central Hotel</td>
+                            <td>02</td>
+                            <td>Breakfast</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Santorini</strong></td>
+                            <td>Theoxenia Boutique Hotel</td>
+                            <td>03</td>
+                            <td>Breakfast</td>
+                        </tr>
+                        <tr class="cost-highlight table-warning">
+                            <td colspan="4">
+                                <strong>TOTAL TOUR COST: ₹1,90,000 + 5% GST + 5% TCS</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Detailed Itinerary</h2>
+
+            <!-- Day 1 -->
+            <div class="itinerary-day" data-aos="fade-up">
+                <h4><span class="city-badge">ATHENS</span> Day 1: Arrival in Athens</h4>
+                <ul class="list-unstyled">
+                    <li>Transfer from Athens Airport to Hotel (private)</li>
+                    <li>Leisure day to explore Athens</li>
+                    <li><strong>Overnight: Central Hotel, Athens</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="100">
+                <h4>Day 2: Athens – Acropolis Tour</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast at hotel</li>
+                    <li><strong>Acropolis Tour (5-hour sharing tour with Museum)</strong></li>
+                    <li>Afternoon free in Athens</li>
+                    <li><strong>Overnight: Central Hotel, Athens</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="200">
+                <h4><span class="city-badge">SANTORINI</span> Day 3: Athens → Santorini</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Private transfer: Hotel → Piraeus Port</li>
+                    <li><strong>Ferry: Piraeus → Santorini (6–8 hrs)</strong></li>
+                    <li>Private transfer: Santorini Port → Fira Hotel</li>
+                    <li>Leisure day in Santorini</li>
+                    <li><strong>Overnight: Theoxenia Boutique Hotel, Santorini</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="300">
+                <h4>Day 4: Santorini – Free Day</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast</li>
+                    <li>Full day free – beaches, villages, sunset</li>
+                    <li><strong>Overnight: Theoxenia Boutique Hotel, Santorini</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="400">
+                <h4>Day 5: Santorini – Island Tour</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast</li>
+                    <li><strong>Customizable Island Tour (duration as preferred)</strong></li>
+                    <li>Explore Oia, Fira, black sand beaches</li>
+                    <li><strong>Overnight: Theoxenia Boutique Hotel, Santorini</strong></li>
+                </ul>
+            </div>
+
+            <!-- Day 6 -->
+            <div class="itinerary-day" data-aos="fade-up" data-aos-delay="500">
+                <h4>Day 6: Santorini → Athens (Departure)</h4>
+                <ul class="list-unstyled">
+                    <li>Breakfast & check-out</li>
+                    <li>Private transfer: Hotel → Santorini Port</li>
+                    <li><strong>Ferry: Santorini → Piraeus Port</strong></li>
+                    <li>Private transfer: Piraeus Port → Athens Airport</li>
+                    <li class="text-success fw-bold">*** TOUR ENDS WITH MEMORIES OF GREECE ***</li>
+                </ul>
+            </div>
+
+            <!-- Image After Itinerary -->
+            <div class="text-center my-5" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                     alt="Santorini Sunset" class="img-fluid tour-image">
+                <p class="mt-3 text-muted"><em>Blue domes, white cliffs, endless Aegean</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image ABOVE Inclusions -->
+    <section class="py-5 bg-light">
+        <div class="container text-center" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                 alt="Greece Inclusions" class="img-fluid tour-image">
+            <p class="mt-3 text-muted"><em>Your Greek island dream starts here</em></p>
+        </div>
+    </section>
+
+    <!-- Inclusions -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">INCLUSIONS</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="highlight-box">
+                        <h5 class="text-primary">TRANSFERS & TRANSPORT</h5>
+                        <ul>
+                            <li>Athens Airport → Hotel (private)</li>
+                            <li>Athens Hotel → Piraeus Port (private)</li>
+                            <li>Santorini Port → Hotel (private)</li>
+                            <li>Santorini Hotel → Port (private)</li>
+                            <li>Piraeus Port → Athens Airport (private)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="highlight-box">
+                        <h5 class="text-success">TOURS & TICKETS</h5>
+                        <ul>
+                            <li>Acropolis Tour (5 hrs sharing + Museum)</li>
+                            <li>Santorini Island Tour (custom duration)</li>
+                            <li>Return Ferry Tickets: Piraeus ↔ Santorini</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 text-center text-info" data-aos="fade-up">
+                <p class="fw-bold">Airfare, Visa, Insurance (up to 60 yrs) – Available on request</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">EXCLUSIONS</h2>
+            <ul class="list-group" data-aos="fade-up">
+                <li class="list-group-item">Meals (except breakfast at hotels)</li>
+                <li class="list-group-item">Personal expenses (souvenirs, drinks, etc.)</li>
+                <li class="list-group-item">Additional activities or optional tours</li>
+                <li class="list-group-item">Hotel accommodation cost (varies by choice)</li>
+                <li class="list-group-item">Anything not mentioned in Inclusions</li>
+            </ul>
+        </div>
+    </section>
+
+   
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <!-- Popular Packages -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Popular Packages</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'cultural' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Cultural</a>
+                    <a href="{% url 'relax' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Relax</a>
+                    <a href="{% url 'adventure' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Adventure</a>
+                    <a href="{% url 'luxuary' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Luxury</a>
+                    <a href="{% url 'honeymoon' %}" class="btn btn-outline-light btn-sm rounded-pill px-4">Honeymoon</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Company</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'about' %}" class="text-white text-decoration-none hover-link">About</a>
+                    <a href="{% url 'clients' %}" class="text-white text-decoration-none hover-link">Clients</a>
+                    <a href="{% url 'services' %}" class="text-white text-decoration-none hover-link">Services</a>
+                    <a href="terms.html" class="text-white text-decoration-none hover-link">Terms & Rules</a>
+                    <a href="privacy.html" class="text-white text-decoration-none hover-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Connect Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">We Accept</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="50">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="50">
+                    <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" width="50">
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="50">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mb-5">
+                <h5 class="fw-bold mb-4 text-uppercase">Connect With Us</h5>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    148, Boulevard Mall Lodha Paradise, Majiwada Flyover, Near Eastern Express Highway, Thane, Maharashtra 400609
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:info@dreamimmigrations.com" class="text-white text-decoration-none hover-link">mallikarjunraochintre@gmail.com</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    <a href="tel:+918898619371" class="text-white text-decoration-none hover-link">+91 8247544593</a>
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="mb-0 small">&copy; 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+    </script>
+    {% endblock %}
+</body>
+</html>
