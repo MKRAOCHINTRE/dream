@@ -5,6 +5,7 @@ asgiref==3.11.0
 sqlparse==0.5.3
 tzdata==2025.2
 gunicorn==21.2.0
+whitenoise==6.5.0
 
 
 # Notes:
