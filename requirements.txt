@@ -1,0 +1,10 @@
+# Minimal pinned requirements inferred from the included virtualenv
+# Generated from: dreamimmigration/Lib/site-packages
+Django==5.2.8
+asgiref==3.11.0
+sqlparse==0.5.3
+tzdata==2025.2
+
+# Notes:
+# - The repo includes a local virtualenv at `dreamimmigration/` (Python 3.13).
+# - If you want an exact freeze, activate that venv and run `pip freeze > requirements.txt`.
