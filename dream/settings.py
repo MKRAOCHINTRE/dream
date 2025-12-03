@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+import sys
+print("ALLOWED_HOSTS after env parsing:", ALLOWED_HOSTS, file=sys.stderr)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +28,15 @@ SECRET_KEY = 'django-insecure-_24ik8(ubt597%jv+r_i%f5e4+w+1b&8pc79*ks15=n1csbct+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() in ("1", "true", "yes")
 
-ALLOWED_HOSTS = os.environ.get(
-    "DJANGO_ALLOWED_HOSTS",
-    os.environ.get("RENDER_EXTERNAL_HOSTNAME", "localhost")
-).split(",")
+# Robust ALLOWED_HOSTS handling
+hosts_env = os.environ.get("DJANGO_ALLOWED_HOSTS")
+if hosts_env:
+    # e.g. "dream-07es.onrender.com,localhost,127.0.0.1"
+    ALLOWED_HOSTS = [h.strip() for h in hosts_env.split(",") if h.strip()]
+else:
+    # fallback to Render-provided hostname, then to localhost
+    render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+    ALLOWED_HOSTS = [render_host] if render_host else ["localhost"]
 
 
 # Application definition
