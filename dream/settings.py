@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-_24ik8(ubt597%jv+r_i%f5e4+w+1b&8pc79*ks15=n1csbct+
 DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() in ("1", "true", "yes")
 
 # Robust ALLOWED_HOSTS handling
+ALLOWED_HOSTS = ['*']
 hosts_env = os.environ.get("DJANGO_ALLOWED_HOSTS")
 if hosts_env:
     # e.g. "dream-07es.onrender.com,localhost,127.0.0.1"
