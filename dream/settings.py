@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 import sys
-print("ALLOWED_HOSTS after env parsing:", ALLOWED_HOSTS, file=sys.stderr)
+# Note: The 'print' statement was moved below the ALLOWED_HOSTS definition
+# to prevent the NameError.
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,6 +39,9 @@ else:
     # fallback to Render-provided hostname, then to localhost
     render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
     ALLOWED_HOSTS = [render_host] if render_host else ["localhost"]
+
+# The print statement is now safely placed AFTER ALLOWED_HOSTS is defined
+print("ALLOWED_HOSTS after env parsing:", ALLOWED_HOSTS, file=sys.stderr)
 
 
 # Application definition
