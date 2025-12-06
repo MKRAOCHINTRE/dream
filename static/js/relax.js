@@ -751,7 +751,7 @@ romanceonsea: {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -936,7 +936,7 @@ romanceonsea: {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -1133,7 +1133,7 @@ romanceonsea: {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -1342,7 +1342,7 @@ romanceonsea: {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -1540,7 +1540,7 @@ romanceonsea: {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
