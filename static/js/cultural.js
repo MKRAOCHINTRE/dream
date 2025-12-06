@@ -1611,7 +1611,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -1782,7 +1782,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -1956,7 +1956,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -2115,7 +2115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -2283,7 +2283,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -2444,7 +2444,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -2611,7 +2611,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -2765,7 +2765,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -2918,7 +2918,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -3072,7 +3072,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -3225,7 +3225,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -3486,7 +3486,7 @@ if (pkg.title.includes("CHARDHAM")) {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -3741,7 +3741,7 @@ if (pkg.title.includes("KASHMIR")) {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -4001,7 +4001,7 @@ if (pkg.title.includes("GOLDEN TRIANGLE")) {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -4219,7 +4219,7 @@ if (pkg.title.includes("CALICUT") || pkg.title.includes("WAYANAD")) {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -4418,7 +4418,7 @@ if (pkg.title.includes("CHENNAI") || pkg.title.includes("MAHABALIPURAM")) {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -4646,7 +4646,7 @@ if (pkg.title.includes("MADURAI") || pkg.title.includes("RAMESWARAM") || pkg.tit
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -4864,7 +4864,7 @@ if (pkg.title.includes("PONDICHERRY") || pkg.title.includes("CHENNAI – PONDICH
   <!-- FOOTER -->
   <footer class="site-footer bg-dark text-white py-5">
     <div class="container text-center">
-      <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS RESERVED.</p>
+      <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS RESERVED.</p>
     </div>
   </footer>
 
@@ -5078,7 +5078,7 @@ if (pkg.title.includes("MYSORE") || pkg.title.includes("OOTY")) {
         </div>
       </div>
       <div class="text-center border-top border-secondary pt-4">
-        <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+        <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
       </div>
     </div>
   </footer>
@@ -5299,7 +5299,7 @@ if (pkg.title.includes("MYSORE") && pkg.title.includes("COORG")) {
   <!-- FOOTER -->
   <footer class="site-footer bg-dark text-white py-5">
     <div class="container text-center">
-      <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS RESERVED.</p>
+      <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS RESERVED.</p>
     </div>
   </footer>
 
@@ -5445,7 +5445,7 @@ if (pkg.title.includes("MYSORE") && pkg.title.includes("COORG")) {
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-4">
-                <p class="mb-0 small">© 2025 DREAM IMMIGRATIONS AND EDUCATIONAL SERVICES. ALL RIGHTS ARE RESERVED.</p>
+                <p class="mb-0 small">© 2025 MAYYRA INFOTECH. ALL RIGHTS ARE RESERVED.</p>
             </div>
         </div>
     </footer>
